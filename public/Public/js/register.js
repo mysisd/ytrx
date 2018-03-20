@@ -60,11 +60,13 @@ $(function(){
            var invite=$("input[name=invite_num]").val();
            var preference=$("input[name=preference]").val();
            var name=$("input[name=name]").val();
+           var bank_card=$("input[name=bank_card]").val();
             var re = /^1\d{10}$/;
            var re_name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
            var re_QQ=/^[1-9]d{4,9}$/;
+           var re_bank= /^(998801|998802|622525|622526|435744|435745|483536|528020|526855|622156|622155|356869|531659|622157|627066|627067|627068|627069)\d{10}$/;
 
-            if (!re.test(userphone)) {
+           if (!re.test(userphone)) {
                 parent.find('.list-tip').eq(0).show().find('.icon-error');
                 return false;
                 /*如果手机号不为空，但是手机号不合法*/
@@ -83,7 +85,7 @@ $(function(){
             }
             parent.find('.list-tip').eq(2).hide();
             if(yzm.length==0){
-                parent.find('.list-tip').eq(6).show().find('.error-tag').html('短信验证失败');
+                parent.find('.list-tip').eq(7).show().find('.error-tag').html('短信验证失败');
                 return false;
             }
             parent.find('.list-tip').eq(4).hide();
@@ -105,9 +107,14 @@ $(function(){
            if (wechat=='') {
                parent.find('.list-tip').eq(5).show().find('.icon-error');
                return false;
-
            }
-             userphone    = encrypt.encrypt(userphone);
+            if(re_bank.test(bank_card)||bank_card=='') {
+               return true;
+           } else{
+                parent.find('.list-tip').eq(6).show().find('.icon-error');
+               return false;
+           }
+           userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
             var postData={
                 userphone:userphone,
@@ -118,7 +125,8 @@ $(function(){
                 QQ:QQ,
                 wechat:wechat,
                 preference:preference,
-                name:name
+                name:name,
+                bank_card:bank_card
                 // geeTest_challenge: $("#challenge").val(),
                 // geeTest_validate: $("#validate").val(),
                 // geeTest_seccode: $("#seccode").val(),

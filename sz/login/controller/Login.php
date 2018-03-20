@@ -140,6 +140,7 @@ class Login extends Base {
             $data['invite_num']   = substr(uniqid(),-6);
             $data['preference']   = input('preference');
             $data['name']   = input('name');
+            $data['bank_card']   = input('bank_card');
             $data['password'] = sha1($_POST['password']);
             $data['reg_time'] = date('Y-m-d H:i:s',time());
 
