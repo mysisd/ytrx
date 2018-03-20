@@ -64,7 +64,7 @@ $(function(){
             var re = /^1\d{10}$/;
            var re_name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
            var re_QQ=/^[1-9]d{4,9}$/;
-           var re_bank= /^(998801|998802|622525|622526|435744|435745|483536|528020|526855|622156|622155|356869|531659|622157|627066|627067|627068|627069)\d{10}$/;
+           var re_bank= /^\d{16}|\d{19}$/;
 
            if (!re.test(userphone)) {
                 parent.find('.list-tip').eq(0).show().find('.icon-error');
