@@ -137,9 +137,13 @@ class Login extends Base {
             $data['username']   = 'ytrx_'.substr($_POST['phone'],-4);
             $data['account']    = $_POST['phone'];
             $data['invite']   = input('invite');
-            $data['invite_num']   = substr(uniqid(),-6);;
+            $data['invite_num']   = substr(uniqid(),-6);
+            $data['preference']   = input('preference');
+            $data['name']   = input('name');
             $data['password'] = sha1($_POST['password']);
             $data['reg_time'] = date('Y-m-d H:i:s',time());
+
+
             $row = UserModel::insert($data);
             if($row){
                 session('face'    , null);
@@ -151,9 +155,9 @@ class Login extends Base {
         }else{
             $arr['returntype'] = 2;
             $arr['msg'] = '注册不成功';
-
+//
         }
-
+//
         return json($arr);
 
     }

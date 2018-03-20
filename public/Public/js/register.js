@@ -58,7 +58,12 @@ $(function(){
             var QQ=$("input[name=QQ]").val();
            var wechat=$("input[name=wechat]").val();
            var invite=$("input[name=invite_num]").val();
+           var preference=$("input[name=preference]").val();
+           var name=$("input[name=name]").val();
             var re = /^1\d{10}$/;
+           var re_name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+           var re_QQ=/^[1-9]d{4,9}$/;
+
             if (!re.test(userphone)) {
                 parent.find('.list-tip').eq(0).show().find('.icon-error');
                 return false;
@@ -78,10 +83,30 @@ $(function(){
             }
             parent.find('.list-tip').eq(2).hide();
             if(yzm.length==0){
-                parent.find('.list-tip').eq(4).show().find('.error-tag').html('短信验证失败');
+                parent.find('.list-tip').eq(6).show().find('.error-tag').html('短信验证失败');
                 return false;
             }
             parent.find('.list-tip').eq(4).hide();
+           if (!re_name.test(name)||name=='') {
+               parent.find('.list-tip').eq(3).show().find('.icon-error');
+               return false;
+
+           }
+           if (re_QQ.exec(QQ)||QQ=='') {
+               QQ = parseInt(QQ,10);
+               if(QQ>10000&&QQ<2300000000){
+                   return true;
+               }
+               parent.find('.list-tip').eq(4).show().find('.icon-error');
+               return false;
+           }
+
+
+           if (wechat=='') {
+               parent.find('.list-tip').eq(5).show().find('.icon-error');
+               return false;
+
+           }
              userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
             var postData={
@@ -91,7 +116,9 @@ $(function(){
                 yzm:yzm,
                 invite:invite,
                 QQ:QQ,
-                wechat:wechat
+                wechat:wechat,
+                preference:preference,
+                name:name
                 // geeTest_challenge: $("#challenge").val(),
                 // geeTest_validate: $("#validate").val(),
                 // geeTest_seccode: $("#seccode").val(),

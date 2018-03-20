@@ -94,19 +94,19 @@
 .footer{width:100%; margin-top:40px; overflow:hidden; background:#4e4e4e;}
 
 .footer_box01{; border-bottom:1px solid #757575;}
-.flink{width:86%; height:46px; margin:27px auto;}
-.flink h3{float:left; width:120px; height:46px; font-size:16px; color:#FFF; font-weight:bold; line-height:46px;}
+.flink{width:86%; height:46px; margin:0px auto;}
+.flink h3{float:left; width:120px; height:46px; font-size:1em; color:#FFF; font-weight:bold; line-height:46px;}
 .flink_l{float:left; width:86%;}
 .flink_ll{float:left; width:86%; overflow:hidden;}
 .flink_ll ul{width:100%; overflow:hidden;}
-.flink_ll li{float:left; display:inline; width:112px; height:44px; margin:0 6px; border:1px solid #dddddd;}
+.flink_ll li{float:left; display:inline; width:112px; height:36px; margin:5px 6px; border:1px solid #dddddd;}
 .flink_ll li img{width:112px; height:44px;}
 
-.flink_ll .rol{float:left; width:25px; height:44px; text-align:left; overflow:hidden; padding-top:0px; margin-right:10px;}
+.flink_ll .rol{float:left; width:16px; height:35px; text-align:left; overflow:hidden; padding-top:0px; margin-right:10px;}
 .flink_ll .rol a{display:block; width:25px; height:43px; background:url(/Public/img/rol.png) no-repeat left top;}
 .flink_ll .rol a:hover{ background-position:right top;}
 .flink_ll .ror{float:right; width:25px; height:44px; text-align:right; overflow:hidden; padding-top:0px; margin-left:10px;}
-.flink_ll .ror a{display:block; width:25px; height:43px; background:url(/Public/img/ror.png) no-repeat right top;}
+.flink_ll .ror a{display:block; width:16px; height:35px; background:url(/Public/img/ror.png) no-repeat right top;}
 .flink_ll .ror a:hover{ background-position:left top;}
 
 

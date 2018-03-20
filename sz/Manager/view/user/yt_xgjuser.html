@@ -28,7 +28,12 @@
 					<tr>
 
 						<td width="">手机号</td>
-                        <td width="">代理代码</td>
+                        <td width="">姓名</td>
+
+						<td>QQ</td>
+						<td>微信号</td>
+						<td>喜好品种</td>
+						<td>邀请码</td>
                         <td width="">注册时间</td>
                     	<td style="min-width:75px;" colspan="2">操作</td>
 					</tr>
@@ -37,7 +42,12 @@
                     <foreach name='userlist' item='v'>
 	                   <tr class="tbody_a">
 							<td class="">{$v.account}</td>
-						    <td class="">{$v.invite}</td>
+						    <td class="">{$v.name}</td>
+
+						   <td>{$v.QQ}</td>
+						   <td>{$v.wechat}</td>
+						   <td>{$v.preference}</td>
+						   <td>{$v.invite_num}</td>
 	                        <td class="">{$v.reg_time}</td>
 							<td><a href="/{$Request.module}/{$Request.controller}/detail_xgjuser/id/{$v.id}" class="updel_a href_a">详情</a></td>
 							<td><a data="/{$Request.action}/delete/{$v.id}" value="{$v.reg_time}" class="updel_a delete_a to_delete">删除</a></td>
