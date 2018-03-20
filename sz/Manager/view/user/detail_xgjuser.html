@@ -11,14 +11,9 @@
 			<input type="hidden" name="last_url" value="" id="last_url"><script>$('#last_url').val(document.referrer);</script>
 
 			<p><span class="left_inp_name">客户手机号：</span><input type="text" name="phone" value="{$userinfo.account}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户类属：</span><input type="text" name="phone" value="{$userinfo.belong}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户昵称：</span><input type="text" name="phone" value="{$userinfo.username}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户邀请码：</span><input type="text" name="phone" value="{$userinfo.invite_num}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">QQ：</span><input type="text" name="invite" value="{$userinfo.QQ}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">微信：</span><input type="text" name="invite" value="{$userinfo.wechat}" autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">代理代码：</span><input type="text" name="invite" value="{$userinfo.invite}" autocomplete="off" class="text num"></p>
+
 			<p><span class="left_inp_name">注册时间：</span>{$userinfo.reg_time}</p>
-			<p><span class="left_inp_name">登录时间：</span>{$userinfo.login_time}</p>
-			<p><span class="left_inp_name">退出时间：</span>{$userinfo.logout_time}</p>
 			<button type="submit" class="admin_btn" style="margin: 20px 0 0 50px">修改</button><a href="javascript:history.back(-1);" class="back_a" >返回</a>
 		</form>
 		</div>
