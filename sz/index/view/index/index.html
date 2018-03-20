@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <include file="../sz/view/head.html"></include>
+    <style>
+        .banner{
+            width: 86%;
+            height: 450px;
+            margin: auto;
+            position: relative;
+        }
+        .banner .banner_bg{
+            width:100%;
+            height: 450px;
+        }
+        .banner_bg .bg_img{
+            min-width:100%;
+            width:100%;
+            height:500px;
+            position: absolute;
+            opacity:0;
+            top:22px;
+        }
+        .banner_bg .banner_change{
+            width:70px;
+            height:70px;
+            line-height:60px;
+            font-size:70px;
+            color:#fff;
+            opacity:0.5;
+            position:absolute;
+            top:0;
+            bottom:0;
+            margin:auto;
+            z-index:5;
+            text-align:center;
+            cursor:pointer;
+            background:#000;
+            border-radius:4px;
+        }
+        .banner_bg .banner_change:hover{
+
+        }
+        .banner_bg .banner_left{
+            left:10px;
+        }
+        .banner_bg .banner_right{
+            right:10px;
+        }
+        .banner_bg ul{
+            position: relative;
+            top: 420px;
+            z-index: 3;
+            text-align:center;
+        }
+        .banner_bg ul li{
+            display: inline-block;
+            width:25px;
+            height:5px;
+            margin:0 5px;
+            text-align: center;
+            background: #999;
+            cursor:pointer;
+            opacity:0.7;
+            transition:all 0.5s ease;
+        }
+        .banner_box{
+            width:370px;
+            height:235px;
+            position:absolute;
+            top:100px;
+            right:150px;
+            z-index:5;
+            background:#fff;
+        }
+        .banner_box h3{
+            height:45px;
+            line-height:45px;
+            text-align:center;
+            border-bottom:1px solid #a9a9a9;
+            letter-spacing:1px;
+            color:#333;
+            font-weight:normal;
+            margin:0 0 20px 0;
+            font-size:18px;
+        }
+        .banner_box h3 span{
+            display:inline-block;
+            height:43px;
+            width:90px;
+            border-bottom:3px solid #666;
+        }
+        .banner_box p{
+            display:block;
+            margin:15px 0 15px 55px;
+        }
+        .banner_box p i{
+            display:inline-block;
+            width:38px;
+            height:38px;
+            border:1px solid #bbb;
+            float:left;
+            border-right:none;
+            background:#fff url(../img/i_user.png) no-repeat;
+        }
+        .banner_box .pwd_p i{
+            background:#fff url(../img/i_pwd.png) no-repeat;
+        }
+        .banner_box input{
+            width:210px;
+            height:38px;
+            border:1px solid #a9a9a9;
+            border-left:none;
+            font-size:15px;
+            color:#555;
+            outline:none;
+        }
+        .banner_box .banner_login{
+            width:260px;
+            margin: 15px auto;
+        }
+
+        .banner_box .banner_login button{
+            background:#007ab6;
+            border:none;
+            width:90px;
+            height:35px;
+            border-radius:4px;
+            color:#fff;
+            cursor:pointer;
+            font-size:15px;
+        }
+        .banner_box .banner_login button:hover{
+            opacity:0.9;
+        }
+        .banner_box .reg_log{
+            position:absolute;
+            right:10px;
+            bottom:3px;
+            z-index:7;
+        }
+        .banner_box .reg_log a{
+            color:#666;
+        }
+        .banner_box .reg_log a:hover{
+            text-decoration:underline;
+        }
+        .banner_box .reg_log span{
+            float:right;
+            margin:5px 0;
+            color:#666;
+        }
+        .banner_box .reg_log span .reg{
+            color:#0578b9;
+            margin-left:5px;
+        }
+        .banner_box .reg_log span .reg:hover{
+            text-decoration:underline;
+        }
+        #error_system .error_system_box{
+            z-index:999999;
+        }
+    </style>
+</head>
+<body style="overflow: visible">
+<include file="../sz/view/header.html"></include>
+<div class="banner">
+    <div class="banner_bg">
+        <!--<div class="banner_change banner_left" id="banner_prev" data="0">&lt;</div>-->
+        <!--<div class="banner_change banner_right" id="banner_next" data="0">&gt;</div>-->
+        <foreach name="bg" item="v">
+            <img class="bg_img" src="{$v.img}" >
+        </foreach>
+        <ul>
+            <foreach name="bg" item="v">
+                <li></li>
+            </foreach>
+        </ul>
+    </div>
+</div>
+<script>
+
+</script>
+
+<include file="../sz/view/foot.html"></include>
+
+
+</body>
+</html>

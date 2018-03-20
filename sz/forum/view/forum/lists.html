@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/head.html"></include>
+    <style>
+        table{
+            width: 86%;
+            margin: 25px auto;
+        }
+        .left{
+            width: 170px;
+        }
+        .bg{
+            background-color: #B10707;
+            color: white;
+        }
+        .fh{
+            margin-left: 18px;
+        }
+        .spa{
+            margin-left: 25px;
+        }
+        .ind{
+            text-indent:2em;
+        }
+    </style>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<table width="400px" border="1" cellpadding="12" cellspacing="0" align="center">
+    <tr>
+        <td colspan="2" class="bg">
+            <span class="fh"><a style="color: white" href="/forum/forum/forum_list?pid={$pid}">[返回]</a></span>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan="2" class="left">
+            发帖人：
+            {$data.author}
+        </td>
+        <td>
+            发帖时间：{$data.date}
+            <span class="spa"><a href="/forum/forum/reply?pid={$pid}&id={$data.id}">回复</a></span>
+        </td>
+    </tr>
+    <tr class="ind">
+        <td>{$data.content}</td>
+    </tr>
+    <empty name="list">
+        <tr>
+            <td colspan='2'>暂时还没有回复哦！！！</td>
+        </tr>
+        <else>
+            <foreach name="list" item="v">
+                <tr>
+                    <td>回复人:{$v.reply_author}</td>
+                    <td>{$v.reply}</td>
+                </tr>
+            </foreach>
+
+        </else>
+    </empty>
+</table>
+<include file="../sz/view/foot.html"></include>
+</body>
+</html>

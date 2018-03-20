@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <include file="../sz/view/head.html"></include>
+    <link rel="stylesheet" href="/Public/css/login.css">
+    <link rel="stylesheet" href="/Public/css/style_https.1.4.8.css">
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<div class="register-bodyer">
+    <div class="container" id="agency-register-way">
+        <h3 class="login-title">
+            <a href="/index/index/register">普通用户注册</a>
+            <a href="#" class="active">代理机构注册</a>
+        </h3>
+        <ul class="field-list">
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">请输入公司全称</span></li>
+            <li class="list">
+                <span class="icon-text">公司全称</span>
+                <input type="text" class="input-field" name="companyname" placeholder="请输入公司全称">
+            </li>
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">请输入业务联系邮箱</span></li>
+            <li class="list">
+                <span class="icon-text">联系邮箱</span>
+                <input type="text" class="input-field" name="workemail" placeholder="请输入业务联系邮箱">
+            </li>
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">请输入正确的手机号</span></li>
+            <li class="list">
+                <span class="icon-text">手 机 号</span>
+                <input type="text" class="input-field" name="userphone" placeholder="请输入正确的手机号">
+            </li>
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">密码错误密码不得少于六位</span></li>
+            <li class="list">
+                <span class="icon-text">设置密码</span>
+                <input type="password" class="input-field" name="userpwd" placeholder="请输入密码">
+            </li>
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">确认密码错误</span></li>
+            <li class="list">
+                <span class="icon-text">确认密码</span>
+                <input type="password" class="input-field" name="reuserpwd" placeholder="请再次输入密码">
+            </li>
+            <li class="list-tip" hidden=""><i class="icon-error">×</i><span class="error-tag"></span></li>
+            <!--<li class="list list-gt list-jiyan" id="yzm">
+                <div id="embed-captcha"></div>
+                <p id="wait" class="show"></p>
+            </li>-->
+            <input type="hidden" name="geetest_challenge" id="challenge">
+            <input type="hidden" name="geetest_validate" id="validate">
+            <input type="hidden" name="geetest_seccode" id="seccode">
+            <script type="text/javascript">
+                var cansendyam=0;
+                var handler = function (captchaObj) {
+                    captchaObj.onReady(function () {
+                        $("#wait").hide();
+                    }).onSuccess(function () {
+                        var result = captchaObj.getValidate();
+                        if (!result) {
+                            return alert('请完成验证');
+                        }
+                        $("#challenge").val(result.geetest_challenge);
+                        $("#validate").val(result.geetest_validate);
+                        $("#seccode").val(result.geetest_seccode);
+                        cansendyam=1;
+                        //处理登录
+                        sendAgencyCode();
+
+                    });
+                    $('.agency-send-yzm-btn').on('click',function () {
+                        if($(this).hasClass("disabled")){
+                            return false;
+                        }
+                        $('#agency-register-way').find('.list-tip').eq(6).hide();//代理机构注册时点击隐藏错误信息
+
+                        if($(this).attr("data")==0){
+                            return false;
+                        }
+
+                        var parent = $(this).closest('#agency-register-way');/!*父级元素*!/
+                        var userphone =$("input[name=userphone]").val();
+                        var companyname = $("input[name=companyname]").val();//公司名称
+                        var workemail = $("input[name=workemail]").val();//业务邮箱
+                        var exmail =/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;//邮箱正则
+                        var userpwd=$("input[name=userpwd]").val();//密码
+                        var reuserpwd=$("input[name=reuserpwd]").val();//第二次密码
+
+                        if(companyname===""){
+                            parent.find('.list-tip').eq(0).show().find('.icon-error');
+                            return false;
+                        }
+                        parent.find('.list-tip').eq(0).hide();//(0)
+                        if(workemail === ""){
+                            parent.find('.list-tip').eq(1).show().find('.icon-error');
+                            return false;
+                        }else if(!exmail.test(workemail)){
+                            parent.find('.list-tip').eq(1).show().find('.icon-error');
+                            return false;
+                        }
+                        parent.find('.list-tip').eq(1).hide();//(0)
+                        var re = /^1\d{10}$/;
+                        if(!re.test(userphone)){
+                            parent.find('.list-tip').eq(2).show().find('.icon-error');
+                            return false;
+                        }else{
+                            parent.find('.list-tip').eq(2).hide();
+                        }
+                        if(userpwd.length<6){
+                            parent.find('.list-tip').eq(3).show().find('.icon-error');//(1)
+                            return false;
+                        }
+                        parent.find('.list-tip').eq(3).hide();//(1)
+                        if(userpwd!=reuserpwd){
+                            parent.find('.list-tip').eq(4).show().find('.icon-error');//(2)
+                            return false;
+                        }
+                        // 调用之前先通过前端表单校验
+                        captchaObj.verify();
+                    })
+                    // 更多接口说明请参见：http://docs.geetest.com/install/client/web-front/
+                };
+
+
+                $.ajax({
+                    url: "/passport/gee-test-code?t=" + (new Date()).getTime(), // 加随机数防止缓存
+                    type: "get",
+                    dataType: "json",
+                    success: function (data) {
+
+                        // 调用 initGeetest 进行初始化
+                        // 参数1：配置参数
+                        // 参数2：回调，回调的第一个参数验证码对象，之后可以使用它调用相应的接口
+                        initGeetest({
+                            // 以下 4 个配置参数为必须，不能缺少
+                            gt: data.gt,
+                            challenge: data.challenge,
+                            offline: !data.success, // 表示用户后台检测极验服务器是否宕机
+                            new_captcha: data.new_captcha, // 用于宕机时表示是新验证码的宕机
+
+                            product: "bind", // 产品形式，包括：float，popup
+                            width: "300px"
+                            // 更多配置参数说明请参见：http://docs.geetest.com/install/client/web-front/
+                        }, handler);
+                    }
+                });
+
+                //更换图片验证码
+                function changing(){
+                    //document.getElementById('checkpic').src="/passport/operation-code?"+Math.random();
+                    $('#checkpic').prop('src',"/passport/operation-code?"+Math.random());
+                }
+                var checkCodeUrl = "/passport/check-code";
+
+                function checkCode(){
+                    var isSuccess = false;
+                    var code = $("#code").val();
+                    $.ajax({
+                        async: false,//禁止异步处理
+                        type: "POST",
+                        dataType: "json",
+                        data: {code:code},
+                        url: checkCodeUrl,
+                        success: function(json) {
+                            if(json.status){
+                                cansendyam=1;
+                                $('#login-way').find('.list-tip').eq(2).hide();
+                                $('#register-way').find('.list-tip').eq(3).hide();
+                                $('#agency-register-way').find('.list-tip').eq(5).hide();
+                                $("#btn-login").attr("data",1);
+                                isSuccess = true;
+                            }else{
+                                changing();
+                                $('#login-way').find('.list-tip').eq(2).show().find('.error-tag').text(json.msg);//登录
+                                $('#register-way').find('.list-tip').eq(3).show().find('.error-tag').text(json.msg);//普通用户注册
+                                $('#agency-register-way').find('.list-tip').eq(5).show().find('.error-tag').text(json.msg);//代理机构注册
+                                $("#btn-login").attr("data",0);
+                                isSuccess = false;
+                            }
+                        }
+                    })
+                    return isSuccess;
+                }
+            </script>
+
+            <li class="list-tip hide"><i class="icon-error">×</i><span class="text">短信验证码错误</span></li>
+            <li class="list list-smsyzm">
+                <span class="icon-text">短信验证码</span>
+                <input type="text" class="input-field" name="yzm" placeholder="请输入手机短信验证码">
+                <button class="btn agency-send-yzm-btn">获取验证码</button>
+            </li>
+        </ul>
+        <div class="xieyi">
+            <input class="checkbox-xieyi" type="checkbox">
+            <span class="text">我已阅读并接受<em>《<a target="_blank" href="http://www.quandashi.com/index/reg-xieyi">权大师用户协议</a>》</em></span>
+            <span class="text">已有账号 <a href="/index/index/login">立即登录</a></span>
+        </div>
+        <div class="btns">
+            <a class="btn " id="btn-register">立即注册</a>
+        </div>
+        <!--<div class="entries-way">
+            <a href="/passport/register?callback=http%3A%2F%2Fsubmit.quandashi.com%2Findex%2Flogin">普通用户注册</a>
+        </div>-->
+    </div>
+
+    <!--<div class="erweima">-->
+        <!--<img src="https://account.quandashi.com/qdshome/images/erweimas.jpg" alt="权大师APP二维码">-->
+        <!--<div class="text">扫描下载权大师APP</div>-->
+    <!--</div>-->
+
+</div>
+<include file="../sz/view/foot.html"></include>
+</body>
+</html>

@@ -1,0 +1,80 @@
+@charset "utf-8";
+.ddsmoothmenu{font-size:14px;}
+.ddsmoothmenu a{text-align:center;}
+.ddsmoothmenu ul{
+z-index:100;  margin:0 auto;
+margin:0;
+padding:0;
+list-style-type: none;
+}
+
+/*.i_nav li{float:left; width:124px; height:50px; color:#FFF; line-height:50px; font-size:16px; text-align:center;}
+.i_nav li > a{color:#FFF; display:block; width:124px; height:50px;}
+.i_nav li > a:hover{color:#a7201f;}
+.i_nav li > a.on{color:#FFF;}
+.i_nav li.line{width:10px; background:url(../Images/nav_line.png) no-repeat center center;}*/
+
+
+.ddsmoothmenu ul li{position: relative;display: inline;float:left; display:inline; color:#FFF; text-align:center; line-height:50px;}
+.nava{display:block; width:124px; line-height:50px; color:#FFF; font-size:16px; font-family:microsoft yahei;}
+* html .nava{ /*IE6 hack to get sub menu links to behave correctly*/display: inline-block;}
+.nava:hover,.nava.selected{display:block; width:124px; line-height:50px; font-family:microsoft yahei; color:#a7201f; font-size:16px;}
+.navactive,.navactive:hover{display:block; width:124px; line-height:50px; font-family:microsoft yahei;  color:#a7201f; font-size:16px;}
+
+.ddsmoothmenu ul li.line{width:10px; background:url(/templates/Images/nav_line.png) no-repeat center center; height:50px;}
+
+
+.i_nav ul li ul{
+position: absolute; width:124px; 
+left:0px;
+display: none; /*collapse all sub menus to begin with*/
+visibility: hidden;
+}
+* html .i_nav ul li ul{}
+.i_nav ul li ul li{
+display: list-item; margin:0 auto; background:none;
+float: none;  float:left;
+height:30px;line-height:30px;
+}
+/*All subsequent sub menu levels vertical offset after 1st level sub menu */
+.i_nav ul li ul li ul{
+top:0;
+}
+.i_nav ul li ul li a
+{
+display:block; float:left;
+font: normal 14px Verdana;
+width:124px;
+height:30px;
+line-height:30px; background:url(/templates/images/header_bg.jpg); text-align:center;
+
+margin: 0;
+color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis; cursor:pointer;
+}
+.navliv{ height:30px; }
+.i_nav ul li ul li a:hover{color:#a7201f; text-decoration:none;}
+/* Holly Hack for IE \*/
+* html .ddsmoothmenu{height: 1%;} /*Holly Hack for IE7 and below*/
+
+
+.downarrowclass{
+position: absolute;
+top: 12px;
+right: 15px;
+}
+.ddshadow{ /*shadow for NON CSS3 capable browsers*/
+position: absolute;
+left: 0;
+top: 0;
+width: 0;
+height: 0;
+background: silver;
+}
+
+.toplevelshadow{ /*shadow opacity for NON CSS3 capable browsers. Doesn't work in IE*/
+ filter:alpha(opacity=0);opacity: 0;}
+
+
+/*------------------------------------------------------*/
+
+/* End */

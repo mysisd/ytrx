@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+   <include file="../sz/view/head.html"></include>
+    <style>
+        table{
+            width: 86%;
+            margin: 25px auto;
+        }
+.title{
+    background-color: #B10707;
+    color: white;
+}
+.sub{
+    text-align: center;
+}
+.but{
+    background-color: #B10707;
+    width: 74px;
+    height: 28px;
+    font-size: 15px;
+    color: white;
+    border: none;
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 27px;
+}
+input{
+    width: 50%;
+    height: 25px;
+}
+.right{
+    margin-left: 10px;
+}
+        textarea{
+            width: 50%;
+        }
+</style>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<input type="hidden" name="pid" value="{$pid}">
+    <table width="500px" border="1" cellpadding="8" cellspacing="0" align="center">
+    <tr class="title">
+    <td colspan="2">
+    编辑帖子<span class="right">[<a style="color: white" href="/forum/forum/forum_list?pid={$pid}">返回</a> ]</span>
+</td>
+</tr>
+
+    <tr>
+    <td width="100px">标题</td>
+    <td><input type="text" name="title"></td>
+    </tr>
+    <tr>
+    <td width="100px">内容</td>
+    <td><textarea cols="43" rows="15" name="content">
+    </textarea></td>
+    </tr>
+    <tr class="sub">
+    <td colspan="2">
+        <buttom    class="but" id="btn">发布</buttom>
+        <buttom   class="but">重置</buttom>
+    </td>
+    </tr>
+    </table>
+<include file="../sz/view/foot.html"></include>
+<script>
+    $(function () {
+        $('#btn').on('click',function () {
+            var pid=$('input[name=pid]').val();
+           var title=$('input[name=title]').val();
+           var content=$('textarea[name=content]').val();
+           $.ajax({
+                url:'/forum/forum/add_lists',
+               type:'post',
+               data:{'title':title,'content':content,"pid":pid},
+               success:function (data) {
+                   if(data.res=='success'){
+                       alert('发表成功');
+                       location.href='/forum/forum/forum_list?pid='+pid;
+
+                   }else{
+                       alert('发表失败');
+                       location.reload();
+                   }
+               }
+           })
+        })
+    })
+</script>
+    </body>
+    </html>

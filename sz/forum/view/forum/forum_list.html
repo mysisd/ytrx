@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/head.html"></include>
+
+    <style>
+        .cen{
+            border: none;
+            width: 600px;
+            margin: 0 auto;
+            height: 40px;
+            background-color: rgba(34, 35, 62, 0.08);
+        }
+        .left{
+            width: 535px;
+            float: left;
+        }
+        .right{
+            width: 65px;
+            height: 30px;
+            background-color:#B10707 ;
+            float: left;
+            margin-top: 8px;
+        }
+        .title{
+            background-color: #B10707;
+            color: white;
+        }
+        .list{
+            margin-left: 12px;
+        }
+.pagination li{
+    float: left;
+}
+    </style>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+
+<table width="86%" border="1" cellpadding="8" cellspacing="0" style="margin: 25px auto" align="center">
+    <tr class="title">
+        <td colspan="3">帖子列表 <span class="list">[<a style="color: white" href="/forum/forum/add_list?pid={$id}">发布新帖</a> ]</span><span class="list">[<a style="color: white" href="/forum/forum/forum">返回</a> ]</span></td>
+    </tr>
+    <tr>
+        <td width="280px">主题列表</td>
+        <td width="160px" >作者</td>
+        <td width="160px">最后更新</td>
+    </tr>
+    <foreach name="data" item="v">
+        <tr>
+            <td width="280px">
+                <div><a href="/forum/forum/lists?pid={$id}&id={$v.id}">{$v.title}</a></div>
+            </td>
+            <td width="160px">{$v.author}</td>
+            <td width="160px">{$v.date}</td>
+        </tr>
+    </foreach>
+</table>
+<div style="width: 86%;margin: 0 auto;height: 50px">{$page}</div>
+<include file="../sz/view/foot.html"></include>
+</body>
+</html>

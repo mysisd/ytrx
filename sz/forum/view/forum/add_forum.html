@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <include file="../sz/view/head.html"></include>
+    <style>
+    table,td,tr{
+    border: 1px solid #B10707;
+}
+.btn{
+    background-color: #B10707;
+    width: 90px;
+    height: 40px;
+    font-size: 15px;
+    color: white;
+    border: none;
+}
+#title{
+    color: White;
+}
+.input{
+    border: 1px solid red;
+    width: 200px;
+    height: 20px;
+}
+a{
+    color: White;
+}
+.right{
+    margin-left: 10px;
+}
+</style>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+
+    <table width="86%" cellspacing="0" cellpadding="8" align="center" style="margin: 35px auto">
+    <tr id="title">
+    <td colspan="2" style="background-color: #B10707">
+    论坛管理 <span class="right">[<a href="/forum/forum/forum">返回首页</a> ]</span>
+</td>
+</tr>
+<tr>
+<td width="23%"><strong>论坛名称</strong></td>
+    <td width="77%">
+        <input name="forum_name" type="text" class="input"></td>
+    </tr>
+    <tr>
+    <td width="23%"><strong>论坛主题</strong></td>
+    <td width="77%"><input name="subject" type="text" class="input"></td>
+    </tr>
+    <tr>
+    <td><strong>论坛简介</strong></td>
+    <td><textarea name="forum_description" cols="30" rows="5"></textarea></td>
+    </tr>
+    <tr>
+    </tr>
+    <tr>
+    <td></td>
+    <td>
+    <input type="button" name="submit" class="btn" id="btn" value="添加">
+    <input type="reset" name="submit2" class="btn" value="重置">
+    </td>
+    </tr>
+    </table>
+
+<include file="../sz/view/foot.html"></include>
+<script>
+    $(function () {
+        $('#btn').on('click',function () {
+            var forum_name =$("input[name=forum_name]").val();
+            var subject =$("input[name=subject]").val();
+            var forum_description =$("textarea[name=forum_description]").val();
+            $.ajax({
+                url:'/forum/forum/adds_forum',
+                type:'post',
+                data:{'forum_name':forum_name,'subject':subject,'forum_description':forum_description},
+                success:function (data) {
+                    if(data.res=='success'){
+                        alert('添加成功');
+                        location.href='/forum/forum/forum';
+                    }else{
+                        alert('添加失败');
+                        location.reload();
+                    }
+                }
+            })
+        })
+    })
+</script>
+    </body>
+    </html>

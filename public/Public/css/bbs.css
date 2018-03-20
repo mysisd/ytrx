@@ -1,0 +1,362 @@
+@charset "utf-8";
+
+
+/* 这个链接改变颜色 */
+
+.header{
+	background-color: #000000;
+}
+.middle{
+	height:500px;
+	width:86%;
+	background-color:#f5f5f5;
+	margin: 35px auto;
+}
+.nav{
+	height:60px;
+	width:100%;
+	padding-left:10px;
+}
+.left{
+	float:left;
+}
+.left li ,.login li{
+	float:left;
+	width:50px;
+	list-style-type:none;
+	text-align:center;
+	margin-right:10px;
+	
+}
+.left a,.login a{
+	color:#787d82;
+	display:block;
+	font-size:14px;
+	height:60px;
+	line-height:60px;
+	text-decoration:none;
+}
+.left a:hover,.login a:hover{
+	background-color: #363c41;
+    color: #fff;
+}
+.search_area{
+	width:300px;
+	height:57px;
+	float:right;
+}
+.search_input{
+	width:250px;
+	height:30px;
+	margin-top:15px;
+	border:#000 solid 1px;
+	padding-left:10px;
+}
+.login{
+	height:60px;
+	float:right;
+	margin-right:50px;
+}
+.wrap{
+	width:100%;
+	min-height:520px;
+	margin: 0 auto;
+	background-color:#F5F5F5;
+}
+.wrap_left{
+	width:100%;
+	min-height:500px;
+	background:#FFF;
+	border:#CCC solid 1px;
+	margin:5px 5px;
+	float:left;
+}
+.wrap_right{
+	width:288px;
+	height:600px;
+	background-color:#F5F5F5;
+	/*border:#CCC solid 1px;*/
+	margin:5px 5px;
+	float:left;
+	
+}
+.right_top{
+	width:278px;
+	height:50px;
+	background-color:#0CF;
+	margin:5px 5px;
+	border:#CCC solid 1px;
+}
+.right_top a{
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	background-color: #08C;
+	color: #FFF;
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	transition: background-color 0.25s ease 0s;
+	
+}
+.right_top a:hover{
+    background-color: #00a0f0;
+}
+.right_bottom{
+	width:278px;
+	height:200px;
+	background-color:#FFF;
+	border:#CCC solid #1px;
+	margin:10px 5px;
+	border:#ccc solid 1px;
+}
+.hot-label {
+    background: none repeat scroll 0 0 #edf1f2;
+    color: #787d82;
+    float: left;
+    font-size: 12px;
+    height: 24px;
+    line-height: 24px;
+    margin: 1px;
+    padding: 0 10px;
+    transition: all 0.25s ease 0s;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+.hot-label:link, .hot-label:visited{
+    color: #787d82;
+}
+.hot-label:hover, .list-tag:hover, .hot-label.curr{
+    background-color: #d0d6d9;
+    color: #14191e !important;
+}
+.right_bottom_bottom {
+	height:400px;
+	width:278px;
+    background-color: #ffffff;
+	margin:10px 5px;
+	border:#CCC solid 1px;
+    
+}
+.panel-heading{
+	width:278px;
+	height:50px;
+	border-bottom: 1px solid #d0d6d9;
+	margin-top:10px ;
+}
+.panel-title {
+	width:150px;
+    font-size: 16px;
+    height: 50px;
+    line-height: 50px;
+	float:left;
+	margin-left:10px;
+}
+.honormore {
+	width:100px;
+	font-size:12px;
+	text-decoration:none;
+	text-align:right;
+	color:#CCC;
+	height:auto;
+	float:left;
+	padding-top:20px;
+
+}
+.roll-head {
+    background: none repeat scroll 0 0 #ccc;
+    border-radius: 20px;
+    display: inline-block;
+    height: 40px;
+    overflow: hidden;
+    width: 40px;
+}
+/*.user{
+	padding-top:10px;
+}*/
+.user li{
+	height:60px;
+	line-height:60px;
+	list-style-type:none;
+	margin:10px 10px;
+	border-bottom:#CCC solid 1px;
+}
+.wenda-head{
+	height:50px;
+	border-bottom:#CCC solid 1px;
+	margin:auto 10px;
+}
+.wenda-head a{
+	display:block;
+	width:100px;
+	height:30px;
+	text-align:center;
+	font-family:"微软雅黑";
+	text-decoration:none;
+	font-size:14px;
+	color:#666;
+    float:left;
+	margin-top:20px;
+	margin-left:20px;
+}
+.headslider{
+	height:120px;
+	margin-left:50px;
+	float:left;
+}
+.wenda-head a:hover{
+	color:#900;
+	border-bottom:#903 solid 2px;
+}
+.wenda-list{
+	border-bottom: 1px solid #e3e5e5;
+  	margin:10px 10px;
+	height:120px;
+}
+.wenda_list_head{
+	background: none repeat scroll 0 0 #ccc;
+    border-radius: 20px;
+    display: inline-block;
+    height: 40px;
+    overflow: hidden;
+    width: 40px;
+	margin-top:20px;
+
+}
+.wenda-nickname {
+    color: #787d82;
+	height:20px;
+	width:60px;
+    display: block;
+    font-size: 14px;
+    line-height: 2.0em;
+    overflow: hidden;
+    text-align:left;
+	vertical-align:bottom;
+    white-space: nowrap;
+}
+.wendaslider {
+    margin-left: 100px;
+    min-height: 85px;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+.qaslider{
+	height:120px;
+	margin-left:10px;
+	margin-top:10px;
+	float:left;
+}
+.qaslider li{
+	height:30px;
+	line-height:30px;
+	list-style-type:none;
+}
+.result{
+	height:50px;
+	width:100px;
+	float:left;
+	margin-left:150px;
+	margin-top:35px;
+}
+.answer_num,.browse_num{
+	height:50px;
+	width:49px;
+	float:left;	
+}
+.wendatitle{
+	font-family:"微软雅黑";
+	height:30px;
+	color:#333;
+	font-size:14px;
+	text-decoration:none;
+	float:left;
+}
+.icon{
+	width:25px;
+	height:25px;
+	margin-right:5px;
+	display:block;
+	float:left;
+	margin-top:2px;
+}
+.icon2{
+	height:10px;
+	width:15px;
+	margin-right:5px;
+	display:block;
+	float:left;
+	margin-top:10px;
+}
+.replydet{
+	font-family:"微软雅黑";
+	height:30px;
+	color:#333;
+	font-size:12px;
+	text-decoration:none;
+	float:left;
+}
+.time{
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#AAA;
+	padding-left:20px;
+}
+.answer_num{
+	border-right:#CCC solid 1px;
+}
+.result_left,.result_right{
+	width:40px;
+	margin-left:11px;
+}
+.page{
+    clear: both;
+    margin: 25px 0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+.page-inner {
+    padding: 0 20px;
+}
+.page a {
+    border-bottom: 1px solid transparent;
+    color: #787d82;
+    display: inline-block;
+    font-size: 14px;
+    height: 29px;
+    line-height: 30px;
+    margin: 0 5px;
+    min-width: 20px;
+    padding: 0 5px;
+    text-align: center;
+    transition: border-color 0.2s ease 0s;
+}
+.page a:hover {
+    border-color: #cc0000;
+    color: #cc0000;
+    text-decoration: none;
+}
+.page a.active {
+    background: none repeat scroll 0 0 #cc0000;
+    border-color: transparent;
+    color: #ffffff;
+}
+.page span, .page-disabled {
+    color: #c8cdd2;
+    display: inline-block;
+    font-size: 14px;
+    height: 39px;
+    line-height: 39px;
+    min-width: 20px;
+    padding: 0 5px;
+    text-align: center;
+}
+.page-first, .page-last {
+    width: 50px;
+}
+.page-prev, .page-next {
+    width: 70px;
+}
+.page .notmargin {
+    margin-right: 0;
+}

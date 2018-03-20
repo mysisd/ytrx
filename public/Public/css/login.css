@@ -1,0 +1,236 @@
+@charset "utf-8";
+*{ margin:0; padding:0; font-weight: normal; font-style: normal; box-sizing:border-box; }
+html,body,h1,h2,h3,h4,h5,h6,p,ul,ol,li,form,img,dl,dt,dd,table,th,td,blockquote,fieldset,div,strong,label,em,i,b,strong{margin:0; padding:0; font-weight: normal; font-style: normal; box-sizing:border-box; }
+ul,ol,li{list-style:none;}
+a{text-decoration:none; }
+img{ border:0;}
+i,em,b,strong{font-style:normal; }
+table{border-collapse:collapse; }
+input,select,textarea,button{ outline:none; resize: none; font-family:"Microsoft Yahei","微软雅黑"; }
+*:focus{outline:none}
+html,body{width:100%; font-family:"Hiragino Sans GB","Microsoft Yahei","微软雅黑","\5FAE\8F6F\96C5\9ED1"; font-size: 14px;}
+
+/* --------------- start 注册 --------------- */
+/*头*/
+.loginRegister-header{ position: relative; width: 100%; box-shadow: 0 2px 6px 0 rgba(0,0,0,0.18); border-bottom: solid 1px #eee; z-index: 500;}
+.loginRegister-header .top{ width: 1000px; height: 110px; margin: auto; }
+.loginRegister-header .logo{ float: left; margin: 12px 20px 0 0; overflow: hidden; }
+.loginRegister-header .logo .pic{ display: block; float: left; margin-top: 10px; width: 110px;}
+.loginRegister-header .logo .pic img{ width: 100%;}
+.loginRegister-header .logo .welcome-text{ display: block; float: left; margin: 20px 0 0 25px; padding-left: 15px; font-size: 20px; height: 40px; line-height: 38px; }
+.loginRegister-header .right{ float: right; margin-top: 50px; overflow: hidden; }
+.loginRegister-header .right .text{ display: block; float: left; color: #666; font-size: 14px; line-height: 26px; }
+.loginRegister-header .right .link{ display: block; float: left; color: #F08B2F; border: solid 1px #fff; line-height: 24px; padding: 0 10px; text-decoration: none; }
+.loginRegister-header .right .link:hover{  }
+/*注册输入列表框*/
+.register-bodyer{ width: 1000px; min-height: 560px; margin: auto; margin-top: 50px; margin-bottom: 90px; position: relative; text-align: center;}
+.register-bodyer .container{ display: inline-block;; width: 400px; vertical-align: middle;}
+.register-bodyer .container .c-title{ padding-bottom: 10px; font-size: 18px; color: #f08b2f; font-weight: bold; }
+.register-bodyer .container .c-title a{ display: block; float: right; color: #999; font-size: 15px; }
+.register-bodyer .container .c-title a:hover{ color: #f08b2f; }
+.register-bodyer .container .login-title{
+    margin-bottom: 30px;
+    text-align: left;
+}
+.register-bodyer .container .login-title a{
+    display: inline-block;
+    margin-right: 45px;
+    font-size: 16px;
+    line-height: 2em;
+    color: #999999;
+}
+.register-bodyer .container .login-title a.active{
+    color: #F08B2F;
+    border-bottom: 3px solid #F08B2F;
+}
+.register-bodyer .container .field-list{ }
+.register-bodyer .container .field-list .list-tip{ height: 15px; margin: 0px; text-align: left; color: #aaa; font-size: 12px; }
+.register-bodyer .container .field-list .list-tip.hide{ display: none; }
+.register-bodyer .container .field-list .list-tip .icon-error{ display: block; float: left; font-size: 16px; border-radius: 50%; width: 14px; height: 14px; line-height: 14px; text-align: center; margin: 1px 4px 0 0; background-color: #ff0000; color: #fff; }
+.register-bodyer .container .field-list .list{ height: 46px; margin-bottom: 15px; position: relative; }
+.register-bodyer .container .field-list .list .icon-text{ display: block; width: 90px; height: 100%; font-size: 14px; line-height: 48px; text-align: left; color: #333; position: relative; z-index: 1; }
+.register-bodyer .container .field-list .list .input-field{ display: block; position: absolute; padding-left: 12px; top: 5px; left: 90px; width: 310px; height: 36px; border: none; border-bottom: 1px solid #ccc; }
+.register-bodyer .container .field-list .list .input-field::-webkit-input-placeholder { color: #d9d9d9; }
+.register-bodyer .container .field-list .list .input-field::-moz-placeholder{ color: #d9d9d9; }
+.register-bodyer .container .field-list .list .input-field:-ms-input-placeholder{ color: #d9d9d9; }
+.register-bodyer .container .field-list .list-smsyzm .input-field{ }
+.register-bodyer .container .field-list .list-smsyzm .btn{
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 95px;
+    height: 33px;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    background-color: #F08B2F;
+    cursor: pointer;
+    z-index: 1; }
+.register-bodyer .container .field-list .list-smsyzm .btn.disabled{
+    background-color: #DDDDDD;
+    color: #9b9b9b;
+    cursor: default;
+}
+.register-bodyer .container .field-list .list-yzm{ border: 0; height: 42px; }
+.register-bodyer .container .xieyi{ overflow: hidden; padding-top: 30px; }
+.register-bodyer .container .xieyi .checkbox-xieyi{ width: 16px; height: 16px; float: left; }
+.register-bodyer .container .xieyi .text{ float: left; line-height: 15px; margin-left: 5px; color: #333; }
+.register-bodyer .container .xieyi .text em{ color: #f08b2f; }
+.register-bodyer .container .xieyi .text a{ color: #f08b2f; }
+.register-bodyer .container .xieyi .text a:hover{ text-decoration: underline; }
+.register-bodyer .container .btns{ padding-top: 30px; }
+.register-bodyer .container .btns .btn{ display: block; width: 100%; line-height: 48px; text-align: center; background-color: #F08B2F; color: #fff; cursor: pointer; font-size: 16px; border: 0; }
+.register-bodyer .container .btns .btn.disabled{ background-color: #d9d9d9; }
+.register-bodyer .container .entries-way{ padding-top: 20px; overflow: hidden; text-align: center; }
+.register-bodyer .container .entries-way a{ color: #999; }
+.register-bodyer .container .entries-way a:hover{ color: #f08b2f; }
+.register-bodyer .line{ position: absolute; top: 0; left: 580px; width: 1px; height: 500px; background-color: #ebebeb; }
+.register-bodyer .erweima{ display: inline-block; margin-top: 100px; width: 180px; text-align: center; vertical-align: top;}
+.register-bodyer .erweima img{ width: 100%; }
+.register-bodyer .erweima .text{ color: #333; padding-top: 10px; }
+.register-bodyer .container .field-list .list-jiyan{ border: 0;}
+.register-bodyer .container .field-list .list-computer{ margin-top: 0; border-top: 0;}
+/*登录输入列表框*/
+.login-wrap{ width: 86%;margin: 25px auto;height: 500px; margin-bottom: 10px; overflow: hidden; position: relative; background-repeat: no-repeat; background-position: center 0px; }
+.login-wrap .login-bodyer{ width: 1000px; margin: auto; position: relative; overflow: hidden; }
+.login-wrap .link-banner{ display: block; width: 500px; height: 360px; position: absolute; left: 0; top: 50px; z-index: 1; text-indent: -10000px; overflow: hidden; }
+.login-bodyer .container{ width: 360px; float: right; margin: 40px 0 0; padding: 20px 30px 25px; background-color: #fff; border: solid 1px #eee; position: relative; z-index: 3;}
+.login-bodyer .container .c-title{ padding-bottom: 10px; font-size: 18px; color: #f08b2f; font-weight: bold; }
+.login-bodyer .container .c-title a{ display: block; float: right; color: #666; font-size: 15px; }
+.login-bodyer .container .c-title a:hover{ color: #f08b2f; }
+.login-bodyer .container .field-list{ }
+.login-bodyer .container .field-list .list-tip{ height: 15px; margin: 10px 0 -25px; color: #aaa; font-size: 12px; }
+.login-bodyer .container .field-list .list-tip.hide{ display: none; }
+.login-bodyer .container .field-list .list-tip .icon-error{ display: block; float: left; font-size: 16px; border-radius: 50%; width: 14px; height: 14px; line-height: 14px; text-align: center; margin: 1px 4px 0 0; background-color: #ff0000; color: #fff; }
+.login-bodyer .container .field-list .list{ border: solid 1px #ddd; height: 53px; margin-top: 25px; position: relative; }
+.login-bodyer .container .field-list .list .icon-text{ display: block; width: 44px; height: 100%; text-align: center; position: relative; z-index: 1; background-color: #aaa; color: #fff; }
+.login-bodyer .container .field-list .list .icon-text .glyphicon{ line-height: 42px; font-size: 16px; }
+.login-bodyer .container .field-list .list .input-field{ display: block; position: absolute; top: 0; left: 60px; width: 222px; height: 100%; border: 0; }
+.login-bodyer .container .field-list .list .input-field::-webkit-input-placeholder { color: #d9d9d9; }
+.login-bodyer .container .field-list .list .input-field::-moz-placeholder{ color: #d9d9d9; }
+.login-bodyer .container .field-list .list .input-field:-ms-input-placeholder{ color: #d9d9d9; }
+.login-bodyer .container .field-list .list-smsyzm .input-field{ width: 160px; left: 15px; }
+.login-bodyer .container .field-list .list-smsyzm .btn{ display: block; position: absolute; top: 0; right: 0; width: 110px; height: 100%; border: 0; background-color: #eee; cursor: pointer; z-index: 1; border-radius: 0; outline: none; }
+.login-bodyer .container .btns{ padding-top: 30px; }
+.login-bodyer .container .btns .btn{ display: block; width: 100%; line-height: 40px; padding: 0; text-align: center; background-color: #ee8b3c; color: #fff; cursor: pointer; font-size: 16px; border: 0; border-radius: 0; }
+.login-bodyer .container .btns .btn.disabled{ opacity: 0.3 }
+.login-bodyer .container .entries-way{ padding-top: 15px; overflow: hidden; }
+.login-bodyer .container .entries-way a{ display: block; color: #999; }
+.login-bodyer .container .entries-way a:hover{ color: #f08b2f; }
+.login-bodyer .container .entries-way .s1{ float: left; }
+.login-bodyer .container .entries-way .s2{ float: right; }
+.login-bodyer .container .field-list .no-account{ border: 0; height: 20px; margin-top: 15px; margin-bottom: -10px; text-align: right; color: #777; }
+.login-bodyer .container .field-list .no-account a{ display: inline-block; margin-left: 8px; color: #333; }
+.login-bodyer .container .field-list .no-account a:hover{ color: #f08b2f; }
+.login-bodyer .container .field-list .list-gt{ border: 0;}
+.login-bodyer .container .field-list .list-computer .icon-text{ display:none;}
+.login-bodyer .container .field-list .list-computer .input-field{ left:0; border:solid 1px #ddd; width:180px; padding:0 10px; }
+/* footer */
+.loginRegister-footer{ width: 100%; min-width: 1000px; color: #999; font-size: 12px; }
+.loginRegister-footer a{ color: #999; }
+.loginRegister-footer .footer{ width: 1000px; margin: auto; padding: 30px 0px; text-align: center; }
+.loginRegister-footer .footer .list{ padding-bottom: 10px; }
+.loginRegister-footer .footer .list li{ display: inline-block; border-left: solid 1px #ddd; padding: 0 20px; line-height: 14px; }
+.loginRegister-footer .footer .list li:nth-child(1){ border-left: 0px; }
+.loginRegister-footer .footer .p1{ padding: 10px 0 0; }
+
+/* 注册成功 */
+.register-success-container{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 300px;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    background-color: #fff;
+    z-index: 499;
+}
+.register-success-content-img{
+    display: inline-block;
+    margin-right: 26px;
+    width: 65px;
+    height: 65px;
+    vertical-align: middle;
+}
+.register-success-content-img img{
+    width: 100%;
+}
+.register-success-content-detail{
+    display: inline-block;
+    vertical-align: middle;
+}
+.register-success-content-detail h2{
+    margin-bottom: 15px;
+    font-size: 28px;
+    line-height: 1em;
+    color: #4A4A4A;
+}
+.register-success-content-detail p{
+    padding-left: 40px;
+    font-size: 16px;
+    text-align: left;
+}
+.register-success-content-detail p i{
+    color: #F08B2F;
+}
+.register-success-href{
+    margin-top: 80px;
+}
+.register-success-href a{
+    position: relative;
+    display: inline-block;
+    padding-left: 55px;
+    margin-right: 40px;
+    color: #999999;
+    font-size: 16px;
+    cursor: default;
+}
+.register-success-href a:before{
+    content: "";
+    position: absolute;
+    left: 42px;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: #F08B2F;
+}
+/* ---------- end 注册 ---------- */
+
+@media screen and (max-width: 1080px) {
+    html,body{font-size: 15px; }
+    .loginRegister-header .top{ width: 100%; }
+    .login-wrap .login-bodyer{ width: 100%; }
+    /*中间表单*/
+    .register-bodyer{ width: 100%; padding: 0 10px; margin-top: 60px; margin-bottom: 30px; }
+    .register-bodyer .container{ width: 100%; }
+    .register-bodyer .container .field-list .list-tip .icon-error{ font-size: 14px; padding-left: 0px; margin: 0px 4px 0 0;  }
+    .register-bodyer .container .field-list .list .input-field{ left: 0px; width: 100%; padding: 0 10px 0 110px; }
+    .register-bodyer .container .field-list .list-smsyzm .input-field{ width:100%; padding: 0 120px 0 110px; }
+    .register-bodyer .line{ display: none; }
+    .register-bodyer .erweima{ position: relative; margin-top: 40px; }
+    .register-bodyer .erweima img{ width: 60%; }
+    /* footer */
+    .loginRegister-footer{ min-width: 100%; }
+    .loginRegister-footer .footer{ width: 100%; padding: 10px 0px; }
+    .loginRegister-footer .footer .list{ display: none; }
+    .loginRegister-footer .footer .p1{ padding: 3px 0; }
+}
+
+/*验证码*/
+#captchaimg{
+    display: block;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: 95px;
+    height: 33px;
+    color: #fff;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    z-index: 1;
+}

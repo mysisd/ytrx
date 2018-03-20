@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<include file="../sz/view/adminhead.html"/>
+</head>
+<body>
+<div id="right">
+	<div class="right_nav">文件上传管理</div>
+	<div class="right_content">
+		<table class="table_a" border="1">
+			<thead>
+			<tr>
+				<td width="30%">名称</td>
+
+				<td width="">URL</td>
+				<td width="20%">最后修改时间</td>
+				<td width="10%" align="center" colspan="2">操作</td>
+			</tr>
+			</thead>
+			<tbody>
+			<foreach name='download' item='v'>
+				<tr class="tbody_a">
+					<td width="20%"><a href="/{$Request.module}/{$Request.controller}/update_link/id/{$v.id}">{$v.name}</a></td>
+
+					<td width="">{$v.url}</td>
+					<td class="help_date">{$v.date}</td>
+					<td><a href="/{$Request.module}/{$Request.controller}/update_link/id/{$v.id}" class="updel_a href_a update_file">修改</a></td>
+					<td><a href="/{$Request.module}/{$Request.controller}/yt_link/delete/{$v.id}" class="updel_a delete_a delete_file">删除</a></td>
+				</tr>
+			</foreach>
+			</tbody>
+			<tfoot>
+			<tr>
+				<td colspan="30">
+					<a href="/{$Request.module}/{$Request.controller}/add_link" class="add_btn">增加</a>
+				</td>
+			</tr>
+			</tfoot>
+		</table>
+	</div>
+</div>
+</body>
+</html>

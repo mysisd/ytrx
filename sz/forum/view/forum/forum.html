@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <include file="../sz/view/head.html"></include>
+    <link rel="stylesheet" href="/Public/css/bbs.css">
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>论坛</title>
+    <style>
+        .cen{
+            width: 55%;
+            margin: 0 auto;
+            text-align: right;
+            margin-top: 30px;
+        }
+        table{
+            width:86%;
+            margin-top: 10px;
+            margin: 0 auto;
+        }
+        .title{
+            background-color: #B10707;
+            font-size: 17px;
+            color: white;
+        }
+        .right{
+            margin-left: 120px;
+        }
+    </style>
+</head>
+<body>
+<div class="cen">
+
+</div>
+<table border="1px" cellspacing="0" cellpadding="8"align="center">
+    <tr class="title">
+        <td COLSPAN="4">
+            论坛列表<span class="right">[<a style="color: white" href="/forum/forum/add_forum">添加</a> ]</span>
+        </td>
+    </tr>
+    <tr>
+        <td width="10%"><strong>论坛名称</strong></td>
+        <td width="40%"><strong>主题</strong></td>
+        <td width="15%"><strong>简介</strong></td>
+        <td width="15%"><strong>时间</strong></td>
+    </tr>
+    <foreach name="data" item="v">
+    <tr>
+
+                <td>{$v.forum_name}</td>
+                <td><a href="/forum/forum/forum_list?pid={$v.id}">{$v.forum_description}</a></td>
+                <td>{$v.subject}</td>
+                <td>
+                    <div>{$v.last_post_time}</div>
+                </td>
+    </tr>
+    </foreach>
+
+</table>
+<include file="../sz/view/foot.html"></include>
+</body>
+</html>

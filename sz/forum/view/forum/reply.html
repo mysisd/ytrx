@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <include file="../sz/view/head.html"></include>
+    <style>
+        table{
+            width: 86%;
+            margin: 25px auto;
+        }
+        .title{
+            background-color: #B10707;
+            color: white;
+        }
+        .sub{
+            text-align: center;
+        }
+        .but{
+            background-color: #B10707;
+            width: 90px;
+            height: 40px;
+            font-size: 15px;
+            color: white;
+            border: none;
+        }
+        input{
+            width: 250px;
+            height: 25px;
+        }
+        .right{
+            margin-left: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <include file="../sz/view/header.html"></include>
+    <input type="hidden" name="id" value="{$id}">
+    <input type="hidden" name="pid" value="{$pid}">
+    <table  border="1" cellpadding="8" cellspacing="0" align="center">
+        <tr class="title">
+            <td colspan="2">
+                回复帖子<span class="right">[<a style="color: white" href="">返回</a> ]</span>
+            </td>
+        </tr>
+
+        <tr>
+        <tr>
+            <td width="100px">回复内容</td>
+            <td><textarea cols="43" rows="10" name="reply">
+ </textarea></td>
+        </tr>
+        <tr class="sub">
+            <td colspan="2">
+                <button type="submit" value="" class="but">快速回复</button>
+                <button type="reset" value="" class="but">重置</button>
+            </td>
+        </tr>
+    </table>
+<include file="../sz/view/foot.html"></include>
+    <script>
+        $(function () {
+            $('button[type=submit]').on('click',function () {
+                var reply=$('textarea[name=reply]').val();
+                var id=$('input[name=id]').val();
+                var pid=$('input[name=pid]').val();
+
+                $.ajax({
+                    url:'/forum/forum/add_reply',
+                    type:'post',
+                    data:{'reply':reply,'id':id,'pid':pid},
+                    success:function (data) {
+                        if(data.res=='success'){
+                            alert('回复成功');
+                            location.href='/forum/forum/lists?pid='+pid+'&id='+id;
+                        }else{
+                            alert('回复失败');
+                            location.reload();
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

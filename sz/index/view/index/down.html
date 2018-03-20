@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<include file="../sz/view/head.html"></include>
+    <style type="text/css">
+        body {
+            font-family: arial;
+        }
+
+        table {
+            border: 1px solid #ccc;
+            width: 86%;
+            margin:0;
+            padding:0;
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0 auto;
+        }
+
+        table tr {
+            border: 1px solid #ddd;
+            padding: 5px;
+            height: 120px;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        @media screen and (max-width: 600px) {
+
+            table {
+                border: 0;
+            }
+
+            table thead {
+                display: none;
+            }
+
+            table tr {
+                margin-bottom: 10px;
+                display: block;
+                border-bottom: 2px solid #ddd;
+            }
+
+            table td {
+                display: block;
+                text-align: right;
+                font-size: 13px;
+                border-bottom: 1px dotted #ccc;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+
+            table td:before {
+                content: attr(data-label);
+                float: left;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+        }
+
+        .note{max-width: 86%; margin: 0 auto;}
+
+    </style>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<div class="pr_title">
+    <strong> 当前位置 ：</strong><ins>
+</ins><a href="/indx/index/index"> 首页 </a>
+    <a href="#">&gt;</a>
+    <a id="position_nowtitle">软件下载</a></div>
+<table>
+    <tbody>
+    <tr>
+        <td >PC端软件下载</td>
+        <foreach name="download" item="v">
+            <td>
+                <div id="view_text_25_277534292_txt" style="cursor:default; height:100%; width:100%;">
+                    <div class="editableContent " style="line-height:1.5;">
+                        <p style="text-align: center;">
+                            <a href="" target="_self"><strong>{$v.name}</strong></a></p>
+
+                    </div>
+                </div>
+                <div id="view_image_24_277534292" class="yibuSmartViewMargin absPos" oldbottom="533">
+                    <div class="yibuFrameContent overflow_hidden image_Style1_Item0 view_image_24_277534292_Style1_Item0" style="height:78px;width:75px;margin: 0 auto">
+                        <div class="megwh" style="height:100%; width:100%;">
+                            <a id="autosize_view_image_24_277534292" href="http://www.hzshangsaibbs.com/ruanjian/jiaoyiyuan.exe" target="_self">
+                                <input id="w_view_image_24_277534292" type="hidden" value="280">
+                                <input id="h_view_image_24_277534292" type="hidden" value="280">
+                                <input id="canadjustwidth_view_image_24_277534292" type="hidden" value="False">
+                                <input id="canadjustheight_view_image_24_277534292" type="hidden" value="False">
+                                <img src="{$v.path}" alt="" style="border:none; position:relative;">
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="view_text_26_277534292_txt" style="cursor:default; height:100%; width:100%;">
+                    <div class="editableContent " style="line-height:1.5;">
+                        <p><span style="color: rgb(255, 0, 0);">（点击图标下载）</span></p>
+                    </div>
+                </div>
+            </td>
+
+        </foreach>
+
+    </tr>
+    <tr>
+        <td >手机软件下载</td>
+        <foreach name="download1" item="v">
+            <td>
+                <div id="view_text_25_277534292_txt" style="cursor:default; height:100%; width:100%;">
+                    <div class="editableContent " style="line-height:1.5;">
+                        <p style="text-align: center;">
+                            <a href="" target="_self"><strong>{$v.name}</strong></a></p>
+
+                    </div>
+                </div>
+                <div id="view_image_24_277534292" class="yibuSmartViewMargin absPos" oldbottom="533">
+                    <div class="yibuFrameContent overflow_hidden image_Style1_Item0 view_image_24_277534292_Style1_Item0" style="height:78px;width:75px;margin: 0 auto">
+                        <div class="megwh" style="height:100%; width:100%;">
+                            <a id="autosize_view_image_24_277534292" href="http://www.hzshangsaibbs.com/ruanjian/jiaoyiyuan.exe" target="_self">
+                                <input id="w_view_image_24_277534292" type="hidden" value="280">
+                                <input id="h_view_image_24_277534292" type="hidden" value="280">
+                                <input id="canadjustwidth_view_image_24_277534292" type="hidden" value="False">
+                                <input id="canadjustheight_view_image_24_277534292" type="hidden" value="False">
+                                <img src="{$v.path}" alt="" style="border:none; position:relative;">
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div id="view_text_26_277534292_txt" style="cursor:default; height:100%; width:100%;">
+                    <div class="editableContent " style="line-height:1.5;">
+                        <p><span style="color: rgb(255, 0, 0);">（点击图标下载）</span></p>
+                    </div>
+                </div>
+            </td>
+
+        </foreach>
+
+    </tr>
+    </tbody>
+</table>
+
+<include file="../sz/view/foot.html"></include>
+
+
+</body>
+</html>

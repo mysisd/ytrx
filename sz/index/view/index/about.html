@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<include file="../sz/view/head.html"></include>
+	<link rel="stylesheet" href="/Public/css/xmyttz.css">
+	<style>#about_list{$active1} {background:#0379b5;color:#fff;}</style>
+</head>
+<body>
+<include file="../sz/view/header.html"/>
+<!-- 导航END -->
+<div class="pr_title">
+	<strong> 当前位置 ：</strong><ins>
+</ins><a href="/indx/index/index"> 首页 </a>
+	<a href="#">&gt;</a>
+	<a id="position_nowtitle">关于我们</a></div>
+
+<div class="about_list">
+	<foreach name="about_list" item="v">
+		<a href="/{$Request.module}/{$Request.controller}/about/id/{$v.id}" id="about_list{$v.id}">{$v.title}</a>
+	</foreach>
+
+</div>
+	<div class="about_content">{$content}</div>
+
+
+<include file="../sz/view/foot.html"></include>
+
+
+
+</body>
+</html>
