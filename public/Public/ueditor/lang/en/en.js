@@ -257,7 +257,7 @@ UE.I18N['en'] = {
         'static':{
             'lang_tab_remote':"Insert",
             'lang_tab_upload':"Local",
-            'lang_tab_online':"Manager",
+            'lang_tab_online':"manager",
             'lang_tab_search':"Search",
             'lang_input_url':"Address:",
             'lang_input_size':"Size:",
