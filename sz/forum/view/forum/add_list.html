@@ -50,12 +50,17 @@ input{
 
     <tr>
     <td width="100px">标题</td>
-    <td><input type="text" name="title"></td>
+    <td>
+        <input type="text" name="title">
+        <span style="color:red"></span>
+    </td>
     </tr>
     <tr>
     <td width="100px">内容</td>
-    <td><textarea cols="43" rows="15" name="content">
-    </textarea></td>
+    <td>
+        <textarea cols="43" rows="15" name="content"></textarea>
+        <span style="color:red"></span>
+    </td>
     </tr>
     <tr class="sub">
     <td colspan="2">
@@ -67,25 +72,70 @@ input{
 <include file="../sz/view/foot.html"></include>
 <script>
     $(function () {
+        var flag=0;
+        var flag2=0;
+        $("input[name=title]").blur(function () {
+            var forum_name =$("input[name=title]").val();
+
+            $.ajax({
+                url:'/forum/forum/bad',
+                type:'post',
+                data:{'forum_name':forum_name},
+                success:function (data) {
+                    if(data.res=='success'){
+                        flag=1;
+                        $('td').find('span').eq(1).text('');
+                    }else if(data.res=='error'){
+                        $('td').find('span').eq(1).text(data.msg);
+                        flag=0;
+                    }
+                }
+            })
+        })
+        $("textarea[name=content]").blur(function () {
+
+            var forum_description =$("textarea[name=content]").val();
+            $.ajax({
+                url:'/forum/forum/bad',
+                type:'post',
+                data:{'forum_name':forum_description},
+                success:function (data) {
+                    if(data.res=='success'){
+                        flag2=1;
+                        $('td').find('span').eq(2).text('');
+                    }else if(data.res=='error'){
+                        $('td').find('span').eq(2).text(data.msg);
+                        flag2=0;
+                    }
+                }
+            })
+        })
         $('#btn').on('click',function () {
             var pid=$('input[name=pid]').val();
            var title=$('input[name=title]').val();
            var content=$('textarea[name=content]').val();
-           $.ajax({
-                url:'/forum/forum/add_lists',
-               type:'post',
-               data:{'title':title,'content':content,"pid":pid},
-               success:function (data) {
-                   if(data.res=='success'){
-                       alert('发表成功');
-                       location.href='/forum/forum/forum_list?pid='+pid;
+            if(title==''||content==''){
+                alert('内容不能为空');
+                return false;
+            }
+           if(flag==1&&flag==2){
+               $.ajax({
+                   url:'/forum/forum/add_lists',
+                   type:'post',
+                   data:{'title':title,'content':content,"pid":pid},
+                   success:function (data) {
+                       if(data.res=='success'){
+                           alert('发表成功');
+                           location.href='/forum/forum/forum_list?pid='+pid;
 
-                   }else{
-                       alert('发表失败');
-                       location.reload();
+                       }else{
+                           alert('发表失败');
+                           location.reload();
+                       }
                    }
-               }
-           })
+               })
+           }
+
         })
     })
 </script>
