@@ -14,17 +14,17 @@ use Aliyun\Api\Sms\Request\V20170525\SendSmsRequest;
 class Base_s extends Controller {
 
     public static function sendMsg($mobile){
-  //     require_once 'C:/AppServ/www/sz/public/Api/api_sdk/vendor/autoload.php';
-       require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+   require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
+      // require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -39,7 +39,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -71,11 +71,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -90,7 +90,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -119,11 +119,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -138,7 +138,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -167,11 +167,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -186,7 +186,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -216,11 +216,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -235,7 +235,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -265,11 +265,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -284,7 +284,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE
@@ -314,11 +314,11 @@ class Base_s extends Controller {
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
         $accessKeySecret = "q60OGOeI2X42brIOscsckI6BzqmNrc";//自己替换自己的accessKeySecret
-        //短信API产品名（短信产品名固定，无需修改�?
+        //短信API产品名（短信产品名固定，无需修改�?
         $product = "Dysmsapi";
-        //短信API产品域名（接口地址固定，无需修改�?
+        //短信API产品域名（接口地址固定，无需修改�?
         $domain = "dysmsapi.aliyuncs.com";
-        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
+        //暂时不支持多Region（目前仅支持cn-hangzhou请勿修改�?
         $region = "cn-hangzhou";
 
         // 初始化用户Profile实例
@@ -333,7 +333,7 @@ class Base_s extends Controller {
         // 必填，设置雉短信接收号码
         $request->setPhoneNumbers($mobile);
 
-        // 必填，设置签名名�?
+        // 必填，设置签名名�?
         $request->setSignName('YT锐新');
 
         // 必填，设置模板CODE

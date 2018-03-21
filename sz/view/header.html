@@ -114,9 +114,15 @@
                                     </style>
                                     <div id="view_text_382_277660985_txt" style="cursor:default; height:100%; width:100%;">
                                         <div class="editableContent " style="line-height:1.5;">
+
                                             <p><span style="color: rgb(255, 255, 255); font-size: 16px; font-family: 宋体, SimSun;"><strong>中国最具价值交易员选拔网站</strong></span>
-                                              
-                                                <span style="float: right;"><a href="" target="_self" style="color:white">您好，</a> &nbsp;<a href="" style="color:white">{$Think.session.phone}</a>&nbsp;&nbsp;&nbsp;<a href="/Login/Login/logout" style="color:white" >退出</a></span>
+                                                <notempty name="think.session.phone">
+                                                    <span style="float: right;"><a href="" target="_self" style="color:white">您好，</a> &nbsp;<a href="" style="color:white">{$Think.session.phone}</a>&nbsp;&nbsp;&nbsp;<a href="/Login/Login/logout" style="color:white" >退出</a></span>
+                                                    <else>
+                                                        <span style="float: right;"><a href="/index/index/register" target="_self" style="color:white">登录</a> &nbsp;&nbsp;&nbsp;&nbsp;<a href="/index/index/login" style="color:white" >注册</a></span>
+                                                    </else>
+                                                </notempty>
+
 
 
                                                 
