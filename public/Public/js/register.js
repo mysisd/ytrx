@@ -64,7 +64,7 @@ $(function(){
             var re = /^1\d{10}$/;
            var re_name = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
            var re_QQ=/^[1-9]d{4,9}$/;
-           var re_bank= /^\d{16}|\d{19}$/;
+           var re_bank=  /^\d{19}$/g;
 
            if (!re.test(userphone)) {
                 parent.find('.list-tip').eq(0).show().find('.icon-error');
@@ -94,11 +94,8 @@ $(function(){
                return false;
 
            }
-           if (re_QQ.exec(QQ)&&QQ!='') {
-               QQ = parseInt(QQ,10);
-               if(QQ>10000&&QQ<2300000000){
-                   return true;
-               }
+           if (QQ=='') {
+
                parent.find('.list-tip').eq(4).show().find('.icon-error');
                return false;
            }
@@ -108,9 +105,7 @@ $(function(){
                parent.find('.list-tip').eq(5).show().find('.icon-error');
                return false;
            }
-            if(re_bank.exec(bank_card)&&bank_card!='') {
-               return true;
-           } else{
+            if(!re_bank.test(bank_card)||bank_card=='') {
                 parent.find('.list-tip').eq(6).show().find('.icon-error');
                return false;
            }
@@ -161,7 +156,7 @@ $(function(){
                                    if(json.returntype==1){
                                        parent.find('.list-tip').eq(0).show().find('.icon-error').html(json.msg);//手机号
                                    }else if(json.returntype==2){
-                                       parent.find('.list-tip').eq(4).show().find('.error-tag').html(json.msg);//错误信息
+                                       parent.find('.list-tip').eq(7).show().find('.error-tag').html(json.msg);//错误信息
                                    }
                                }
 
