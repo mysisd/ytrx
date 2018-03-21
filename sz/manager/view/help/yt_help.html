@@ -11,9 +11,10 @@
 			<table class="table_a">
                 <thead>
 					<tr>
-                        <td width="30%">标题</td>
-                        <td width="25%">父目录</td>
+                        <td width="20%">标题</td>
+                        <td width="20%">父目录</td>
                         <td width="5%">序号</td>
+						<td width="15%">是否置顶</td>
                         <td width="20%">最后修改时间</td>
                         <td width="20%" align="center" colspan="2">操作</td>
                     </tr>
@@ -24,6 +25,9 @@
 	                        <td class="hlep_title"><a href="/{$Request.module}/{$Request.controller}/update_help/id/{$v.id}">{$v.title}</a></td>
 							<td><if condition="$v.par_num eq 1 ">新手教程 <elseif condition="$v.par_num eq 2">常见问题</elseif></if></td>
 							<td class="help_serial">{$v.serial}</td>
+							<td>
+								<if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
+							</td>
 	                        <td class="help_date">{$v.date}</td>
 	                        <td><a href="/{$Request.module}/{$Request.controller}/update_help/id/{$v.id}" class="updel_a href_a update_help">修改</a></td>
 	                        <td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_help/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>

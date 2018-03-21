@@ -55,6 +55,11 @@ class Help extends Base{
             $data['content']=   input('content');
             $data['par_num']=   input('par_num');
             $data['serial']=    input('serial');
+            $data['top']=    input('top');
+
+
+
+
 
             $row=CenterModel::saves($data);
             if($row !== false){
@@ -80,7 +85,8 @@ class Help extends Base{
             $data['title']      =   input('title');
             $data['par_num']      =   input('par_num');
             $data['content']    =   input('content');
-           $data['serial']      =   $serial['serial']+1;
+            $data['top']    =   input('top');
+            $data['serial']      =   $serial['serial']+1;
             $data['date']       =   date('Y-m-d H:i:s',time());
             $row                 =  CenterModel::add($data);
             if($row){

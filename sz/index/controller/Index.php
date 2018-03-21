@@ -63,16 +63,18 @@ class Index extends Base{
             $this->assign('content',html_entity_decode($help_act['content']));
             $this->assign('id',$help_act['id']);
             $this->assign('par',$help_act['par_num']);
+
         }else{
-            $help_act=$help->where('id',1)->find();
+            $help_act=$help->where('del',0)->where('par_num=1')->order('top','DESC')->limit(1)->find();
             $this->assign('title',$help_act['title']);
             $this->assign('content',html_entity_decode($help_act['content']));
             $this->assign('id',$help_act['id']);
             $this->assign('par',$help_act['par_num']);
-        }
-        $help_c1=$help->where('del',0)->where('par_num=1')->order('serial')->select();
 
-        $help_c3=$help->where('del',0)->where('par_num=2')->order('serial')->select();
+        }
+        $help_c1=$help->where('del',0)->where('par_num=1')->order('top','DESC')->select();
+
+        $help_c3=$help->where('del',0)->where('par_num=2')->order('top','DESC')->select();
         $this->assign('help_c1',$help_c1);
         $this->assign('help_c3',$help_c3);
 
