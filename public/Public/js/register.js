@@ -62,7 +62,7 @@ $(function(){
            var name=$("input[name=name]").val();
            var bank_card=$("input[name=bank_card]").val();
             var re = /^1\d{10}$/;
-           var re_name = /^[\u4E00-\u9FA5\uf900-\ufa2d·s]{2,20}$/;
+           var re_name = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
            var re_QQ=/^[1-9]d{4,9}$/;
            var re_bank= /^\d{16}|\d{19}$/;
 
@@ -108,7 +108,7 @@ $(function(){
                parent.find('.list-tip').eq(5).show().find('.icon-error');
                return false;
            }
-            if(re_bank.test(bank_card)||bank_card=='') {
+            if(re_bank.test(bank_card)&&bank_card!='') {
                return true;
            } else{
                 parent.find('.list-tip').eq(6).show().find('.icon-error');
