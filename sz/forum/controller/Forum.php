@@ -8,6 +8,7 @@
  */
 namespace  app\forum\Controller;
 use app\login\controller\Base;
+use app\forum\controller\Bad;
 class Forum extends Base
 {
     public function forum(){
@@ -106,5 +107,28 @@ class Forum extends Base
             $arr['res']='error';
         }
         return json($arr);
+    }
+    function is_exist($str,$key){
+        foreach($key as $v){
+            if(strpos($str,$v)>-1){
+                return true;
+            }
+        }
+        return false;
+    }
+    public function bad(){
+
+        $str=input('forum_name');
+        $arr = Bad::bad();
+        if($this->is_exist($str,$arr)){
+            $arr1['res']='error';
+           $arr1['msg']='含有敏感词汇';
+        }
+        else{
+            $arr1['res']='success';;
+        }
+        return json($arr1);
+
+
     }
 }
