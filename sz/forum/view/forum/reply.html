@@ -54,7 +54,7 @@
         <tr class="sub">
             <td colspan="2">
                 <button type="submit" value="" class="but">快速回复</button>
-                <button type="reset" value="" class="but">重置</button>
+                <button type="reset" value="" id="res" class="but">重置</button>
             </td>
         </tr>
     </table>
@@ -105,6 +105,9 @@
                     })
                 }
 
+            })
+            $('#res').on('click',function () {
+                location.reload();
             })
         })
     </script>

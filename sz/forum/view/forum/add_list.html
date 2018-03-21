@@ -65,7 +65,7 @@ input{
     <tr class="sub">
     <td colspan="2">
         <buttom    class="but" id="btn">发布</buttom>
-        <buttom   class="but">重置</buttom>
+        <buttom   class="but" id="res">重置</buttom>
     </td>
     </tr>
     </table>
@@ -136,6 +136,9 @@ input{
                })
            }
 
+        })
+        $('#res').on('click',function () {
+            location.reload();
         })
     })
 </script>
