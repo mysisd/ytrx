@@ -34,7 +34,7 @@ class Login extends Base {
                 $arr['ret'] = 'error';
             }
         }else{
-            $arr['ret']     = null;
+            $arr['ret']     = 'null';
             $arr['msg'] = '该手机还未注册';
         }
         return json($arr);
