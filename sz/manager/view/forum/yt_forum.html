@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/adminhead.html"/>
+</head>
+<body>
+<div id="right">
+    <div class="right_nav">帮助中心管理</div>
+    <div class="right_content">
+
+        <table class="table_a">
+            <thead>
+            <tr>
+                <td width="20%">论坛名称</td>
+                <td width="20%">主题</td>
+                <td width="5%">简介</td>
+                <td width="15%">是否置顶</td>
+                <td width="20%">最后修改时间</td>
+                <td width="20%" align="center" colspan="2">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name='data' item='v'>
+                <tr class="tbody_a">
+                    <td class="hlep_title"><a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}">{$v.forum_name}</a></td>
+                    <td>{$v.forum_description}</td>
+                    <td class="help_serial">{$v.subject}</td>
+                    <td>
+                        <if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
+                    </td>
+                    <td class="help_date">{$v.last_post_time}</td>
+                    <td><a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}" class="updel_a href_a update_help">修改</a></td>
+                    <td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_forum/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>
+                </tr>
+            </foreach>
+            </tbody>
+            <tfoot>
+            <!--<tr>-->
+                <!--<td colspan="30">-->
+                    <!--<a href="/{$Request.module}/{$Request.controller}/add_help" class="add_btn">增加</a>-->
+                <!--</td>-->
+            <!--</tr>-->
+            </tfoot>
+        </table>
+    </div>
+</div>
+</body>
+</html>
