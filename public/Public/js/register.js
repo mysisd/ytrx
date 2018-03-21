@@ -94,7 +94,7 @@ $(function(){
                return false;
 
            }
-           if (re_QQ.exec(QQ)||QQ=='') {
+           if (re_QQ.exec(QQ)&&QQ!='') {
                QQ = parseInt(QQ,10);
                if(QQ>10000&&QQ<2300000000){
                    return true;
@@ -108,7 +108,7 @@ $(function(){
                parent.find('.list-tip').eq(5).show().find('.icon-error');
                return false;
            }
-            if(re_bank.test(bank_card)&&bank_card!='') {
+            if(re_bank.exec(bank_card)&&bank_card!='') {
                return true;
            } else{
                 parent.find('.list-tip').eq(6).show().find('.icon-error');
