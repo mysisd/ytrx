@@ -39,20 +39,22 @@
 
 <table width="86%" border="1" cellpadding="8" cellspacing="0" style="margin: 25px auto" align="center">
     <tr class="title">
-        <td colspan="3">帖子列表 <span class="list">[<a style="color: white" href="/forum/forum/add_list?pid={$id}">发布新帖</a> ]</span><span class="list">[<a style="color: white" href="/forum/forum/forum">返回</a> ]</span></td>
+        <td colspan="4">主题：{$content.subject} <span class="list">[<a style="color: white" href="/forum/forum/add_list?pid={$id}">发布新帖</a> ]</span><span class="list">[<a style="color: white" href="/forum/forum/forum">返回</a> ]</span></td>
     </tr>
     <tr>
-        <td width="280px">主题列表</td>
-        <td width="160px" >作者</td>
-        <td width="160px">最后更新</td>
+        <td width="10%">帖子列表</td>
+        <td width="50%">内容</td>
+        <td width="20%" >作者</td>
+        <td width="20%">最后更新</td>
     </tr>
     <foreach name="data" item="v">
         <tr>
-            <td width="280px">
+            <td width="=">
                 <div><a href="/forum/forum/lists?pid={$id}&id={$v.id}">{$v.title}</a></div>
             </td>
-            <td width="160px">{$v.author}</td>
-            <td width="160px">{$v.date}</td>
+            <td>{$v.content}</td>
+            <td width="">{$v.author}</td>
+            <td width="">{$v.date}</td>
         </tr>
     </foreach>
 </table>

@@ -13,7 +13,7 @@ class Forum extends Base
 {
     public function forum(){
         parent::loginUser('/index/index/login');
-        $data=Db('forum')->where('del',0)->order('last_post_time','DESC')->paginate(10, false, [
+        $data=Db('forum')->where('del',0)->order('top','DESC')->paginate(10, false, [
             'query' => request()->param(),
         ]);
 
@@ -32,8 +32,11 @@ class Forum extends Base
         $data['forum_name']=input('forum_name');
         $data['forum_description']=input('forum_description');
         $data['subject']=input('subject');
+        $data['author']=$user['username'];
+        $data['account']=$user['account'];
         $data['last_post_time']=date('Y-m-d H:i:s',time());
         $row=Db('forum')->strict(false)->insert($data);
+
         if($row){
             $arr['res']='success';
         }
@@ -47,7 +50,8 @@ class Forum extends Base
           $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->paginate(10, false, [
               'query' => request()->param(),
           ]);
-
+        $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
+        $this->assign('content',$content);
           $this->assign('id',$id);
           $this->assign('data',$data);
           $page= $data->render();

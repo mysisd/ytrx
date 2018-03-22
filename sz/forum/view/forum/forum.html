@@ -45,17 +45,25 @@
         </td>
     </tr>
     <tr>
-        <td width="10%"><strong>论坛名称</strong></td>
-        <td width="40%"><strong>主题</strong></td>
-        <td width="15%"><strong>简介</strong></td>
-        <td width="15%"><strong>时间</strong></td>
+        <td width=""><strong>论坛名称</strong></td>
+        <td width=""><strong>主题</strong></td>
+        <td width=""><strong>简介</strong></td>
+        <td width=""><strong>时间</strong></td>
     </tr>
     <foreach name="data" item="v">
     <tr>
 
                 <td>{$v.forum_name}</td>
-                <td><a href="/forum/forum/forum_list?pid={$v.id}">{$v.forum_description}</a></td>
-                <td>{$v.subject}</td>
+                <td>
+                    <if condition="$v.top eq ''">
+                        <a href="/forum/forum/forum_list?pid={$v.id}">{$v.subject}</a>
+                        <else>
+                            <a href="/forum/forum/forum_list?pid={$v.id}">{$v.subject}<i style="font-style: normal;color:red">[置顶]</i> </a>
+                        </else>
+                    </if>
+
+                </td>
+                <td>{$v.forum_description}</td>
                 <td>
                     <div>{$v.last_post_time}</div>
                 </td>
