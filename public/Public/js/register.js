@@ -93,22 +93,29 @@ $(function(){
                parent.find('.list-tip').eq(3).show().find('.icon-error');
                return false;
 
+           }else{
+               parent.find('.list-tip').eq(3).hide().find('.icon-error');
            }
            if (QQ=='') {
-
                parent.find('.list-tip').eq(4).show().find('.icon-error');
                return false;
+           }else{
+               parent.find('.list-tip').eq(4).hide().find('.icon-error');
            }
 
 
            if (wechat=='') {
                parent.find('.list-tip').eq(5).show().find('.icon-error');
                return false;
+           }else{
+               parent.find('.list-tip').eq(5).hide().find('.icon-error');
            }
             if(!re_bank.test(bank_card)||bank_card=='') {
                 parent.find('.list-tip').eq(6).show().find('.icon-error');
                return false;
-           }
+           }else{
+                parent.find('.list-tip').eq(6).hide().find('.icon-error');
+            }
            userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
             var postData={
