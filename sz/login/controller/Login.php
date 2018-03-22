@@ -44,7 +44,7 @@ class Login extends Base {
 
 
         $_POST['phone']    = Rsa::privDecrypt(input('phone'));
-       ;
+
 
         $map['account'] = $_POST['phone'];
         $phone_user   = UserModel::getfind($map);
@@ -110,7 +110,9 @@ class Login extends Base {
 
         $map['account'] = input('phone');
 
+
         $phone = Db('user')->where('del',0)->where($map)->find();
+
 
         if(!empty($phone)){
             $arr['flag']=1;

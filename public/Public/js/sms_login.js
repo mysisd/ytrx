@@ -2,7 +2,9 @@
  * Created by Administrator on 2018/3/22.
  */
 $(function () {
-
+    var encrypt = new JSEncrypt();
+    var publickey = '-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBiYEk6LHMqqUm6WJCcSNfjlPZXPj/zHjmuVuU/QLE/yKqv2YEiPiGxaajZdBL4WUNRQxO4Dt4MDrjN43CsAzQj6OT/fDgroPERccBnwAZQr5FTR4GFfhxcoWxT/2nfmIVI7nHoJSeV7nHHwBBwagb4Z5EDrQDKr3vsumk9DY98wIDAQAB-----END PUBLIC KEY-----';
+    encrypt.setPublicKey(publickey);
     var cansendyzmdl = 0;
     var jumpUrl="/index/index/index";
     var codeUrl="/login/login/send_code";
@@ -63,6 +65,8 @@ $(function () {
             return false;
         }
         $('.list-tip').eq(1).hide();
+        phone    = encrypt.encrypt(phone);
+
         var postData={
             phone:phone,
             yzm:yzm,
@@ -99,31 +103,34 @@ $(function () {
     });
 
 $('.send-yzm').on('click',function () {
+
     var userphone=$(".phone").val();
     var phone = pregPhone(userphone);
-
-    var a=0;
-
+    if(!phone){
+        return false;
+    }
+    var flag=0;
     //判断手机号是否注册
     $.ajax({
         type:"POST",
         dataType:"json",
-        data:{phone:phone},
+        data:{phone:userphone},
         url:checkPhoneUrl,
         success: function (data) {
             if(data.flag==0){
                 $('.list-tip').eq(0).show().find('.error_tag').text(data.msg);
                 $('.send-yzm').attr("data",'0');
-                a=0;
+                flag=0;
             }else if(data.flag==1){
                 $('.list-tip').eq(0).hide();
                 $('.send-yzm').attr("data",'1');
-                a=1;
+                flag=1;
             }
-        }
+        },
+        async:false
     })
 
-    if(a==1){
+    if(flag==1){
         $.ajax({
             type: "POST",
             dataType: "json",
