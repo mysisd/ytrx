@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/head.html"></include>
+    <link rel="stylesheet" href="/Public/css/login.css">
+    <link rel="stylesheet" href="/Public/css/style_https.1.4.8.css">
+    <script src="/Public/js/sms_login.js"></script>
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<div class="login-wrap" style="background-image: url(https://tm-files.oss-cn-beijing.aliyuncs.com/ad/2018/01/17/830c2804a6f3ddfe7b75ac2295585e0d.jpg);">
+    <div class="login-bodyer">
+
+        <a class="link-banner" href="https://account.quandashi.com/passport/register" target="_blank">链接到广告页</a>
+        <div class="container">
+            <h3 class="c-title">短信快捷登录
+
+            </h3>
+            <ul class="field-list">
+                <li class="list-tip" hidden=""><i class="icon-error">×</i><span class="error_tag">手机号格式错误</span></li>
+                <li class="list">
+                    <span class="icon-text"><i class="glyphicon glyphicon-phone"></i></span>
+                    <input type="text" class="input-field phone" placeholder="请输入手机号" autocomplete="off">
+                </li>
+                <li class="list-tip" hidden=""><i class="icon-error">×</i>短信验证码错误</li>
+                <li class="list list-smsyzm">
+                    <input type="text" class="input-field yzm" placeholder="请输入手机短信验证码" autocomplete="off">
+                    <button class="btn send-yzm" data="1">获取验证码</button>
+                </li>
+                <li class="list no-account">没有账号?<a href="/index/index/register">立即注册</a></li>
+                <li class="list-tip" hidden=""><i class="icon-error">×</i><span class="error_tag"></span></li>
+            </ul>
+            <div class="btns">
+                <a class="btn" id="btn-login">登 录</a>
+            </div>
+            <div class="entries-way">
+                <a class="s1" href="/index/index/login">用户名密码登录</a>
+                <!--<a class="s2" href="">邮箱登录</a>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+<include file="../sz/view/foot.html"></include>
+</body>
+</html>

@@ -8,6 +8,7 @@ $(function () {
     var jumpUrl="/index/index/index";
     jumpUrl = jumpUrl.replace(/amp;/g,'');
     var loginUrl="/login/login/logins";
+    var cansend=0;
     //加载页面时加载
     $(function(){
         document.onkeydown = function(e){
@@ -115,4 +116,7 @@ $(function () {
         jumpSuccess();
    });
     /**成功跳转*/
+
+
+
 })

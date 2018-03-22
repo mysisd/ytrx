@@ -40,6 +40,36 @@ class Login extends Base {
         return json($arr);
 
     }
+    public function sms_login(){
+
+
+        $_POST['phone']    = Rsa::privDecrypt(input('phone'));
+       ;
+
+        $map['account'] = $_POST['phone'];
+        $phone_user   = UserModel::getfind($map);
+
+        if(!empty($phone_user)){
+            if(input('yzm')==session('code')&&$_POST['phone']==session('code_phone')){
+
+                $data['login_time'] = date('Y-m-d H:i:s',time());
+                UserModel::saves($phone_user['id'],$data);
+
+                session('uniqid'     , $phone_user['uniqid']);
+                session('phone'      , $phone_user['account']);
+
+                $arr['ret'] = 'success';
+            }else{
+                $arr['msg'] = '验证码错误';
+                $arr['ret'] = 'error';
+            }
+        }else{
+            $arr['ret']     = 'null';
+            $arr['msg'] = '该手机还未注册';
+        }
+        return json($arr);
+
+    }
 
     public function logout(){
         $data['logout_time']=date('Y-m-d H:i:s',time());
@@ -83,9 +113,11 @@ class Login extends Base {
         $phone = Db('user')->where('del',0)->where($map)->find();
 
         if(!empty($phone)){
-            $arr['flag']=0;
+            $arr['flag']=1;
+
         }else{
-            $arr['flag'] =1;
+            $arr['flag'] =0;
+            $arr['msg']='账号未注册';
         }
         return json($arr);
     }

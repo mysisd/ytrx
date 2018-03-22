@@ -220,9 +220,9 @@ $(function(){
             data: {'phone':userphone},
             success:function(data){
                 if(data.flag==1){
-                    flag=1;
-                }else if(data.flag==0){
                     flag=0;
+                }else if(data.flag==0){
+                    flag=1;
                     alert('手机用户已存在');
 
 
@@ -230,7 +230,7 @@ $(function(){
             },
             async:false
         });
-        if(flag==1){
+        if(flag==0){
             $.ajax({
                 type: "POST",
                 dataType: "json",

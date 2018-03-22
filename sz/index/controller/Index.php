@@ -97,6 +97,9 @@ class Index extends Base{
             $this->assign('data',$data);
             echo $this->fetch();
     }
+    public function sms_login(){
+        echo $this->fetch();
+    }
 
 
 }
