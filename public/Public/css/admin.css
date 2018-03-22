@@ -82,7 +82,7 @@ div.right_content {
 	position:relative;
 	top:2px;
 }
- #choose_date .selects_d{
+#choose_date .selects_d{
 	margin: -47px 0 0 494px;
 }
 .ui-loader-default{ display:none;}
@@ -146,7 +146,7 @@ div.right_content {
 	font-size:15px;
 	color:#333;
 	outline:none;
-	-webkit-box-shadow: 0 0 0px 1000px #ecf5fa inset; 
+	-webkit-box-shadow: 0 0 0px 1000px #ecf5fa inset;
 }
 #login .login_box .login_username{
 	background:url(../img/admin/login_username.png) no-repeat;
@@ -256,7 +256,7 @@ div.right_content {
 }
 #left ul li a{
 	display:block;
-	
+
 	height:35px;
 	line-height:35px;
 	color:#fff;
@@ -528,13 +528,13 @@ div.right_content {
 	cursor:pointer;
 }
 .right_content table tbody .agent_delete{
-	   color:#fff;
-	   background:#1371A9;
-	   padding:8px 10px;
-	   border-radius:8px;
-	   font-size:14px;
-	   margin:0 5px;
-   }
+	color:#fff;
+	background:#1371A9;
+	padding:8px 10px;
+	border-radius:8px;
+	font-size:14px;
+	margin:0 5px;
+}
 .right_content table tbody .agent_change  {
 	color:#fff;
 	background:#1371A9;
@@ -569,7 +569,7 @@ div.right_content {
 	padding:0 3px;
 }
 #choose_date .end_span{
-	
+
 }
 #choose_date .select_date{
 	width:180px;

@@ -23,8 +23,12 @@ class Forum extends Base{
             }
         }
         else{
-        $data=Db('forum')->where('del',0)->order('last_post_time','DESC')->select();
+            $data=Db('forum')->where('del',0)->order('top','DESC')->paginate(10, false, [
+                'query' => request()->param(),
+            ]);
         $this->assign('data',$data);
+            $page= $data->render();
+            $this->assign('page',$page);
         echo $this->fetch();
         }
     }
