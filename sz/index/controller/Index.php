@@ -27,23 +27,19 @@ class Index extends Base{
     public function about(){
 
         $about  =   Db('about');
-        $about_list =   $about->where('del',0)->order('serial')->select();
-
-        $this->assign('about_list',$about_list);
-
-        if(input('id')!==''){
-            $about_act  =   $about->where('id',input('id'))->find();
+        if(input('id')!=''){
+            $about_act  =   $about->where('del',0)->where('id',input('id'))->find();
             $this->assign('title',$about_act['title']);
             $this->assign('content',html_entity_decode($about_act['content']));
             $this->assign('active1',$about_act['id']);
         }else{
-            $about_act  =   $about->order('serial','ASC')->find();
-
+            $about_act  =   $about->where('del',0)->order('serial','ASC')->limit(1)->find();
             $this->assign('title',$about_act['title']);
             $this->assign('content',html_entity_decode($about_act['content']));
             $this->assign('active1',$about_act['id']);
-
         }
+        $about_list =   $about->where('del',0)->order('serial','ASC')->select();
+        $this->assign('about_list',$about_list);
 
         echo $this->fetch();
     }
