@@ -32,15 +32,21 @@ class User extends Base {
 		}
 	}
 	public function export(){
-        if(!empty($_POST['code'])) {
-            $_SESSION['csv_code'] = 123456;
-            if(!empty($_SESSION['csv_code']) && $_POST['code'] == $_SESSION['csv_code']){
-                $list = XgjuserModel::select();
-                $csv_title=array('id','期货账户','姓名','绑定银行卡','银行名称','开户省','开户市','支行名称','支付宝账号','手机号','代理代码','注册时间');
-                $this->createtable($list,'盈透锐新-用户信息表',$csv_title,$csv_title);
-
-            }
-        }
+//        if(input('code')) {
+//            if(input('code') != session('code')){
+//                $this->error('导出失败，验证码不正确','yt_xgjuser');
+//            }
+//            else if(session('code')!='' && input('code') == session('code')){
+//                $list = XgjuserModel::select();
+//                $csv_title=array('id','account','name','QQ','wechat','bank_card','invite_num','reg_time');
+//                $this->createtable($list,'盈透锐新-用户信息表',$csv_title,$csv_title);
+//
+//            }
+//
+//        }
+        $list = XgjuserModel::select();
+        $csv_title=array('id','account','name','QQ','wechat','bank_card','invite_num','reg_time');
+        $this->createtable($list,'盈透锐新-用户信息表',$csv_title,$csv_title);
 
 
     }
@@ -67,7 +73,8 @@ class User extends Base {
             $strexport.="\r";
 
         }
-        $strexport=iconv('UTF-8',"GB2312//IGNORE",$strexport);
+        $strexport=  iconv('UTF-8', 'UTF-8',$strexport);
+
         exit($strexport);
     }
     public function detail_xgjuser()
