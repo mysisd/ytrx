@@ -204,13 +204,7 @@ $(function(){
             parent.find('.list-tip').eq(0).hide();
         }
 
-        var postdata={
-            userphone:userphone,
-            register:1,
-            geeTest_challenge: $("#challenge").val(),
-            geeTest_validate: $("#validate").val(),
-            geeTest_seccode: $("#seccode").val(),
-        };
+
 
         $(".send-yzm-btn").attr("data",0);
         var flag=0;
@@ -219,9 +213,9 @@ $(function(){
             url:phone_url,
             data: {'phone':userphone},
             success:function(data){
-                if(data.flag==1){
+                if(data.flag==0){
                     flag=0;
-                }else if(data.flag==0){
+                }else if(data.flag==1){
                     flag=1;
                     alert('手机用户已存在');
 
