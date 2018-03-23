@@ -32,8 +32,9 @@ $(function () {
         $(".send-yzm").html(nums);
         nums = nums-1;
         if(nums<0){
-            $(".send-yzm").html("发送验证码");
+            $(".send-yzm").removeClass("disabled").html("发送验证码");
             $(".send-yzm").attr("data",1);
+            $(".send-yzm").attr('disabled',false)
         }else{
             setTimeout(function(){
                 setTime(nums);
@@ -114,6 +115,7 @@ $('.send-yzm').on('click',function () {
         return false;
     }
     var flag=0;
+    $(".send-yzm").attr("data",0);
     //判断手机号是否注册
     $.ajax({
         type:"POST",
@@ -138,14 +140,10 @@ $('.send-yzm').on('click',function () {
         $.ajax({
             type: "POST",
             dataType: "json",
-            data:{phone:userphone},
+            data:{'phone':userphone},
             url: codeUrl,
             success: function(json) {
-                if(json.status==0){
-                    $(".send-yzm").attr("data","1");
-                    $('.list-tip').eq(2).show().find('.error_tag').text(json.msg);
-                }else{
-                    $(".send-yzm").attr("data","0");
+                if(json.status==1){
                     cansendyzmdl++;
                     if(cansendyzmdl==1){
                         var times=60;
@@ -153,15 +151,21 @@ $('.send-yzm').on('click',function () {
                         var times=60;
                     }else{
                         var times=60;
+
                     }
                     $('.send-yzm').addClass("disabled");
+                    $('.send-yzm').attr("disabled", true)
 
-                    $('.send-yzm').attr("disabled", true);
+
                     setTimeout(function(){
-                        $(".send-yzm").attr("data",0);
-                        $('.send-yzm').attr("disabled", false);
+
                         setTime(times);
                     },1000);
+                }else if(json.status==0){
+                    $(".send-yzm").attr("data","1");
+                    $('.list-tip').eq(2).show().find('.error_tag').text(json.msg);
+
+
                 }
             }
         });
