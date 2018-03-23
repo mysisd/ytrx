@@ -22,7 +22,7 @@ class User extends Base {
 			if(input('condition')!='' && input('value')!='') {
 				$map[input('condition')] = array('like',input('value').'%');
 			}
-		
+
 			$userlist = XgjuserModel::where($map)->where('del',0)->order('account')->paginate(30,false,['query' => input('param.')]);
 			$page = $userlist->render();
 			$this->assign('userlist',$userlist);
