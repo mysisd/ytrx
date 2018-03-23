@@ -219,4 +219,81 @@ $(function(){
 
         $(this).find('option').each(function(){if($(this).val()==select_data){$(this).attr('selected',true);}});
     })
+    $('#export_xgjuser').click(function(){
+        showOverlay();
+        $('#export_pop').show();
+    })
+    function showOverlay() {
+        $("#overlay").height(pageHeight());
+        $("#overlay").width(pageWidth());
+
+        // fadeTo第一个参数为速度，第二个为透明度
+        // 多重方式控制透明度，保证兼容性，但也带来修改麻烦的问题
+        $("#overlay").fadeTo(200, 0.8);
+    }
+    function hideOverlay() {
+        $("#overlay").fadeOut(200);
+    }
+    /* 当前页面高度 */
+    function pageHeight() {
+        return window.screen.Height;
+    }
+    /* 当前页面宽度 */
+    function pageWidth() {
+        return window.screen.Width;
+    }
+    $('#xgjuser_getcode').click(function(){
+        var getCode=$(this);
+        var time=59;
+        getCode.css('cursor','default');
+        getCode.css('color','#999');
+        getCode.css('background','#eee');
+        getCode.attr({ "disabled": "disabled" });
+        $('#xgjuser_code').select();
+        $.ajax({
+            url: "/login/login/send_code",
+            type: 'post',
+//			data: {'phone':15260180650},
+            data: {'phone':18350226135},
+            success: function (data) {
+                if(data.status==1){
+                    getCode.html("<p>60秒后</p><p>可重新发送</p>");
+                    var hander = setInterval(function () {
+                        if (time <= 0) {
+                            clearInterval(hander);
+                            getCode.css('cursor','pointer');
+                            getCode.css('color','#fff');
+                            getCode.css('background','#01c0dd')
+                            getCode.html("获取验证码");
+                            getCode.removeAttr("disabled");
+                        }
+                        else if(data.status==0) {
+                            getCode.css('cursor','default');
+                            getCode.css('color','#999');
+                            getCode.css('background','#eee');
+                            getCode.attr({ "disabled": "disabled" });
+                            getCode.html( "<p>"+ time + "秒后</p><p>可重新发送</p>");
+                            time--;
+                        }
+                    }, 1000);
+                }else{
+                    alert('验证码发送失败，请联系客服');
+                }
+            }
+        });
+    })
+    $('#export_sub').click(function(){
+        var code=$('#xgjuser_code').val();
+        if(code.length==0){
+            alert('验证码不得为空');
+            return false;
+        }else{
+            hideOverlay();
+            $('#export_pop').hide();
+        }
+    })
+    $('.pop_close').click(function(){
+        $('.pop_system').hide();
+        hideOverlay();
+    })
 })

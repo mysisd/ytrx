@@ -31,15 +31,34 @@ class User extends Base {
 		}
 	}
 	public function export() {
-		if($_POST['code']!='') {
-			$_SESSION['csv_code'] = 123456;
-			if($_SESSION['csv_code']!='' && $_POST['code'] == $_SESSION['csv_code']){
+
+
 				$list = XgjuserModel::select();
-				$csv_title=array('id','期货账户','姓名','绑定银行卡','银行名称','开户省','开户市','支行名称','支付宝账号','手机号','代理代码','注册时间');
-				Csv::put_csv($list,$csv_title);
-			}
-		}
+				$csv_title=array('id','手机号','姓名','QQ','微信','银行卡','喜好品种','邀请码','注册时间');
+               			Csv::put_csv($list,$csv_title);
+
+
 	}
+   public function  export_csv($data)
+    {
+        $string="";
+        foreach ($data as $key => $value)
+        {
+            foreach ($value as $k => $val)
+            {
+                $value[$k]=iconv('utf-8','gb2312',$value[$k]);
+            }
+
+            $string .= implode(",",$value)."\n"; //用英文逗号分开
+        }
+        $filename = date('Ymd').'.csv'; //设置文件名
+        header("Content-type:text/csv");
+        header("Content-Disposition:attachment;filename=".$filename);
+        header('Cache-Control:must-revalidate,post-check=0,pre-check=0');
+        header('Expires:0');
+        header('Pragma:public');
+        echo $string;
+    }
 	public function detail_xgjuser()
     {
         if (input('id')!='') {
