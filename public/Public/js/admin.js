@@ -207,6 +207,8 @@ $(function(){
         }
         $('#show_time').hide();
     })
-
+    $('#reload').on('click',function () {
+   location.reload();
+})
 
 })

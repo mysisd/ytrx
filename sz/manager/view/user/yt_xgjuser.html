@@ -8,20 +8,19 @@
 		<div class="right_nav">网站用户</div>
 		<div class="right_content">
 			<div id="choose_date">
-				<!--<form action="/{$Request.module}/{$Request.controller}/yt_xgjuser" method="get">-->
-					<!--<select name="condition" id="select_condition">-->
-						<!--<option value="account">期货账号</option>-->
-						<!--<option value="name">姓名</option>-->
-						<!--<option value="card">银行卡号</option>-->
-						<!--<option value="nickname">支付宝账号</option>-->
-						<!--<option value="phone">手机号</option>-->
-					<!--</select>-->
-					<!--<input class="select_date" name="value" type="text" placeholder="" value="{:input('param.value')}" style="background:#fff;">　-->
-					<!--<button type="submit">查询</button>-->
-					<!--<button type="button" id="reload">刷新</button>-->
-					<!--<button type="button" onclick="location.href='/{$Request.module}/{$Request.controller}/add_xgjuser'" id="add_xgjuser">新增</button>-->
-					<!--&lt;!&ndash; <button type="button" id="export_xgjuser">导出</button> &ndash;&gt;-->
-				<!--</form>-->
+				<form action="/{$Request.module}/{$Request.controller}/yt_xgjuser" method="get">
+					<select name="condition" id="select_condition">
+						<option value="account">手机号</option>
+						<option value="name">姓名</option>
+						<option value="bank_card">银行卡</option>
+						<option value="QQ">QQ</option>
+						<option value="wechat">微信</option>
+					</select>
+					<input class="select_date" name="value" type="text" placeholder="" value="{:input('param.value')}" style="background:#fff;">　
+					<button type="submit">查询</button>
+					<button type="button" id="reload">刷新</button>
+					<!-- <button type="button" id="export_xgjuser">导出</button> -->
+				</form>
 			</div>
 			<table class="table_a" border="1">
                 <thead>
