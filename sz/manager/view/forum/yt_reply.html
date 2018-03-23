@@ -50,55 +50,28 @@
 </head>
 <body>
 <div id="right">
-    <div class="right_nav">主题帖子管理</div>
+    <div class="right_nav">回复帖子管理</div>
     <div class="right_content">
 
         <table class="table_a">
             <thead>
             <tr>
-                <td>论坛名称</td>
-                <td>论坛主题</td>
-                <td width="">标题</td>
-                <td width="">内容</td>
-                <td width="">是否置顶</td>
-                <td>作者</td>
+
+                <td width="">回帖内容</td>
+                <td width="">回帖作者</td>
                 <td width="">最后修改时间</td>
-                <td width="" align="center" colspan="2">操作</td>
+
             </tr>
             </thead>
             <tbody>
             <foreach name='data' item='v'>
 
                 <tr class="tbody_a">
-                    <td>{$con.forum_name}</td>
-                    <td>{$con.forum_description}</td>
-                    <td class="hlep_title"><a href="/manager/forum/yt_reply?tid={$v.id}&pid={$con.id}">{$v.title}</a></td>
-                    <td>  <a href="">{$v.content}</a></td>
-                    <td>
-                        <if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
-                    </td>
-                    <td>{$v.author}</td>
+                    <td class="hlep_title"><a href="">{$v.reply}</a></td>
+                    <td>{$v.reply_author}</td>
 
                     <td class="help_date">{$v.date}</td>
-                    <td>
-                        <form action="/{$Request.module}/{$Request.controller}/update_forum?update={$v.id}&pid={$con.id}" method="post" class="subs" style="position:relative;">
-                            <div class="htmleaf-content">
-                                <section class="model-1">
-                                    <div class="checkbox">
-                                        <if condition="$v.top eq ''">
-                                            <input type="checkbox" id="top"  name="top" />
-                                            <label  for="top" ></label>
-                                            <else>
-                                                <input type="checkbox"  id="top" name="top" checked />
-                                                <label for="top"></label>
-                                            </else>
-                                        </if>
 
-                                    </div>
-                                </section>
-                            </div>
-                        </form>
-                    </td>
                     <!--</td>  <a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}" class="updel_a href_a update_help">修改</a>-->
                     <!--<td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_forum/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>-->
                 </tr>
@@ -107,9 +80,9 @@
             </tbody>
             <tfoot>
             <!--<tr>-->
-            <!--<td colspan="30">-->
-            <!--<a href="/{$Request.module}/{$Request.controller}/add_help" class="add_btn">增加</a>-->
-            <!--</td>-->
+                <!--<td colspan="30">-->
+                    <!--<a href="/{$Request.module}/{$Request.controller}/add_help" class="add_btn">增加</a>-->
+                <!--</td>-->
             <!--</tr>-->
             </tfoot>
         </table>
@@ -120,7 +93,7 @@
 <script>
     $(function () {
         $('input[name=top]').on('click',function () {
-            $(this).parent().parent().parent().parent().parent().find('.subs').submit();
+        $(this).parent().parent().parent().parent().parent().find('.subs').submit();
         })
 
 

@@ -54,6 +54,17 @@ class Forum extends Base{
             $this->assign('page',$page);
             echo $this->fetch();
         }
+    }
+    public function yt_reply(){
+        $tid=input('tid');
+        $pid=input('pid');
 
+        $data=Db('reply')->where('del',0)->where('t_id',$tid)->where('par_id',$pid)->paginate(10, false, [
+            'query' => request()->param(),
+        ]);
+        $this->assign('data',$data);
+        $page=$data->render();
+        $this->assign('page',$page);
+        echo $this->fetch();
     }
 }
