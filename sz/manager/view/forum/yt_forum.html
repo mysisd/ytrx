@@ -50,7 +50,7 @@
 </head>
 <body>
 <div id="right">
-    <div class="right_nav">帮助中心管理</div>
+    <div class="right_nav">论坛管理</div>
     <div class="right_content">
 
         <table class="table_a">
@@ -70,9 +70,9 @@
             <foreach name='data' item='v'>
 
                 <tr class="tbody_a">
-                    <td class="hlep_title"><a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}">{$v.forum_name}</a></td>
-                    <td>{$v.forum_description}</td>
-                    <td class="help_serial">{$v.subject}</td>
+                    <td class="hlep_title"><a href="">{$v.forum_name}</a></td>
+                  <td>  <a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}">{$v.forum_description}</a></td>
+                   <td class="help_serial">{$v.subject}</td>
                     <td>
                         <if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
                     </td>

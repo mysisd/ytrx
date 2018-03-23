@@ -1,9 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<include file="../sz/view/adminhead.html"></include>
+    <include file="../sz/view/adminhead.html"/>
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/default.css">
+    <link rel='stylesheet prefetch' href='/Public/css/admin/font-awesome.min.css'>
+    <link rel="stylesheet" type="text/css" href="/Public/css/admin/styles.css">
+    <style>
+        .checkbox {
+            position: relative;
+            display: inline-block;
+            left: -17px;
+        }
+        .checkbox input {
+            position: absolute;
+            left: 0px;
+            top: 0;
+            width: 62%;
+            height: 100%;
+            z-index: 5;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .checkbox label {
+            width: 69px;
+            height: 26px;
+            background: #ccc;
+            position: relative;
+            display: inline-block;
+            border-radius: 46px;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+        }
+        .checkbox label:after {
+            content: '';
+            position: absolute;
+            width: 33px;
+            height: 30px;
+            border-radius: 100%;
+            left: 0px;
+            top: -5px;
+            z-index: 2;
+            background: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+        }
+    </style>
 </head>
 <body>
+<div id="right">
+    <div class="right_nav">论坛主题管理</div>
+    <div class="right_content">
 
+        <table class="table_a">
+            <thead>
+            <tr>
+                <td>论坛名称</td>
+                <td>论坛主题</td>
+                <td width="">标题</td>
+                <td width="">内容</td>
+                <td width="">是否置顶</td>
+                <td>作者</td>
+                <td width="">最后修改时间</td>
+                <td width="" align="center" colspan="2">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <foreach name='data' item='v'>
+
+                <tr class="tbody_a">
+                    <td>{$con.forum_name}</td>
+                    <td>{$con.forum_description}</td>
+                    <td class="hlep_title"><a href="">{$v.title}</a></td>
+                    <td>  <a href="">{$v.content}</a></td>
+                    <td>
+                        <if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
+                    </td>
+                    <td>{$v.author}</td>
+
+                    <td class="help_date">{$v.date}</td>
+                    <td>
+                        <form action="/{$Request.module}/{$Request.controller}/update_forum?update={$v.id}&pid={$con.id}" method="post" class="subs" style="position:relative;">
+                            <div class="htmleaf-content">
+                                <section class="model-1">
+                                    <div class="checkbox">
+                                        <if condition="$v.top eq ''">
+                                            <input type="checkbox" id="top"  name="top" />
+                                            <label  for="top" ></label>
+                                            <else>
+                                                <input type="checkbox"  id="top" name="top" checked />
+                                                <label for="top"></label>
+                                            </else>
+                                        </if>
+
+                                    </div>
+                                </section>
+                            </div>
+                        </form>
+                    </td>
+                    <!--</td>  <a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}" class="updel_a href_a update_help">修改</a>-->
+                    <!--<td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_forum/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>-->
+                </tr>
+
+            </foreach>
+            </tbody>
+            <tfoot>
+            <!--<tr>-->
+            <!--<td colspan="30">-->
+            <!--<a href="/{$Request.module}/{$Request.controller}/add_help" class="add_btn">增加</a>-->
+            <!--</td>-->
+            <!--</tr>-->
+            </tfoot>
+        </table>
+
+    </div>
+    <div style="width: 35%;margin: 0 auto">{$page}</div>
+</div>
+<script>
+    $(function () {
+        $('input[name=top]').on('click',function () {
+            $(this).parent().parent().parent().parent().parent().find('.subs').submit();
+        })
+
+
+    })
+
+</script>
 </body>
 </html>

@@ -33,6 +33,27 @@ class Forum extends Base{
         }
     }
     public function update_forum(){
-        echo $this->fetch();
+        if(input('update')!=''){
+
+            $data['top']=input('top');
+            $row= Db('forum_list')->where('id',input('update'))->update($data);
+            if($row){
+
+                $this->success('置顶成功！','/manager/forum/update_forum/id/'.input('pid'));
+            }else{
+                $this->error('置顶失败！','/manager/forum/update_forum/id/'.input('pid'));
+            }
+        }else{
+            $con=Db('forum')->where('del',0)->where('id',input('id'))->find();
+            $data=Db('forum_list')->where('del',0)->where('par_id',input('id'))->paginate(10, false, [
+                'query' => request()->param(),
+            ]);
+            $this->assign('con',$con);
+            $this->assign('data',$data);
+            $page= $data->render();
+            $this->assign('page',$page);
+            echo $this->fetch();
+        }
+
     }
 }

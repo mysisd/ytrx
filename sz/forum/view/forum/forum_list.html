@@ -42,15 +42,23 @@
         <td colspan="4">主题：{$content.subject} <span class="list">[<a style="color: white" href="/forum/forum/add_list?pid={$id}">发布新帖</a> ]</span><span class="list">[<a style="color: white" href="/forum/forum/forum">返回</a> ]</span></td>
     </tr>
     <tr>
-        <td width="10%">帖子列表</td>
-        <td width="50%">内容</td>
-        <td width="20%" >作者</td>
-        <td width="20%">最后更新</td>
+        <td width="">帖子列表</td>
+        <td width="">内容</td>
+        <td width="" >作者</td>
+        <td width="">最后更新</td>
     </tr>
     <foreach name="data" item="v">
         <tr>
-            <td width="=">
-                <div><a href="/forum/forum/lists?pid={$id}&id={$v.id}">{$v.title}</a></div>
+            <td width="">
+                <div>
+                    <if condition="$v.top eq ''">
+                        <a href="/forum/forum/lists?pid={$id}&id={$v.id}">{$v.title}</a>
+                        <else>
+                            <a href="/forum/forum/lists?pid={$id}&id={$v.id}">{$v.title}<i style="font-style: normal;color:red">[置顶]</i> </a>
+                        </else>
+                    </if>
+
+                </div>
             </td>
             <td>{$v.content}</td>
             <td width="">{$v.author}</td>

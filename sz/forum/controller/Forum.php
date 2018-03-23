@@ -47,7 +47,7 @@ class Forum extends Base
       }
       public function forum_list(){
         $id=input('pid');
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->paginate(10, false, [
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order('top','DESC')->paginate(10, false, [
               'query' => request()->param(),
           ]);
         $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
