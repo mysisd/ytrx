@@ -210,5 +210,13 @@ $(function(){
     $('#reload').on('click',function () {
    location.reload();
 })
+    //条件默认选中
+    $('#select_condition option').each(function(){if($(this).val()==select_condition){$(this).attr('selected',true);}})
+    // $('#select_type option').each(function(){if($(this).val()==select_type){$(this).attr('selected',true);}})
+    // $('#select_kind option').each(function(){if($(this).val()==select_kind){$(this).attr('selected',true);}})
+    $('.select_option').each(function () {
+        var select_data=$(this).attr('data');
 
+        $(this).find('option').each(function(){if($(this).val()==select_data){$(this).attr('selected',true);}});
+    })
 })
