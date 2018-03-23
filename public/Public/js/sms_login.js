@@ -68,8 +68,8 @@ $(function () {
         phone    = encrypt.encrypt(phone);
 
         var postData={
-            phone:phone,
-            yzm:yzm,
+            'phone':phone,
+            'yzm':yzm,
 
         };
         $(this).attr("data","0");
@@ -80,9 +80,13 @@ $(function () {
             url: yzmloginUrl,
             success: function(json) {
                 $('#btn-login').attr("data",1);
-                if(json.status){
+                if(json.ret=='success'){
                     window.location.href=jumpUrl;
-                }else{
+                }else if(json.ret=='error'){
+                    $('.list-tip').eq(2).show().find('.error_tag').text(json.msg);
+                    $('#btn-login').text('登 录');
+                }
+                else if(json.ret=='null'){
                     $('.list-tip').eq(2).show().find('.error_tag').text(json.msg);
                     $('#btn-login').text('登 录');
                 }
