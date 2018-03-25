@@ -61,7 +61,7 @@ class Index extends Base{
             $this->assign('par',$help_act['par_num']);
 
         }else{
-            $help_act=$help->where('del',0)->where('par_num=1')->order('top','DESC')->limit(1)->find();
+            $help_act=$help->where('del',0)->where('par_num=2')->order('top','DESC')->limit(1)->find();
             $this->assign('title',$help_act['title']);
             $this->assign('content',html_entity_decode($help_act['content']));
             $this->assign('id',$help_act['id']);
