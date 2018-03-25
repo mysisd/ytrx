@@ -92,7 +92,7 @@ html,body{width:100%; font-family:"Hiragino Sans GB","Microsoft Yahei","微软�
 .register-bodyer .container .field-list .list-jiyan{ border: 0;}
 .register-bodyer .container .field-list .list-computer{ margin-top: 0; border-top: 0;}
 /*登录输入列表框*/
-.login-wrap{ width: 86%;margin: 25px auto;height: 500px; margin-bottom: 10px; overflow: hidden; position: relative; background-repeat: no-repeat; background-position: center 0px; }
+.login-wrap{ width: 86%;margin: 25px auto;height: 700px; margin-bottom: 10px; overflow: hidden; position: relative; background-repeat: no-repeat; background-position: center 0px; }
 .login-wrap .login-bodyer{ width: 1000px; margin: auto; position: relative; overflow: hidden; }
 .login-wrap .link-banner{ display: block; width: 500px; height: 360px; position: absolute; left: 0; top: 50px; z-index: 1; text-indent: -10000px; overflow: hidden; }
 .login-bodyer .container{ width: 360px; float: right; margin: 40px 0 0; padding: 20px 30px 25px; background-color: #fff; border: solid 1px #eee; position: relative; z-index: 3;}
