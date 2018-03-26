@@ -35,7 +35,7 @@ class Other extends Base{
                 if ($info) {
                     // 成功上传后 获取上传信息
                     $a = $info->getSaveName();
-                    $a = iconv("UTF-8","UTF-8",  $info->getInfo()['name']);
+                    $a = iconv("UTF-8","UTF-8",$info->getSaveName());
 
                     $filep = str_replace("\\", "/", $a);
                     $filepath = '/Public/other/file/' . $filep;
@@ -78,7 +78,8 @@ class Other extends Base{
                     // 成功上传后 获取上传信息
 
                     $a = $info->getSaveName();
-                    $a = iconv("UTF-8","UTF-8",  $info->getInfo()['name']);
+                    $a = iconv("UTF-8","UTF-8",  $info->getSaveName());
+
                     $filep = str_replace("\\", "/", $a);
                     $filepath = '/Public/other/file/' . $filep;
                     $d['f_file'] = $filepath;
