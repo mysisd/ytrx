@@ -12,7 +12,13 @@ use app\forum\controller\Bad;
 class Forum extends Base{
     public function forum(){
         parent::loginUser('/index/index/login');
-        $data=Db('forum')->where('del',0)->order('top','DESC')->paginate(10, false, [
+        $data=Db('forum')->where('del',0)->select();
+        if(!empty($data['top'])){
+            $value='top';
+        }else{
+            $value='last_post_time';
+        }
+        $data=Db('forum')->where('del',0)->order($value,'DESC')->paginate(10, false, [
             'query' => request()->param(),
         ]);
 
@@ -45,8 +51,15 @@ class Forum extends Base{
         return json($arr);
       }
       public function forum_list(){
+
         $id=input('pid');
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order('top','DESC')->paginate(10, false, [
+          $data=Db('forum')->where('del',0)->select();
+          if(!empty($data['top'])){
+              $value='top';
+          }else{
+              $value='last_post_time';
+          }
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(10, false, [
               'query' => request()->param(),
           ]);
         $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
