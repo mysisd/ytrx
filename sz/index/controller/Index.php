@@ -84,6 +84,8 @@ class Index extends Base{
     }
 
     public function register(){
+        $data=Db('other')->where('del',0)->find();
+        $this->assign('data',$data);
 
         echo $this->fetch();
     }
