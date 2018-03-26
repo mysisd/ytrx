@@ -19,12 +19,23 @@
 
 				</select>
 			</p>
-			<p>U&nbsp;R&nbsp;L：　<input type="text" name="url" autocomplete="off" class="text name" value="{$info.url}"></p>
+			<p>U&nbsp;R&nbsp;L：　<input type="text" name="url" autocomplete="off" class="text name" value="{$info.url}">
+
+			<span>新文件：　<input type="file" name="files" id="imageuploads"><span><button type="button" id="clearFiles">清空选择</button>（未选择文件则保持原文件）</span></span>
+
+
+			</p>
 			<p>新文件：　<input type="file" name="file" id="imageupload"><span><button type="button" id="clearFile">清空选择</button>（未选择文件则保持原文件）</span></p>
 			<button type="submit" class="sub" >修改</button><a href="/{$Request.module}/{$Request.controller}/yt_download" class="back_a" >返回</a>
 		</form>
 	</div>
 </div>
-
+<script>
+	$(function () {
+		$('#confirm').on('click',function () {
+			alert(1);
+        })
+    })
+</script>
 </body>
 </html>

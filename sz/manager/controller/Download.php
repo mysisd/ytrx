@@ -43,9 +43,13 @@ class Download extends Base{
             $data=$_POST;
 
             $id=input('update');
+
             $file = request()->file('file');
+
+
             if (isset($file)) {
                 $info = $file->move(ROOT_PATH . '/public/Public/download/img/');
+
                 if ($info) {
                     // 成功上传后 获取上传信息
                     $a = $info->getSaveName();
@@ -53,10 +57,26 @@ class Download extends Base{
                     $filepath = '/Public/download/img/' . $filep;
                     $d['f_file'] = $filepath;
                     $data['path'] = $d['f_file'];
+
                 } else {
                     echo $file->getError();
                 }
 
+            }
+            $file = request()->file('files');
+            if (isset($file)) {
+                //移动到框架应用根目录/public/uploads/ 目录下
+                $info = $file->move(ROOT_PATH . '/public/Public/download/url/');
+                if ($info) {
+                    $a = $info->getSaveName();
+                    $filep = str_replace("\\", "/", $a);
+                    $filepath = '/Public/download/url/' . $filep;
+                    $d['f_file'] = $filepath;
+                    $data['url'] = $d['f_file'];
+                } else {
+                    //上传失败获取错误信息
+                    echo $file->getError();
+                }
             }
             $row=Db('download')->where('id',input('update'))->update($data);
             if ($row !== false) {
@@ -73,7 +93,7 @@ class Download extends Base{
 
 //
     public function add_download(){
-        if(input('url')!=''&&input('name')!='' && !empty($_FILES)){
+        if(input('name')!='' && !empty($_FILES)){
             $data=$_POST;
             $file = request()->file('file');
             if (isset($file)) {
@@ -86,6 +106,21 @@ class Download extends Base{
                     $d['f_file'] = $filepath;
                     $data['path'] = $d['f_file'];
                 } else {
+                    echo $file->getError();
+                }
+            }
+            $file = request()->file('files');
+            if (isset($file)) {
+                //移动到框架应用根目录/public/uploads/ 目录下
+                $info = $file->move(ROOT_PATH . '/public/Public/download/url/');
+                if ($info) {
+                    $a = $info->getSaveName();
+                    $filep = str_replace("\\", "/", $a);
+                    $filepath = '/Public/download/url/' . $filep;
+                    $d['f_file'] = $filepath;
+                    $data['url'] = $d['f_file'];
+                } else {
+                    //上传失败获取错误信息
                     echo $file->getError();
                 }
             }
@@ -102,4 +137,7 @@ class Download extends Base{
             echo $this -> fetch();
         }
     }
+
+
+
 }

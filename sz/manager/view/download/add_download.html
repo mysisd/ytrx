@@ -11,7 +11,7 @@
 	<div class="right_nav"><a href="/{$Request.module}/{$Request.controller}/yt_download">【返回列表】</a></div>
 	<div class="right_content">
 		<form action="/{$Request.module}/{$Request.controller}/add_download" method="post" enctype="multipart/form-data">
-			<p>名　称：　<input type="text" name="name" autocomplete="off" class="text name"></p>
+			<p>名　称：　<input type="text" name="name" autocomplete="off" class="text name"><span style="color:red">（不能为空）</span></p>
 			<p>类　型　选　择：　
 				<select name="type" class="select_option">
 					<option value="0" >PC</option>
@@ -19,8 +19,13 @@
 
 				</select>
 			</p>
-			<p>U　R  L：　<input type="text" name="url" autocomplete="off" class="text name"></p>
-			<p>文　件：　<input type="file" name="file"></p>
+			<p>U&nbsp;R&nbsp;L：　<input type="text" name="url" autocomplete="off" class="text name" value="">
+
+				<span>新文件：　<input type="file" name="files" id="imageuploads"><span><button type="button" id="clearFiles">清空选择</button>（未选择文件则保持原文件）</span></span>
+
+
+			</p>
+			<p>图片文件：　<input type="file" name="file"><span style="color:red">（不能为空）</span></p>
 
 			<button type="submit" class="sub">添加</button><a href="/{$Request.module}/{$Request.controller}/yt_download" class="back_a" >返回</a>
 		</form>

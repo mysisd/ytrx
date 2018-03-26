@@ -89,8 +89,17 @@ $(function(){
     $('#clearFile').click(function(){
         clearFile();
     })
+    $('#clearFiles').click(function(){
+        clearFiles();
+    })
     function clearFile(){
         var file = $("#imageupload") ;
+        $('#imageview').attr('src','');
+        file.after(file.clone().val(""));
+        file.remove();
+    }
+    function clearFiles(){
+        var file = $("#imageuploads") ;
         $('#imageview').attr('src','');
         file.after(file.clone().val(""));
         file.remove();
