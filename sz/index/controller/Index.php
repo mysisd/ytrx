@@ -107,6 +107,9 @@ class Index extends Base{
     public function sms_login(){
         echo $this->fetch();
     }
+    public function ceshi(){
+        echo $this->fetch();
+    }
 
 
 }
