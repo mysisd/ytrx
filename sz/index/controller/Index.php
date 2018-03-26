@@ -23,6 +23,11 @@ class Index extends Base{
         $data=Db('rule')->where('del',0)->find();
         $this->assign('data',$data);
         echo $this->fetch();
+
+    }
+    public function rules(){
+        $data=Db('rule')->where('del',0)->find();
+        return json($data);
     }
     public function about(){
 
