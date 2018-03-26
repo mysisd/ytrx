@@ -57,7 +57,7 @@ class Forum extends Base{
           if(!empty($data['top'])){
               $value='top';
           }else{
-              $value='last_post_time';
+              $value='date';
           }
           $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(10, false, [
               'query' => request()->param(),
