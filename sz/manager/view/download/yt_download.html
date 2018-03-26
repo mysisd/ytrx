@@ -10,11 +10,12 @@
 		<table class="table_a" border="1">
 			<thead>
 			<tr>
-				<td width="30%">名称</td>
+				<td width="20%">名称</td>
 
-				<td width="">URL</td>
+				<td width="20%">URL</td>
+				<td width="20%">类型</td>
 				<td width="20%">最后修改时间</td>
-				<td width="10%" align="center" colspan="2">操作</td>
+				<td width="20%" align="center" colspan="2">操作</td>
 			</tr>
 			</thead>
 			<tbody>
@@ -23,6 +24,9 @@
 					<td width="20%"><a href="/{$Request.module}/{$Request.controller}/update_download/id/{$v.id}">{$v.name}</a></td>
 
 					<td width="">{$v.url}</td>
+					<td>
+						<if condition="$v.type eq 0 ">PC端 <else/>手机端</if>
+					</td>
 					<td class="help_date">{$v.date}</td>
 					<td><a href="/{$Request.module}/{$Request.controller}/update_download/id/{$v.id}" class="updel_a href_a update_file">修改</a></td>
 					<td><a href="/{$Request.module}/{$Request.controller}/yt_download/delete/{$v.id}" class="updel_a delete_a delete_file">删除</a></td>
