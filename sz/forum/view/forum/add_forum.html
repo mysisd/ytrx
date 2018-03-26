@@ -74,97 +74,97 @@ a{
 
 <include file="../sz/view/foot.html"></include>
 <script>
-    $(function () {
-    var flag=0;
-        var flag1=0;
-        var flag2=0;
-        $("input[name=forum_name]").blur(function () {
-            var forum_name =$("input[name=forum_name]").val();
-
-            $.ajax({
-                url:'/forum/forum/bad',
-                type:'post',
-                data:{'forum_name':forum_name},
-                success:function (data) {
-                    if(data.res=='success'){
-                        flag=1;
-                        $('td').find('span').eq(1).text('');
-                    }else if(data.res=='error'){
-                      $('td').find('span').eq(1).text(data.msg);
-                        flag=0;
-                    }
-                }
-            })
-        })
-        $("input[name=subject]").blur(function () {
-            var subject =$("input[name=subject]").val();
-
-            $.ajax({
-                url:'/forum/forum/bad',
-                type:'post',
-                data:{'forum_name':subject},
-                success:function (data) {
-                    if(data.res=='success'){
-                        flag1=1;
-                        $('td').find('span').eq(2).text('');
-                    }else if(data.res=='error'){
-                        $('td').find('span').eq(2).text(data.msg);
-                        flag1=0;
-                    }
-                }
-            })
-        })
-        $("textarea[name=forum_description]").blur(function () {
-
-            var forum_description =$("textarea[name=forum_description]").val();
-            $.ajax({
-                url:'/forum/forum/bad',
-                type:'post',
-                data:{'forum_name':forum_description},
-                success:function (data) {
-                    if(data.res=='success'){
-                        flag2=1;
-                        $('td').find('span').eq(3).text('');
-                    }else if(data.res=='error'){
-                        $('td').find('span').eq(3).text(data.msg);
-                        flag2=0;
-                    }
-                }
-            })
-        })
-
-        $('#btn').on('click',function () {
-
-            var forum_name =$("input[name=forum_name]").val();
-            var subject =$("input[name=subject]").val();
-            var forum_description =$("textarea[name=forum_description]").val();
-         if(forum_name==''||subject==''||forum_description==''){
-             alert('内容不能为空');
-             return false;
-         }
-
-            if( flag==1&&flag1==1&&flag2==1){
-                $.ajax({
-                    url:'/forum/forum/adds_forum',
-                    type:'post',
-                    data:{'forum_name':forum_name,'subject':subject,'forum_description':forum_description},
-                    success:function (data) {
-                        if(data.res=='success'){
-                            alert('添加成功');
-                            location.href='/forum/forum/forum';
-                        }else{
-                            alert('添加失败');
-                            location.reload();
-                        }
-                    }
-                })
-            }
-
-        })
-        $('input[name=submit2]').on('click',function () {
-           location.reload();
-        })
-    })
+//    $(function () {
+//    var flag=0;
+//        var flag1=0;
+//        var flag2=0;
+//        $("input[name=forum_name]").blur(function () {
+//            var forum_name =$("input[name=forum_name]").val();
+//
+//            $.ajax({
+//                url:'/forum/forum/bad',
+//                type:'post',
+//                data:{'forum_name':forum_name},
+//                success:function (data) {
+//                    if(data.res=='success'){
+//                        flag=1;
+//                        $('td').find('span').eq(1).text('');
+//                    }else if(data.res=='error'){
+//                      $('td').find('span').eq(1).text(data.msg);
+//                        flag=0;
+//                    }
+//                }
+//            })
+//        })
+//        $("input[name=subject]").blur(function () {
+//            var subject =$("input[name=subject]").val();
+//
+//            $.ajax({
+//                url:'/forum/forum/bad',
+//                type:'post',
+//                data:{'forum_name':subject},
+//                success:function (data) {
+//                    if(data.res=='success'){
+//                        flag1=1;
+//                        $('td').find('span').eq(2).text('');
+//                    }else if(data.res=='error'){
+//                        $('td').find('span').eq(2).text(data.msg);
+//                        flag1=0;
+//                    }
+//                }
+//            })
+//        })
+//        $("textarea[name=forum_description]").blur(function () {
+//
+//            var forum_description =$("textarea[name=forum_description]").val();
+//            $.ajax({
+//                url:'/forum/forum/bad',
+//                type:'post',
+//                data:{'forum_name':forum_description},
+//                success:function (data) {
+//                    if(data.res=='success'){
+//                        flag2=1;
+//                        $('td').find('span').eq(3).text('');
+//                    }else if(data.res=='error'){
+//                        $('td').find('span').eq(3).text(data.msg);
+//                        flag2=0;
+//                    }
+//                }
+//            })
+//        })
+//
+//        $('#btn').on('click',function () {
+//
+//            var forum_name =$("input[name=forum_name]").val();
+//            var subject =$("input[name=subject]").val();
+//            var forum_description =$("textarea[name=forum_description]").val();
+//         if(forum_name==''||subject==''||forum_description==''){
+//             alert('内容不能为空');
+//             return false;
+//         }
+//
+//            if( flag==1&&flag1==1&&flag2==1){
+//                $.ajax({
+//                    url:'/forum/forum/adds_forum',
+//                    type:'post',
+//                    data:{'forum_name':forum_name,'subject':subject,'forum_description':forum_description},
+//                    success:function (data) {
+//                        if(data.res=='success'){
+//                            alert('添加成功');
+//                            location.href='/forum/forum/forum';
+//                        }else{
+//                            alert('添加失败');
+//                            location.reload();
+//                        }
+//                    }
+//                })
+//            }
+//
+//        })
+//        $('input[name=submit2]').on('click',function () {
+//           location.reload();
+//        })
+//    })
 </script>
     </body>
     </html>

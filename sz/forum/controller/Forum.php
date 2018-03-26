@@ -9,8 +9,7 @@
 namespace  app\forum\Controller;
 use app\login\controller\Base;
 use app\forum\controller\Bad;
-class Forum extends Base
-{
+class Forum extends Base{
     public function forum(){
         parent::loginUser('/index/index/login');
         $data=Db('forum')->where('del',0)->order('top','DESC')->paginate(10, false, [
