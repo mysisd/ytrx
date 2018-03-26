@@ -59,57 +59,39 @@
         </tr>
     </table>
 <include file="../sz/view/foot.html"></include>
-    <!--<script>-->
-        <!--$(function () {-->
-            <!--var flag=0;-->
-            <!--$("textarea[name=reply]").blur(function () {-->
+    <script>
+        $(function () {
 
-                <!--var forum_description =$("textarea[name=reply]").val();-->
-                <!--$.ajax({-->
-                    <!--url:'/forum/forum/bad',-->
-                    <!--type:'post',-->
-                    <!--data:{'forum_name':forum_description},-->
-                    <!--success:function (data) {-->
-                        <!--if(data.res=='success'){-->
-                            <!--flag=1;-->
-                            <!--$('td').find('span').eq(1).text('');-->
-                        <!--}else if(data.res=='error'){-->
-                            <!--$('td').find('span').eq(1).text(data.msg);-->
-                            <!--flag=0;-->
-                        <!--}-->
-                    <!--}-->
-                <!--})-->
-            <!--})-->
-            <!--$('button[type=submit]').on('click',function () {-->
-                <!--var reply=$('textarea[name=reply]').val();-->
-                <!--var id=$('input[name=id]').val();-->
-                <!--var pid=$('input[name=pid]').val();-->
-                <!--if(reply==''){-->
-                    <!--alert('内容不能为空');-->
-                    <!--return false;-->
-                <!--}-->
-                <!--if(flag==1){-->
-                    <!--$.ajax({-->
-                        <!--url:'/forum/forum/add_reply',-->
-                        <!--type:'post',-->
-                        <!--data:{'reply':reply,'id':id,'pid':pid},-->
-                        <!--success:function (data) {-->
-                            <!--if(data.res=='success'){-->
-                                <!--alert('回复成功');-->
-                                <!--location.href='/forum/forum/lists?pid='+pid+'&id='+id;-->
-                            <!--}else{-->
-                                <!--alert('回复失败');-->
-                                <!--location.reload();-->
-                            <!--}-->
-                        <!--}-->
-                    <!--})-->
-                <!--}-->
+            $('button[type=submit]').on('click',function () {
+                var reply=$('textarea[name=reply]').val();
+                var id=$('input[name=id]').val();
+                var pid=$('input[name=pid]').val();
+                if(reply==''){
+                    alert('内容不能为空');
+                    return false;
+                }
 
-            <!--})-->
-            <!--$('#res').on('click',function () {-->
-                <!--location.reload();-->
-            <!--})-->
-        <!--})-->
-    <!--</script>-->
+                    $.ajax({
+                        url:'/forum/forum/add_reply',
+                        type:'post',
+                        data:{'reply':reply,'id':id,'pid':pid},
+                        success:function (data) {
+                            if(data.res=='success'){
+                                alert('回复成功');
+                                location.href='/forum/forum/lists?pid='+pid+'&id='+id;
+                            }else{
+                                alert('回复失败');
+                                location.reload();
+                            }
+                        }
+                    })
+                
+
+            })
+            $('#res').on('click',function () {
+                location.reload();
+            })
+        })
+    </script>
 </body>
 </html>
