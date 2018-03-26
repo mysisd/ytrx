@@ -7,8 +7,9 @@
  */
 
 namespace app\manager\controller;
-
+use think\Request;
 use app\manager\controller\Base;
+use think\File;
 class Other extends Base{
     public function yt_other(){
         if(input('delete')!=''){
@@ -34,6 +35,8 @@ class Other extends Base{
                 if ($info) {
                     // 成功上传后 获取上传信息
                     $a = $info->getSaveName();
+                    $a = iconv("UTF-8","UTF-8",  $info->getInfo()['name']);
+
                     $filep = str_replace("\\", "/", $a);
                     $filepath = '/Public/other/file/' . $filep;
                     $d['f_file'] = $filepath;
@@ -71,34 +74,21 @@ class Other extends Base{
 
             if (isset($file)) {
                 $info = $file->move(ROOT_PATH . '/public/Public/other/file/');
-
                 if ($info) {
                     // 成功上传后 获取上传信息
+
                     $a = $info->getSaveName();
+                    $a = iconv("UTF-8","UTF-8",  $info->getInfo()['name']);
                     $filep = str_replace("\\", "/", $a);
                     $filepath = '/Public/other/file/' . $filep;
                     $d['f_file'] = $filepath;
                     $data['path'] = $d['f_file'];
 
+
                 } else {
                     echo $file->getError();
                 }
 
-            }
-            $file = request()->file('files');
-            if (isset($file)) {
-                //移动到框架应用根目录/public/uploads/ 目录下
-                $info = $file->move(ROOT_PATH . '/public/Public/other/file/');
-                if ($info) {
-                    $a = $info->getSaveName();
-                    $filep = str_replace("\\", "/", $a);
-                    $filepath = '/Public/other/file/' . $filep;
-                    $d['f_file'] = $filepath;
-                    $data['url'] = $d['f_file'];
-                } else {
-                    //上传失败获取错误信息
-                    echo $file->getError();
-                }
             }
             $row=Db('other')->where('id',input('update'))->update($data);
             if ($row !== false) {
@@ -111,4 +101,5 @@ class Other extends Base{
             echo "<center><img src='/Public/img/404.gif'></center>";
         }
     }
+
 }
