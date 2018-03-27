@@ -12,19 +12,13 @@ use app\forum\controller\Bad;
 class Forum extends Base{
     public function forum(){
         parent::loginUser('/index/index/login');
-        $data=Db('forum')->where('del',0)->select();
-        if(!empty($data['top'])){
-            $value='top';
-        }else{
-            $value='last_post_time';
-        }
-        $data=Db('forum')->where('del',0)->order($value,'DESC')->paginate(10, false, [
+
+        $data=Db('forum_list')->where('del',0)->order('date','DESC')->paginate(10, false, [
             'query' => request()->param(),
         ]);
 
         $this->assign('data',$data);
-        $page= $data->render();
-        $this->assign('page',$page);
+
         echo $this->fetch();
     }
     public function add_forum(){

@@ -811,7 +811,7 @@ hr, .layui-timeline-item:before{background-color: #e6e6e6;}
 }
 
 /** 富文本编辑器 **/
-.layui-layedit{border-width: 1px; border-style: solid; border-radius: 2px;}
+.layui-layedit{  border-width: 1px; border-style: solid; border-radius: 2px;width: 66%;height: 250px}
 .layui-layedit-tool{padding: 3px 5px; border-bottom-width: 1px; border-bottom-style: solid; font-size: 0;}
 .layedit-tool-fixed{position: fixed; top: 0; border-top: 1px solid #e2e2e2;}
 .layui-layedit-tool .layedit-tool-mid,

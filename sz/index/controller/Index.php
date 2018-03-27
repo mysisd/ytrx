@@ -108,6 +108,14 @@ class Index extends Base{
         echo $this->fetch();
     }
     public function ceshi(){
+        parent::loginUser('/index/index/login');
+
+
+        $data=Db('forum')->where('del',0)->order('last_post_time','DESC')->paginate(10, false, [
+            'query' => request()->param(),
+        ]);
+        $this->assign('data',$data);
+
         echo $this->fetch();
     }
 

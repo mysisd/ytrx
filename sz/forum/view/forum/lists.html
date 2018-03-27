@@ -3,65 +3,653 @@
 <html lang="en">
 <head>
     <include file="../sz/view/head.html"></include>
-    <style>
-        table{
-            width: 86%;
-            margin: 25px auto;
-        }
-        .left{
-            width: 170px;
-        }
-        .bg{
-            background-color: #B10707;
-            color: white;
-        }
-        .fh{
-            margin-left: 18px;
-        }
-        .spa{
-            margin-left: 25px;
-        }
-        .ind{
-            text-indent:2em;
-        }
-    </style>
-</head>
-<body>
-<include file="../sz/view/header.html"></include>
-<table width="400px" border="1" cellpadding="12" cellspacing="0" align="center">
-    <tr>
-        <td colspan="2" class="bg">
-            <span class="fh"><a style="color: white" href="/forum/forum/forum_list?pid={$pid}">[返回]</a></span>
-        </td>
-    </tr>
-    <tr>
-        <td rowspan="2" class="left">
-            发帖人：
-            {$data.author}
-        </td>
-        <td>
-            发帖时间：{$data.date}
-            <span class="spa"><a href="/forum/forum/reply?pid={$pid}&id={$data.id}">回复</a></span>
-        </td>
-    </tr>
-    <tr class="ind">
-        <td>{$data.content}</td>
-    </tr>
-    <empty name="list">
-        <tr>
-            <td colspan='2'>暂时还没有回复哦！！！</td>
-        </tr>
-        <else>
-            <foreach name="list" item="v">
-                <tr>
-                    <td>回复人:{$v.reply_author}</td>
-                    <td>{$v.reply}</td>
-                </tr>
-            </foreach>
 
-        </else>
-    </empty>
-</table>
+</head>
+
+<body id="nv_forum" class="pg_viewthread" onkeydown="if(event.keyCode==27) return false;">
+
+<include file="../sz/view/header.html"></include>
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+
+
+<ul id="myprompt_menu" class="p_pop" style="position: absolute; z-index: 301; left: 1087.61px; top: 73px; display: none;" initialized="true">
+    <li><a href="home.php?mod=space&amp;do=pm" id="pm_ntc" style="background-repeat: no-repeat; background-position: 0 50%;" class=""><em class="prompt_news_0"></em>消息</a></li>
+    <li><a href="home.php?mod=follow&amp;do=follower"><em class="prompt_follower_0"></em>新听众</a></li>
+    <li><a href="home.php?mod=space&amp;do=notice&amp;view=system"><em class="notice_system"></em>系统提醒(<span class="rq">1</span>)</a></li>
+    <li class="ignore_noticeli"><a href="javascript:;" onclick="setcookie('ignore_notice', 1);hideMenu('myprompt_menu')" title="暂不提醒"><em class="ignore_notice"></em></a></li>
+</ul>
+<div id="sslct_menu" class="cl p_pop" style="display: none;">
+    <span class="sslct_btn" onclick="extstyle('./template/default/style/t1')" title="红"><i style="background:#BA350F"></i></span>
+    <span class="sslct_btn" onclick="extstyle('./template/default/style/t2')" title="青"><i style="background:#429296"></i></span>
+    <span class="sslct_btn" onclick="extstyle('./template/default/style/t3')" title="橙"><i style="background:#FE9500"></i></span>
+    <span class="sslct_btn" onclick="extstyle('./template/default/style/t4')" title="紫"><i style="background:#9934B7"></i></span>
+    <span class="sslct_btn" onclick="extstyle('./template/default/style/t5')" title="蓝"><i style="background:#0053B9"></i></span>
+</div>
+<ul id="myitem_menu" class="p_pop" style="display: none;">
+    <li><a href="forum.php?mod=guide&amp;view=my">帖子</a></li>
+    <li><a href="home.php?mod=space&amp;do=favorite&amp;view=me">收藏</a></li>
+    <li><a href="home.php?mod=space&amp;do=friend">好友</a></li>
+</ul>
+<div id="qmenu_menu" class="p_pop " style="display: none;">
+    <ul class="cl nav"><li><a href="home.php?mod=magic" style="background-image:url(http://www.hzssbbs.com//Public/image/feed/magic_b.png) !important">道具</a></li>
+        <li><a href="home.php?mod=medal" style="background-image:url(http://www.hzssbbs.com//Public/image/feed/medal_b.png) !important">勋章</a></li>
+        <li><a href="home.php?mod=task" style="background-image:url(http://www.hzssbbs.com//Public/image/feed/task_b.png) !important">任务</a></li>
+    </ul>
+    <div id="fjump_menu" class="btda"></div></div>
+
+
+<link rel="stylesheet" href="/Public/css/oculus.css?t=1486453586">
+<link rel="stylesheet" href="//g.alicdn.com/sd/ncpc/nc.css?t=1486453586" disabled="">
+<script src="//g.alicdn.com/sd/ncpc/nc.js?t=1486453586"></script>
+<script src="/Public/js/oculus_nc.js?t=1486453586"></script>
+<div id="nc-float" style="display:none;">
+    <div class="nc-f-head">
+        <img class="nc-f-icon" src="//img.alicdn.com/tps/TB1_3FrKVXXXXbdXXXXXXXXXXXX-129-128.png" alt="" height="20" width="20">
+        <span class="nc-f-title">安全验证</span>
+        <a class="close" href="#"><i class="nc_iconfont"></i></a>
+    </div>
+    <div class="nc-f-body" id="oculus-nc-f-body">
+        <div class="nc-f-des">请完成以下验证码</div>
+        <div id="nocaptcha"></div>
+    </div>
+</div>
+<div id="wp" class="wp">
+    <script type="text/javascript">var fid = parseInt('2'), tid = parseInt('276');</script>
+
+
+    <script type="text/javascript">zoomstatus = parseInt(1);var imagemaxwidth = '600';var aimgcount = new Array();</script>
+
+    <style id="diy_style" type="text/css"></style>
+    <!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
+   
+
+    <style id="diy_style" type="text/css"></style>
+    <div class="wp">
+        <!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
+    </div>
+
+    <div id="ct" class="wp cl">
+        <div id="pgt" class="pgs mbm cl ">
+            <div class="pgt"></div>
+            <span class="y pgb" id="visitedforums" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';"><a href="forum.php?mod=forumdisplay&amp;fid=2">返回列表</a></span>
+            <a id="newspecial" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';" onclick="showWindow('newthread', 'forum.php?mod=post&amp;action=newthread&amp;fid=2')" href="javascript:;" title="发新帖"><img src="/Public/img/pn_post.png" alt="发新帖"></a><a id="post_reply" onclick="showWindow('reply', 'forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276')" href="javascript:;" title="回复"><img src="/Public/img/pn_reply.png" alt="回复"></a>
+        </div>
+
+        <ul class="p_pop" id="newspecial_menu" style="display: none">
+            <li><a href="forum.php?mod=post&amp;action=newthread&amp;fid=2">发表帖子</a></li><li class="poll"><a href="forum.php?mod=post&amp;action=newthread&amp;fid=2&amp;special=1">发起投票</a></li></ul>
+
+
+        <div id="postlist" class="pl bm">
+            <table cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td class="pls ptn pbn">
+                        <div class="hm ptn">
+                            <span class="xg1">查看:</span> <span class="xi1">14</span><span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">2</span>
+                        </div>
+                    </td>
+                    <td class="plc ptm pbn vwthd">
+                        <div class="y">
+                            <a href="forum.php?mod=viewthread&amp;action=printable&amp;tid=276" title="打印" target="_blank"><img src="/Public/img/print.png" alt="打印" class="vm"></a>
+                            <a href="forum.php?mod=redirect&amp;goto=nextoldset&amp;tid=276" title="上一主题"><img src="/Public/img/thread-prev.png" alt="上一主题" class="vm"></a>
+                            <a href="forum.php?mod=redirect&amp;goto=nextnewset&amp;tid=276" title="下一主题"><img src="/Public/img/thread-next.png" alt="下一主题" class="vm"></a>
+                        </div>
+                        <h1 class="ts">
+                            <span id="thread_subject">第一届“上塞杯”魔王争霸赛开锣喽！！！！</span>
+                        </h1>
+                        <span class="xg1">
+<a href="forum.php?mod=viewthread&amp;tid=276&amp;fromuid=332" onclick="return copyThreadUrl(this, '交易员之家论坛')" title="您的朋友访问此链接后，您将获得相应的积分奖励">[复制链接]</a>
+</span>
+                    </td>
+                </tr>
+                </tbody></table>
+
+
+            <table cellspacing="0" cellpadding="0" class="ad">
+                <tbody><tr>
+                    <td class="pls">
+                    </td>
+                    <td class="plc">
+                    </td>
+                </tr>
+                </tbody></table><div id="post_1034"><table id="pid1034" class="plhin" summary="pid1034" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td class="pls" rowspan="2">
+                    <div id="favatar1034" class="pls favatar" style="top: 33px;">
+                        <a name="newpost"></a> <div class="pi">
+                        <div class="authi"><a href="home.php?mod=space&amp;uid=30" target="_blank" class="xw1">运营部</a>
+                        </div>
+                    </div>
+                        <div class="p_pop blk bui card_gender_0" id="userinfo1034" style="display: none; margin-top: -11px;">
+                            <div class="m z">
+                                <div id="userinfo1034_ma"></div>
+                            </div>
+                            <div class="i y">
+                                <div>
+                                    <strong><a href="home.php?mod=space&amp;uid=30" target="_blank" class="xi2">运营部</a></strong>
+                                    <em>当前离线</em>
+                                </div><dl class="cl">
+                                <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=30&amp;do=profile" target="_blank" class="xi2">381</a></dd>
+                            </dl><div class="imicn">
+                                <a href="home.php?mod=space&amp;uid=30&amp;do=profile" target="_blank" title="查看详细资料"><img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
+                            </div>
+                                <div id="avatarfeed"><span id="threadsortswait"></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="avatar" ><a href="home.php?mod=space&amp;uid=30" class="avtm" target="_blank"><img src="http://www.hzssbbs.com/uc_server/avatar.php?uid=30&amp;size=middle"></a></div>
+                        </div>
+                        <div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="home.php?mod=space&amp;uid=30&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">70</a></p>主题</th><th><p><a href="home.php?mod=space&amp;uid=30&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">77</a></p>帖子</th><td><p><a href="home.php?mod=space&amp;uid=30&amp;do=profile" class="xi2">381</a></p>积分</td></tr></tbody></table></div>
+
+                        <p><em><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;gid=1" target="_blank">管理员</a></em></p>
+
+
+                        <p><span><img src="/Public/img/star_level3.gif" alt="Rank: 9"><img src="/Public/img/star_level3.gif" alt="Rank: 9"><img src="/Public/img/star_level1.gif" alt="Rank: 9"></span></p>
+
+
+
+                        <dl class="pil cl">
+                            <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=30&amp;do=profile" target="_blank" class="xi2">381</a></dd>
+                        </dl>
+
+                        <dl class="pil cl"></dl><ul class="xl xl2 o cl">
+                        <li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_30&amp;touid=30&amp;pmid=0&amp;daterange=2&amp;pid=1034&amp;tid=276" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>
+                    </ul>
+                    </div>
+                </td>
+                <td class="plc">
+                    <div class="pi">
+                        <div id="fj" class="y">
+                            <label class="z">电梯直达</label>
+                            <input type="text" class="px p_fre z" size="2" onkeyup="$('fj_btn').href='forum.php?mod=redirect&amp;ptid=276&amp;authorid=0&amp;postno='+this.value" onkeydown="if(event.keyCode==13) {window.location=$('fj_btn').href;return false;}" title="跳转到指定楼层">
+                            <a href="javascript:;" id="fj_btn" class="z" title="跳转到指定楼层"><img src="/Public/img/fj_btn.png" alt="跳转到指定楼层" class="vm"></a>
+                        </div>
+                        <strong>
+                            <a href="forum.php?mod=viewthread&amp;tid=276&amp;fromuid=332" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1034" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
+                                楼主</a>
+                        </strong>
+                        <div class="pti">
+                            <div class="pdbt">
+                            </div>
+                            <div class="authi">
+                                <img class="authicn vm" id="authicon1034" src="/Public/img/online_admin.gif">
+                                <em id="authorposton1034">发表于 <span title="2018-3-26 14:50:28">昨天&nbsp;14:50</span></em>
+                                <span class="pipe">|</span>
+                                <a href="forum.php?mod=viewthread&amp;tid=276&amp;page=1&amp;authorid=30" rel="nofollow">只看该作者</a>
+                                <span class="pipe">|</span><a href="forum.php?mod=viewthread&amp;tid=276&amp;from=album">只看大图</a>
+                                <span class="none"><img src="/Public/img/arw_r.gif" class="vm" alt="回帖奖励"></span>
+                                <span class="pipe show">|</span><a href="forum.php?mod=viewthread&amp;tid=276&amp;extra=&amp;ordertype=1" class="show">倒序浏览</a>
+                                <span class="pipe show">|</span><a href="javascript:;" onclick="readmode($('thread_subject').innerHTML, 1034);" class="show">阅读模式</a>
+                            </div>
+                        </div>
+                    </div><div class="pct"><style type="text/css">.pcb{margin-right:0}</style><div class="pcb">
+
+                    <div class="t_fsz">
+                        <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1034">
+                            <div align="center"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px">
+                                <ignore_js_op>
+
+                                    <img id="aimg_117" aid="117" src="/Public/img/145011wixbit8rrvzsxvx1.jpg" zoomfile="/Public/img/145011wixbit8rrvzsxvx1.jpg" file="/Public/img/145011wixbit8rrvzsxvx1.jpg" class="zoom" onclick="zoom(this, this.src, 0, 0, 0)" width="600" inpost="1" initialized="true">
+
+                                    <div class="tip tip_4 aimg_tip" id="aimg_117_menu" style="position: absolute; z-index: 301; left: 572px; top: 536.047px; display: none;" disautofocus="true" initialized="true">
+                                        <div class="xs0">
+                                            <p><strong>000.jpg</strong> <em class="xg1">(293.25 KB, 下载次数: 0)</em></p>
+                                            <p>
+                                                <a href="forum.php?mod=attachment&amp;aid=MTE3fDVmMmVhMGUwfDE1MjIxMjg0MDB8MzMyfDI3Ng%3D%3D&amp;nothumb=yes" target="_blank">下载附件</a>
+
+                                            </p>
+
+                                            <p class="xg1 y"><span title="2018-3-26 14:50">昨天&nbsp;14:50</span> 上传</p>
+
+                                        </div>
+                                        <div class="tip_horn"></div>
+                                    </div>
+
+                                </ignore_js_op>
+                            </font></font></font></div><div align="center"><strong><font face="宋体"><font size="5"><font color="#ff8c00"><br>
+                        </font></font></font></strong></div><div align="center"><strong><font face="宋体"><font size="5"><font color="#ff8c00">大赛说明</font></font></font></strong><br>
+                        </div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">为了更好的选拔人才，寻找不同风格的盘手，杭州上塞交易员之家在常规选拔赛之外特举办此次“上塞杯”全国期货魔王争霸赛。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">具体说明如下：</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">一、比赛期限为</font><strong><font color="#ff0000">2018年3月26日-2018年4月27</font></strong><font color="#000000">，报名时间为</font><font color="#ff0000"><strong>2018年3月19日-2018年3月25日</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">二、大赛交易品种为国内三大商品交易所和中金的所有品种。比赛期间</font><font color="#ff0000"><strong>不限制仓位，可以隔夜</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">三、成绩</font><strong><font color="#ff0000">统计不折算</font></strong><font color="#000000">，每天在官网公布，按照收益率排名。亏损初始权益的</font><font color="#ff0000"><strong>25%淘汰</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">四、此次大赛设以下奖项：</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">&nbsp; &nbsp;&nbsp; &nbsp; 第1名，获得</font><strong><font color="#ff0000">“魔王”</font></strong><font color="#000000">称号，奖励</font><strong><font color="#ff0000">现金8.88万元和50万实盘</font></strong><font color="#000000">（50万实盘不享受基金组5000元补助，等晋级100万实盘再享受同等待遇）。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">&nbsp; &nbsp;&nbsp; &nbsp; 第2名，奖励现金</font><font color="#ff0000"><strong>1万元</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">&nbsp; &nbsp;&nbsp; &nbsp; 第3名，奖励现金</font><font color="#ff0000"><strong>1000元</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">&nbsp; &nbsp;&nbsp; &nbsp; 第4名-第10名，安慰奖奖金</font><font color="#ff0000"><strong>100元</strong>。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">五、参赛报名费为688元，报名后获得50万元模拟资金进行仿真交易比赛。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">&nbsp; &nbsp;&nbsp;&nbsp;（报名费不退还，</font><strong><font color="#ff0000">比赛结束后可同价抵扣常规赛报名费用</font></strong><font color="#000000">，多还少补。例：比赛结束后再参加10万组比赛那么只需要再缴纳500元即可）。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">六、比赛报名，</font><strong><font color="#ff0000">选手按照常规赛的格式发给客服进行报名参赛</font></strong><font color="#000000">，本次大赛严格实行和常规赛一致的</font><strong><font color="#ff0000">实名制</font></strong><font color="#000000">，一经发现多账号对赌，冒名顶替者将终身禁赛。获得1、2、3名的选手我们将进行身份核实，发现有弄虚作假者立即取消获奖资格，并由后面的选手依次替补。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">七、本次大赛和常规选拔赛不冲突，可以同时报名，大赛专用账号为</font><strong><font color="#ff0000">“6”</font></strong><font color="#000000">开头，软件为交易员之家选拔综合版，机构席位服务器通道。</font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000"><br>
+                        </font></font></font></div><div align="left"><font face="宋体"><font size="2"><font color="#000000">八、本次大赛最终解释权归杭州上塞所有。</font></font></font></div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px"><br>
+                        </font></font></font></div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px"><br>
+                        </font></font></font></div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px"><br>
+                        </font></font></font></div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px"><br>
+                        </font></font></font></div><div align="left"><font style="color:rgb(0, 0, 0)"><font face="sans-serif"><font style="font-size:12px">&nbsp; &nbsp;&nbsp; &nbsp;</font></font></font></div><font style="color:rgb(149, 55, 52)"><font face="宋体, SimSun"><br>
+                        </font></font><br>
+                        </td></tr></tbody></table>
+
+                        <div class="modact"><a href="forum.php?mod=misc&amp;action=viewthreadmod&amp;tid=276" title="帖子模式" onclick="showWindow('viewthreadmod', this.href)">本主题由 运营部 于 <span title="2018-3-26 14:53">昨天&nbsp;14:53</span> 设置高亮</a></div><form method="post" autocomplete="off" id="vfastpostform" action="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;fromvf=1&amp;extra=&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=vfastpost" onsubmit="this.message.value = parseurl(this.message.value);ajaxpost('vfastpostform', 'return_reply', 'return_reply', 'onerror');return false;">
+                        <div id="vfastpost" class="fullvfastpost">
+                            <input type="hidden" name="formhash" value="6685bcb7">
+                            <table cellspacing="0" cellpadding="0" id="vfastposttb">
+                                <tbody><tr>
+                                    <td id="vf_l"></td>
+                                    <td id="vf_m"><input type="text" name="message" id="vmessage" onkeydown="seditor_ctlent(event, '$(\'vfastpostform\').submit()');" style="color: rgb(205, 205, 205);"></td>
+                                    <td id="vf_r"></td>
+                                    <td id="vf_b">
+                                        <button type="submit" class="pn pnc" name="replysubmit" id="vreplysubmit" value="true" style="">post_newreply</button>
+                                    </td>
+                                </tr>
+                                </tbody></table>
+                        </div>
+                        <div id="vfastpostseccheck"></div>
+                    </form>
+
+
+                    </div>
+                    <div id="comment_1034" class="cm">
+                    </div>
+
+                    <div id="post_rate_div_1034"></div>
+                </div>
+                </div>
+
+                </td></tr>
+            <tr><td class="plc plm">
+                <div id="p_btn" class="mtw mbm hm cl">
+
+                    <a href="home.php?mod=spacecp&amp;ac=favorite&amp;type=thread&amp;id=276&amp;formhash=6685bcb7" id="k_favorite" onclick="showWindow(this.id, this.href, 'get', 0);" onmouseover="this.title = $('favoritenumber').innerHTML + ' 人收藏'" title="收藏本帖"><i><img src="/Public/img/fav.gif" alt="收藏">收藏<span id="favoritenumber" style="display:none">0</span></i></a>
+                </div>
+            </td>
+            </tr>
+            <tr id="_postposition1034"></tr>
+            <tr>
+                <td class="pls"></td>
+                <td class="plc" style="overflow:visible;">
+                    <div class="po hin">
+                        <div class="pob cl">
+                            <em>
+                                <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;reppost=1034&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                            </em>
+
+                            <p>
+                                <a href="javascript:;" id="mgc_post_1034"  class="showmenu" style="display: none;"></a>
+                                <a href="javascript:;" onclick="showWindow('miscreport1034', 'misc.php?mod=report&amp;rtype=post&amp;rid=1034&amp;tid=276&amp;fid=2', 'get', -1);return false;">举报</a>
+                            </p>
+
+                            <ul id="mgc_post_1034_menu" class="p_pop mgcmn" style="display: none;">
+                            </ul>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="ad">
+                <td class="pls">
+                </td>
+                <td class="plc">
+                </td>
+            </tr>
+            </tbody></table>
+
+        </div>
+            <div id="post_1036"><table id="pid1036" class="plhin" summary="pid1036" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td class="pls" rowspan="2">
+                    <div id="favatar1036" class="pls favatar">
+                        <div class="pi">
+                            <div class="authi"><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xw1">坚持</a>
+                            </div>
+                        </div>
+                        <div class="p_pop blk bui card_gender_0" id="userinfo1036" style="display: none; margin-top: -11px;">
+                            <div class="m z">
+                                <div id="userinfo1036_ma"></div>
+                            </div>
+                            <div class="i y">
+                                <div>
+                                    <strong><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xi2">坚持</a></strong>
+                                    <em>当前离线</em>
+                                </div><dl class="cl">
+                                <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
+                            </dl><div class="imicn">
+                                <a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" title="查看详细资料"><img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
+                            </div>
+                                <div id="avatarfeed"><span id="threadsortswait"></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="avatar" ><a href="home.php?mod=space&amp;uid=21" class="avtm" target="_blank"><img src="http://www.hzssbbs.com/uc_server/avatar.php?uid=21&amp;size=middle"></a></div>
+                        </div>
+                        <div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">12</a></p>主题</th><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">430</a></p>帖子</th><td><p><a href="home.php?mod=space&amp;uid=21&amp;do=profile" class="xi2">1175</a></p>积分</td></tr></tbody></table></div>
+
+                        <p><em><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;gid=3" target="_blank">版主</a></em></p>
+
+
+                        <p><span><img src="/Public/img/star_level3.gif" alt="Rank: 7"><img src="/Public/img/star_level2.gif" alt="Rank: 7"><img src="/Public/img/star_level1.gif" alt="Rank: 7"></span></p>
+
+
+
+                        <dl class="pil cl">
+                            <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
+                        </dl>
+
+                        <dl class="pil cl"></dl><ul class="xl xl2 o cl">
+                        <li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_21&amp;touid=21&amp;pmid=0&amp;daterange=2&amp;pid=1036&amp;tid=276" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>
+                    </ul>
+                    </div>
+                </td>
+                <td class="plc">
+                    <div class="pi">
+                        <strong>
+                            <a href="forum.php?mod=redirect&amp;goto=findpost&amp;ptid=276&amp;pid=1036&amp;fromuid=332" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1036" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
+                                沙发</a>
+                        </strong>
+                        <div class="pti">
+                            <div class="pdbt">
+                            </div>
+                            <div class="authi">
+                                <img class="authicn vm" id="authicon1036" src="/Public/img/online_moderator.gif">
+                                <em id="authorposton1036">发表于 <span title="2018-3-26 20:57:50">昨天&nbsp;20:57</span></em>
+                                <span class="pipe">|</span>
+                                <a href="forum.php?mod=viewthread&amp;tid=276&amp;page=1&amp;authorid=21" rel="nofollow">只看该作者</a>
+                            </div>
+                        </div>
+                    </div><div class="pct"><div class="pcb">
+                    <div class="t_fsz">
+                        <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1036">
+                            赞一个<img src="/Public/img/smile.gif" smilieid="1" border="0" alt=""></td></tr></tbody></table>
+
+
+                    </div>
+                    <div id="comment_1036" class="cm">
+                    </div>
+
+                    <div id="post_rate_div_1036"></div>
+                </div>
+                </div>
+
+                </td></tr>
+            <tr><td class="plc plm">
+            </td>
+            </tr>
+            <tr id="_postposition1036"></tr>
+            <tr>
+                <td class="pls"></td>
+                <td class="plc" style="overflow:visible;">
+                    <div class="po hin">
+                        <div class="pob cl">
+                            <em>
+                                <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;repquote=1036&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                            </em>
+
+                            <p>
+                                <a href="javascript:;" id="mgc_post_1036"  class="showmenu" style="display: none;"></a>
+                                <a href="javascript:;" onclick="showWindow('miscreport1036', 'misc.php?mod=report&amp;rtype=post&amp;rid=1036&amp;tid=276&amp;fid=2', 'get', -1);return false;">举报</a>
+                            </p>
+
+                            <ul id="mgc_post_1036_menu" class="p_pop mgcmn" style="display: none;">
+                            </ul>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="ad">
+                <td class="pls">
+                </td>
+                <td class="plc">
+                </td>
+            </tr>
+            </tbody></table>
+        </div
+        ><div id="post_1037"><table id="pid1037" class="plhin" summary="pid1037" cellspacing="0" cellpadding="0">
+            <tbody><tr>
+                <td class="pls" rowspan="2">
+                    <div id="favatar1037" class="pls favatar">
+                        <a name="lastpost"></a><div class="pi">
+                        <div class="authi"><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xw1">坚持</a>
+                        </div>
+                    </div>
+                        <div class="p_pop blk bui card_gender_0" id="userinfo1037" style="display: none; margin-top: -11px;">
+                            <div class="m z">
+                                <div id="userinfo1037_ma"></div>
+                            </div>
+                            <div class="i y">
+                                <div>
+                                    <strong><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xi2">坚持</a></strong>
+                                    <em>当前离线</em>
+                                </div><dl class="cl">
+                                <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
+                            </dl><div class="imicn">
+                                <a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" title="查看详细资料"><img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
+                            </div>
+                                <div id="avatarfeed"><span id="threadsortswait"></span></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="avatar" ><a href="home.php?mod=space&amp;uid=21" class="avtm" target="_blank"><img src="http://www.hzssbbs.com/uc_server/avatar.php?uid=21&amp;size=middle"></a></div>
+                        </div>
+                        <div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">12</a></p>主题</th><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">430</a></p>帖子</th><td><p><a href="home.php?mod=space&amp;uid=21&amp;do=profile" class="xi2">1175</a></p>积分</td></tr></tbody></table></div>
+
+                        <p><em><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;gid=3" target="_blank">版主</a></em></p>
+
+
+                        <p><span><img src="/Public/img/star_level3.gif" alt="Rank: 7"><img src="/Public/img/star_level2.gif" alt="Rank: 7"><img src="/Public/img/star_level1.gif" alt="Rank: 7"></span></p>
+
+
+
+                        <dl class="pil cl">
+                            <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
+                        </dl>
+
+                        <dl class="pil cl"></dl><ul class="xl xl2 o cl">
+                        <li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_21&amp;touid=21&amp;pmid=0&amp;daterange=2&amp;pid=1037&amp;tid=276" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>
+                    </ul>
+                    </div>
+                </td>
+                <td class="plc">
+                    <div class="pi">
+                        <strong>
+                            <a href="forum.php?mod=redirect&amp;goto=findpost&amp;ptid=276&amp;pid=1037&amp;fromuid=332" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1037" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
+                                板凳</a>
+                        </strong>
+                        <div class="pti">
+                            <div class="pdbt">
+                            </div>
+                            <div class="authi">
+                                <img class="authicn vm" id="authicon1037" src="/Public/img/online_moderator.gif">
+                                <em id="authorposton1037">发表于 <span title="2018-3-26 20:57:57">昨天&nbsp;20:57</span></em>
+                                <span class="pipe">|</span>
+                                <a href="forum.php?mod=viewthread&amp;tid=276&amp;page=1&amp;authorid=21" rel="nofollow">只看该作者</a>
+                            </div>
+                        </div>
+                    </div><div class="pct"><div class="pcb">
+                    <div class="t_fsz">
+                        <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1037">
+                            赞一个<img src="/Public/img/smile.gif" smilieid="1" border="0" alt=""></td></tr></tbody></table>
+
+
+                    </div>
+                    <div id="comment_1037" class="cm">
+                    </div>
+
+                    <div id="post_rate_div_1037"></div>
+                </div>
+                </div>
+
+                </td></tr>
+            <tr><td class="plc plm">
+            </td>
+            </tr>
+            <tr id="_postposition1037"></tr>
+            <tr>
+                <td class="pls"></td>
+                <td class="plc" style="overflow:visible;">
+                    <div class="po hin">
+                        <div class="pob cl">
+                            <em>
+                                <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;repquote=1037&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                            </em>
+
+                            <p>
+                                <a href="javascript:;" id="mgc_post_1037" class="showmenu" style="display: none;"></a>
+                                <a href="javascript:;" onclick="showWindow('miscreport1037', 'misc.php?mod=report&amp;rtype=post&amp;rid=1037&amp;tid=276&amp;fid=2', 'get', -1);return false;">举报</a>
+                            </p>
+
+                            <ul id="mgc_post_1037_menu" class="p_pop mgcmn" style="display: none;">
+                            </ul>
+
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr class="ad">
+                <td class="pls">
+                </td>
+                <td class="plc">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+            <div id="postlistreply" class="pl">
+                <div id="post_new" class="viewthread_table" style="display: none">
+
+                </div></div>
+        </div>
+
+
+        <form method="post" autocomplete="off" name="modactions" id="modactions">
+            <input type="hidden" name="formhash" value="6685bcb7">
+            <input type="hidden" name="optgroup">
+            <input type="hidden" name="operation">
+            <input type="hidden" name="listextra" value="">
+            <input type="hidden" name="page" value="1">
+        </form>
+
+
+
+        <div class="pgs mtm mbm cl">
+            <span class="pgb y" id="visitedforumstmp" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';"><a href="forum.php?mod=forumdisplay&amp;fid=2">返回列表</a></span>
+            <a id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';" onclick="showWindow('newthread', 'forum.php?mod=post&amp;action=newthread&amp;fid=2')" href="javascript:;" title="发新帖"><img src="/Public/img/pn_post.png" alt="发新帖"></a>
+            <a id="post_replytmp" onclick="showWindow('reply', 'forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276')" href="javascript:;" title="回复"><img src="/Public/img/pn_reply.png" alt="回复"></a>
+        </div>
+
+        <!--[diy=diyfastposttop]--><div id="diyfastposttop" class="area"></div><!--[/diy]-->
+        <script type="text/javascript">
+            var postminchars = parseInt('10');
+            var postmaxchars = parseInt('10000');
+            var disablepostctrl = parseInt('0');
+        </script>
+
+        <div id="f_pst" class="pl bm bmw">
+            <form method="post" autocomplete="off" id="fastpostform" action="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;extra=&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=fastpost" onsubmit="return fastpostvalidate(this)">
+                <table style="height: 350px" cellspacing="0" cellpadding="0">
+                    <tbody>
+                    <tr>
+                        <td class="pls">
+                            <div class="avatar avtm">
+                                <img src="/Public/img/noavatar_middle.gif"></div>
+                        </td>
+                        <td class="plc">
+                            <textarea class="layui-textarea" id="LAY_demo1" style="display: none"></textarea>
+                            <p class="ptm pnpost">
+                                <a href="home.php?mod=spacecp&amp;ac=credit&amp;op=rule&amp;fid=2" class="y" target="_blank">本版积分规则</a>
+                                <button type="submit" onmouseover="checkpostrule('seccheck_fastpost', 'ac=reply');this.onmouseover=null" name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
+                                <label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
+                                <script type="text/javascript">if(getcookie('fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
+                            </p>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <div id="visitedforums_menu" class="p_pop blk cl" style="display: none;">
+            <table cellspacing="0" cellpadding="0">
+                <tbody><tr>
+                    <td id="v_forums">
+                        <h3 class="mbn pbn bbda xg1">浏览过的版块</h3>
+                        <ul class="xl xl1">
+                            <li><a href="forum.php?mod=forumdisplay&amp;fid=36">技术交流区</a></li></ul>
+                    </td>
+                </tr>
+                </tbody></table>
+        </div>
+        <script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 0, 0, 'forum.php?mod=viewthread&tid=276', 1);}</script>
+    </div>
+
+    <div class="wp mtn">
+        <!--[diy=diy3]--><div id="diy3" class="area"></div><!--[/diy]-->
+    </div>
+
+
+</div>
+
+
+<script src="/Public/js/html5notification.js?MeK" type="text/javascript"></script>
+<script type="text/javascript">
+    var h5n = new Html5notification();
+    if(h5n.issupport()) {
+        h5n.shownotification('notice_system', 'http://www.hzssbbs.com/home.php?mod=space&do=notice&view=system', 'http://www.hzssbbs.com/uc_server/avatar.php?uid=332&size=small', '系统提醒 (1)', '有新的提醒，快去看看吧');
+    }
+</script>
+<div id="scrolltop" style="right: 71px; visibility: visible;">
+    <span><a href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)" class="replyfast" title="快速回复"><b>快速回复</b></a></span>
+    <span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo('0','0')" class="scrolltopa"><b>返回顶部</b></a></span>
+    <span>
+<a href="forum.php?mod=forumdisplay&amp;fid=2" hidefocus="true" class="returnlist" title="返回列表"><b>返回列表</b></a>
+</span>
+</div>
+
+<div id="discuz_tips" style="display:none;"></div>
+<script type="text/javascript">
+    var tipsinfo = '|X3.3|0.6||0||332|10|1522128400||2';
+</script>
+<style type="text/css" class="nc-style">.nc-container #nc_1_wrapper,.nc-container.tb-login #nc_1_wrapper{width:300px}
+.nc-container .imgCaptcha,.nc-container .clickCaptcha{width:298px;}
+.nc-container.tb-login .imgCaptcha,.nc-container.tb-login .clickCaptcha{width:300px;}
+.nc-container.tb-login .imgCaptcha .captcha-error,.nc-container.tb-login .clickCaptcha .captcha-error{width:292px;}
+.nc-container.tb-login .errloading, .nc-container .errloading {width:290px;}</style><script src="http://discuz.gtimg.cn/cloud/scripts/discuz_tips.js?v=1" type="text/javascript" charset="UTF-8"></script>
+
+<div class="bdshare-slide-button-box bdshare-slide-style-r6" style="top: 250px; width: 0px; z-index: 99999; right: 0px;" data-bd-bind="1522128399014"><a href="#" onclick="return false;" class="bdshare-slide-button" style="left: -24px;"></a><div class="bdshare-slide-list-box" style="width: 0px; display: none;"><div class="bdshare-slide-top">分享到</div><div class="bdshare-slide-list"><ul class="bdshare-slide-list-ul" style="width: 226px;"></ul></div><div class="bdshare-slide-bottom" style="width: 226px;"><a href="#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a></div></div></div><script></script>
+
 <include file="../sz/view/foot.html"></include>
+
+
+
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+    layui.use('layedit', function(){
+        var layedit = layui.layedit
+            ,$ = layui.jquery;
+
+        //构建一个默认的编辑器
+        var index = layedit.build('LAY_demo1');
+
+        //编辑器外部操作
+        var active = {
+            content: function(){
+                alert(layedit.getContent(index)); //获取编辑器内容
+            }
+            ,text: function(){
+                alert(layedit.getText(index)); //获取编辑器纯文本内容
+            }
+            ,selection: function(){
+                alert(layedit.getSelection(index));
+            }
+        };
+
+        $('.site-demo-layedit').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+        //自定义工具栏
+        layedit.build('LAY_demo2', {
+            tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+            ,height: 100
+        })
+    });
+</script>
 </body>
 </html>
