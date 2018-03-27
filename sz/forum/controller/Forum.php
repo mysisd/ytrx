@@ -18,6 +18,11 @@ class Forum extends Base{
         ]);
 
         $this->assign('data',$data);
+        $data=Db('forum_list')->where('del',0)->order('top','DESC')->paginate(10, false, [
+            'query' => request()->param(),
+        ]);
+
+        $this->assign('data',$data);
 
         echo $this->fetch();
     }
