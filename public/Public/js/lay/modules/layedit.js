@@ -29,7 +29,7 @@ layui.define(['layer', 'form'], function(exports){
         ,'|'
         ,'left', 'center', 'right'
         ,'|'
-        ,'link', 'unlink', 'face', 'image'
+        ,'link', 'unlink', 'face', ''
       ]
       ,hideTool: []
       ,height: 280 //默认高

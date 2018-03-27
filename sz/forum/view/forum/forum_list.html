@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <include file="../sz/view/head.html"></include>
-    <script src="/Public/js/upload.js"></script>
+
 
     <style>
         .cen{
@@ -391,11 +391,10 @@
 <script>
     layui.use('layedit', function(){
         var layedit = layui.layedit
-            ,$ = layui.jquery,
-            upload = layui.upload;
+            ,$ = layui.jquery;
         layedit.set({
             uploadImage: {
-                url: '/forum/forum/img' //接口url
+                url: '/forum/forum/editUpload' //接口url
                 ,type: 'post', //默认post
             }
         });

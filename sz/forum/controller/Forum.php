@@ -155,26 +155,22 @@ class Forum extends Base{
         }
         return json($arr1);
     }
-    public function img()//上传模块
-    {
-        $file = request()->file('file');
-
-
-        if (isset($file)) {
-            $info = $file->move(ROOT_PATH . '/public/Public/download/img/');
-            if(!$info){
-                $file->getError();
-            }else {
-                foreach ($info as $file) {
-                    $data = '/Uploads' . $file['savepath'] . $file['savename'];
-                    $file_a = $data;
-                    echo '{"code":0,"msg":"成功上传","data":{"src":"' . $file_a . '"}}';
-
-                }
-
-        }
-
+  public function editUpload(){
+        if($this->request->isPost()){
+            $res['code']=0;
+            $res['msg']='上传成功';
+            $file=$this->request->file('file');
+            $info=$file->move('../public/Public/upload/img');
+            if($info){
+                $res['data']['title']=$info->getFilename();
+                $filePath='upload/img'.$info->getSaveName();
+                $res['data']['src']='/'.$filePath;
+            }else{
+                $res['code']=1;
+                $res['msg']='上传失败'.$file->getError();
+            }
+            return $res;
 
         }
-    }
+  }
     }
