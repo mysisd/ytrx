@@ -18,11 +18,12 @@ class Forum extends Base{
         ]);
 
         $this->assign('data',$data);
-        $data=Db('forum_list')->where('del',0)->order('top','DESC')->paginate(10, false, [
+        $top_data=Db('forum_list')->where('del',0)->order('top','DESC')->paginate(10, false, [
             'query' => request()->param(),
         ]);
-
-        $this->assign('data',$data);
+        $this->assign('top_data',$top_data);
+        $forumdata=Db('forum')->where('del',0)->order('last_post_time','DESC')->select();
+        $this->assign('forumdata',$forumdata);
 
         echo $this->fetch();
     }
@@ -58,7 +59,7 @@ class Forum extends Base{
           }else{
               $value='date';
           }
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(10, false, [
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(1, false, [
               'query' => request()->param(),
           ]);
         $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
@@ -82,12 +83,17 @@ class Forum extends Base{
        $data['par_id']=input('pid');
        $data['date']=date('Y-m-d H:i:s',time());
        $row=Db('forum_list')->strict(false)->insert($data);
-       if($row){
-           $arr['res']='success';
-       }else{
-           $arr['res']='error';
-       }
-       return json($arr);
+        if($row){
+            $this->success('发表成功！');
+        }else{
+            $this->error('发表失败！请重新删除');
+        }
+//       if($row){
+//           $arr['res']='success';
+//       }else{
+//           $arr['res']='error';
+//       }
+//       return json($arr);
 
     }
     public function lists(){
@@ -148,7 +154,27 @@ class Forum extends Base{
             $arr1['res']='success';;
         }
         return json($arr1);
-
-
     }
-}
+    public function img()//上传模块
+    {
+        $file = request()->file('file');
+
+
+        if (isset($file)) {
+            $info = $file->move(ROOT_PATH . '/public/Public/download/img/');
+            if(!$info){
+                $file->getError();
+            }else {
+                foreach ($info as $file) {
+                    $data = '/Uploads' . $file['savepath'] . $file['savename'];
+                    $file_a = $data;
+                    echo '{"code":0,"msg":"成功上传","data":{"src":"' . $file_a . '"}}';
+
+                }
+
+        }
+
+
+        }
+    }
+    }
