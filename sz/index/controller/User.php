@@ -11,7 +11,7 @@ use app\login\controller\Base;
 
 class User extends Base{
     public function index(){
-        Db('user')->
+
         echo $this->fetch();
     }
     public function apply_lingtou(){
