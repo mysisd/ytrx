@@ -11,7 +11,8 @@ use app\login\controller\Base;
 
 class User extends Base{
     public function index(){
-
+        $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
+        $this->assign('user',$user);
         echo $this->fetch();
     }
     public function apply_lingtou(){
@@ -51,6 +52,8 @@ class User extends Base{
         echo $this->fetch();
     }
     public function my_info(){
+        $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
+        $this->assign('user',$user);
         echo $this->fetch();
     }
     public function outbox(){

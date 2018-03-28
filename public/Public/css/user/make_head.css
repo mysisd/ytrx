@@ -27,7 +27,7 @@ body{
 	float:left;
 	}
 .make_head_content_pic input{
-	background-image:url('../../../Public/member_center/upphoto.png');
+	background-image:url('/Public/member_center/upphoto.png');
 	width:227px;
 	height:64px;
 	border: 0 solid transparent;
