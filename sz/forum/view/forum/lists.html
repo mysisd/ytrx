@@ -406,6 +406,11 @@
                                 <img src="/Public/img/noavatar_middle.gif"></div>
                         </td>
                         <td class="plc">
+
+                            <input type="hidden" id="posts" name="post" >
+                            <script>
+                                $('#posts').val($('#thread_subject').text());
+                            </script>
                             <textarea class="layui-textarea" name="content"  id="LAY_demo1" style="display: none"></textarea>
                             <p class="ptm pnpost">
                                 <a href="" class="y" target="_blank">本版积分规则</a>
@@ -432,7 +437,7 @@
                 </tr>
                 </tbody></table>
         </div>
-        <script type="text/javascript">document.onkeyup = function(e){keyPageScroll(e, 0, 0, 'forum.php?mod=viewthread&tid=276', 1);}</script>
+
     </div>
 
     <div class="wp mtn">
@@ -464,13 +469,14 @@
 .nc-container.tb-login .errloading, .nc-container .errloading {width:290px;}</style><script src="http://discuz.gtimg.cn/cloud/scripts/discuz_tips.js?v=1" type="text/javascript" charset="UTF-8"></script>
 
 <div class="bdshare-slide-button-box bdshare-slide-style-r6" style="top: 250px; width: 0px; z-index: 99999; right: 0px;" data-bd-bind="1522128399014"><a href="#" onclick="return false;" class="bdshare-slide-button" style="left: -24px;"></a><div class="bdshare-slide-list-box" style="width: 0px; display: none;"><div class="bdshare-slide-top">分享到</div><div class="bdshare-slide-list"><ul class="bdshare-slide-list-ul" style="width: 226px;"></ul></div><div class="bdshare-slide-bottom" style="width: 226px;"><a href="#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a></div></div></div><script></script>
-
+</div>
 <include file="../sz/view/foot.html"></include>
 
 
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+
     layui.use('layedit', function(){
         var layedit = layui.layedit
             ,$ = layui.jquery;

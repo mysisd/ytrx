@@ -40,10 +40,18 @@ class Forum extends Base{
         }
     }
     public function update_forum(){
-
+        if(input('delete')!=''){
+            $row =Db('forum_list')->where('id',input('delete'))->setField('del',1);;
+            if($row){
+                $this->success('删除成功！','/manager/forum/update_forum/id/'.input('pid'));
+            }else{
+                $this->error('删除失败！请重新删除','/manager/forum/update_forum/id/'.input('pid'));
+            }
+        }
         if(input('update')!=''){
 
             $data['top']=input('top');
+
             $row= Db('forum_list')->where('id',input('update'))->update($data);
             if($row){
 
@@ -57,6 +65,7 @@ class Forum extends Base{
             $data=Db('forum_list')->where('del',0)->where('par_id',input('id'))->paginate(10, false, [
                 'query' => request()->param(),
             ]);
+            $this->assign('p_id',input('id'));
             $this->assign('con',$con);
             $this->assign('data',$data);
             $page= $data->render();
@@ -67,10 +76,21 @@ class Forum extends Base{
     public function yt_reply(){
         $tid=input('tid');
         $pid=input('pid');
+        if(input('delete')!=''){
+            $row =Db('reply')->where('id',input('delete'))->setField('del',1);;
+            if($row){
+                $this->success('删除成功！','/manager/forum/yt_reply?tid='.$tid.'&pid='.$pid);
+            }else{
+                $this->error('删除失败！请重新删除','/manager/forum/yt_reply?tid='.$tid.'&pid='.$pid);
+            }
+        }
+
 
         $data=Db('reply')->where('del',0)->where('t_id',$tid)->where('par_id',$pid)->paginate(10, false, [
             'query' => request()->param(),
         ]);
+        $this->assign('tid',$tid);
+        $this->assign('pid',$pid);
         $this->assign('data',$data);
         $page=$data->render();
         $this->assign('page',$page);
@@ -113,6 +133,61 @@ class Forum extends Base{
                 $this->success('修改成功！','yt_forum');
             }else{
                 $this->error('修改失败！请重新修改...',"/yt_forum/id/".$id);
+
+            }
+        }else{
+            echo "<center><img src='/Public/img/404.gif'></center>";
+        }
+    }
+    public function update_forum_list(){
+        if(input('id')!=''){
+            $info   =   Db('forum_list')->where('del',0)->where('id',input('id'))->find();
+            $this->assign('info',$info);
+          $this->assign('id',input('pid'));
+            echo $this->fetch();
+        }else if(input('update')!=''){
+            $id     =   input('update');
+            $pid     =   input('pid');
+            $map['id'] = $id;
+
+
+            $data['content']=   input('content');
+            $data['title']  =   input('title');
+            $data['date']   =   date('Y-m-d H:i:s');
+            $row            =   Db('forum_list')->where('del',0)->where('id',input('update'))->update($data);
+            if($row !== false){
+                $this->success('修改成功！','/manager/forum/update_forum/id/'.$pid);
+            }else{
+                $this->error('修改失败！请重新修改...','/manager/forum/update_forum/id/'.$pid);
+
+            }
+        }else{
+            echo "<center><img src='/Public/img/404.gif'></center>";
+        }
+    }
+    public function update_reply(){
+        $pid     =   input('pid');
+        $tid     =   input('tid');
+
+        if(input('id')!=''){
+            $info   =   Db('reply')->where('del',0)->where('id',input('id'))->find();
+            $this->assign('info',$info);
+            $this->assign('tid',$tid);
+            $this->assign('pid',$pid);
+            echo $this->fetch();
+        }else if(input('update')!=''){
+            $id     =   input('update');
+
+            $map['id'] = $id;
+
+            $data['reply']=   input('content');
+
+            $data['date']   =   date('Y-m-d H:i:s');
+            $row            =   Db('reply')->where('del',0)->where('id',input('update'))->update($data);
+            if($row !== false){
+                $this->success('修改成功！','/manager/forum/yt_reply?tid='.$tid.'&pid='.$pid);
+            }else{
+                $this->error('修改失败！请重新修改...','/manager/forum/yt_reply?tid='.$tid.'&pid='.$pid);
 
             }
         }else{

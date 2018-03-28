@@ -129,6 +129,7 @@ class Forum extends Base{
         $data['t_id']=$id;
         $data['reply_author']=$user['username'];
         $data['reply']=input('content');
+        $data['reply_to_posts']=input('post');
         $data['date']=date('Y-m-d H:i:s',time());
 
         $row=Db('reply')->strict(false)->insert($data);

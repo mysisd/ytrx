@@ -56,13 +56,13 @@
         <table class="table_a">
             <thead>
             <tr>
-                <td>论坛主题</td>
+                <td>论坛区块名称</td>
                 <td width="">标题</td>
                 <td width="">内容</td>
                 <td width="">是否置顶</td>
                 <td>作者</td>
                 <td width="">最后修改时间</td>
-                <td width="" align="center" colspan="2">操作</td>
+                <td width="" align="center" colspan="4">操作</td>
             </tr>
             </thead>
             <tbody>
@@ -71,7 +71,7 @@
                 <tr class="tbody_a">
 
                     <td>{$con.forum_description}</td>
-                    <td class="hlep_title"><a href="/manager/forum/yt_reply?tid={$v.id}&pid={$con.id}">{$v.title}</a></td>
+                    <td class="hlep_title">{$v.title}</td>
                     <td>  <a href="">{$v.content}</a></td>
                     <td>
                         <if condition="$v.top eq '' ">不置顶 <elseif condition="$v.top eq 'on'">置顶</elseif></if>
@@ -98,7 +98,10 @@
                             </div>
                         </form>
                     </td>
-                    <!--</td>  <a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}" class="updel_a href_a update_help">修改</a>-->
+                    <td><a href="/{$Request.module}/{$Request.controller}/update_forum_list/id/{$v.id}/pid/{$p_id}" class="updel_a href_a update_file">修改</a></td>
+                    <td><a href="/{$Request.module}/{$Request.controller}/update_forum/delete/{$v.id}" class="updel_a delete_a delete_file">删除</a></td>
+
+                    <td>  <a href="/manager/forum/yt_reply?tid={$v.id}&pid={$con.id}" class="">进入该帖子回复</a></td>
                     <!--<td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_forum/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>-->
                 </tr>
 

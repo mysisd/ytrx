@@ -56,24 +56,24 @@
         <table class="table_a">
             <thead>
             <tr>
-
+                <td>回帖主题</td>
                 <td width="">回帖内容</td>
                 <td width="">回帖作者</td>
                 <td width="">最后修改时间</td>
-
+                <td width="" align="center" colspan="5">操作</td>
             </tr>
             </thead>
             <tbody>
             <foreach name='data' item='v'>
-
                 <tr class="tbody_a">
+                    <td>{$v.reply_to_posts}</td>
                     <td class="hlep_title"><a href="">{$v.reply}</a></td>
                     <td>{$v.reply_author}</td>
 
                     <td class="help_date">{$v.date}</td>
 
-                    <!--</td>  <a href="/{$Request.module}/{$Request.controller}/update_forum/id/{$v.id}" class="updel_a href_a update_help">修改</a>-->
-                    <!--<td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_forum/delete/{$v.id}" class="updel_a delete_a delete_help">删除</a></td>-->
+                    <td>  <a href="/{$Request.module}/{$Request.controller}/update_reply/id/{$v.id}/tid/{$tid}/pid/{$pid}" class="updel_a href_a update_help">修改</a></td>
+                    <td><a name="{$v.id}"  href="/{$Request.module}/{$Request.controller}/yt_reply/delete/{$v.id}/tid/{$tid}/pid/{$pid}" class="updel_a delete_a delete_help">删除</a></td>
                 </tr>
 
             </foreach>
