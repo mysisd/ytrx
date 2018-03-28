@@ -275,13 +275,13 @@
                                     <tbody id="normalthread_{$v.id}">
                                     <tr>
                                         <td class="icn">
-                                            <a href="forum.php?mod=viewthread&amp;tid=234&amp;extra=page%3D1" title="新窗口打开" target="_blank">
+                                            <a href="/forum/forum/lists?pid={$id}&id={$v.id}" title="新窗口打开" target="_blank">
                                                 <img src="/Public/img/folder_common.gif">
                                             </a>
                                         </td>
                                         <th class="common">
                                             <a href="javascript:;" id="content_234" class="showcontent y" title="更多操作" onclick="CONTENT_TID='234';CONTENT_ID='normalthread_234'; "></a>
-                                            <a href="forum.php?mod=viewthread&amp;tid=234&amp;extra=page%3D1"  class="s xst">{$v.title}</a>
+                                            <a href="/forum/forum/lists?pid={$id}&id={$v.id}"  class="s xst">{$v.title}</a>
                                             <img src="/Public/img/011.small.gif" alt="新人帖" align="absmiddle">
                                         </th>
                                         <td class="by">
@@ -360,7 +360,7 @@
                         <h2>快速发帖</h2>
                     </div>
                     <div class="bm_c">
-                        <form action="/forum/forum/add_lists" method="post">
+                        <form action="/forum/forum/add_lists" method="post" id="sun">
                             <input type="hidden" name="pid" value="{$id}">
                             <div class="pbt cl">
                                 <input type="text" id="subject" name="title" class="px" value=""  tabindex="11" style="width: 25em">
@@ -369,7 +369,7 @@
                             <textarea class="layui-textarea" id="LAY_demo1" name="content" style="display: none"></textarea>
                             <p class="ptm pnpost">
                                 <a href="" class="y" target="_blank">本版积分规则</a>
-                                <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5">
+                                <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" data-type="content" tabindex="5">
                                     <strong>发表帖子</strong>
                                 </button>
                                 <label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
@@ -388,6 +388,7 @@
 
 
 </div>
+
 <script>
     layui.use('layedit', function(){
         var layedit = layui.layedit
@@ -414,9 +415,10 @@
             }
         };
 
-        $('.site-demo-layedit').on('click', function(){
+        $('#fastpostsubmitt').on('click', function(){
             var type = $(this).data('type');
             active[type] ? active[type].call(this) : '';
+            alert(1)
         });
 
         //自定义工具栏
@@ -427,6 +429,7 @@
 
     });
 </script>
+
 <include file="../sz/view/foot.html"></include>
 </body>
 </html>

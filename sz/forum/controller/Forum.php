@@ -83,10 +83,14 @@ class Forum extends Base{
        $data['par_id']=input('pid');
        $data['date']=date('Y-m-d H:i:s',time());
        $row=Db('forum_list')->strict(false)->insert($data);
+       if(empty(input('title'))||empty(input('content'))){
+           $this->error('发表失败！内容不能含有空值');
+
+       }
         if($row){
             $this->success('发表成功！');
         }else{
-            $this->error('发表失败！请重新删除');
+            $this->error('发表失败！');
         }
 //       if($row){
 //           $arr['res']='success';
@@ -99,6 +103,7 @@ class Forum extends Base{
     public function lists(){
         $pid=input('pid');
         $this->assign('pid',$pid);
+        $this->assign('id',input('id'));
         $data=Db('forum_list')->where('par_id',$pid)->where('id',input('id'))->find();
         $this->assign('data',$data);
         $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->paginate(10);
@@ -123,16 +128,19 @@ class Forum extends Base{
         $data['par_id']=$pid;
         $data['t_id']=$id;
         $data['reply_author']=$user['username'];
-        $data['reply']=input('reply');
+        $data['reply']=input('content');
         $data['date']=date('Y-m-d H:i:s',time());
 
         $row=Db('reply')->strict(false)->insert($data);
-        if($row){
-            $arr['res']='success';
-        }else{
-            $arr['res']='error';
+        if(empty(input('content'))){
+            $this->error('发表失败！内容不能含有空值');
+
         }
-        return json($arr);
+        if($row){
+            $this->success('发表成功！');
+        }else{
+            $this->error('发表失败！');
+        }
     }
     function is_exist($str,$key){
         foreach($key as $v){
