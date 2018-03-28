@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/head.html"></include>
+    <!-- CSS公共部分 开始 -->
+    <link href="/Public/css/user/bootstrap.min.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link href="/Public/css/user/style.css" rel="stylesheet">
+    <!-- CSS公共部分 结束 -->
+
+    <link href="/Public/css/user/crowdfunding.css" rel="stylesheet">
+    <script src="/Public/js/user/jquery-2.1.1.min.js"></script>
+    <script src="/Public/js/user/crowdfunding.js"></script>
+
+</head>
+<body>
+<include file="../sz/view/header.html"></include>
+<div class="container border1 nopadding margin10">
+    <div id="vertical_navigation" class="col-lg-3 background831312 nopadding">
+        <div class="dead_pic"><img src="/Public/member_center/nopic.jpg.png"><br>
+            <span class="username">用户名</span></div>
+
+        <div class="menu">
+            <div class="menu_title"> 我的信息 </div>
+            <div class="menu_list">
+                <ul class="list-unstyled">
+                    <li id="listClick1" class="menu_list_on" onclick="listClick(1)">
+                        <img src="/Public/member_center/left_icon_1.png"> 基本信息</li>
+                    <li id="listClick2" class="" onclick="listClick(2)"> <img src="/Public/member_center/left_icon_2.png"> 修改头像</li>
+                    <li id="listClick3" class="" onclick="listClick(3)"> <img src="/Public/member_center/left_icon_2.png"> 身份认证</li>
+                    <li id="listClick4" class="" onclick="listClick(4)"> <img src="/Public/member_center/left_icon_3.png"> 修改密码</li>
+                    <!--<li id="listClick5" class="" onclick="listClick(5)"> <img src="/Public/member_center/left_icon_5.png"> 申请领投资格</li>-->
+                </ul>
+            </div>
+        </div>
+        <!--<div class="menu">-->
+            <!--<div class="menu_title"> 我相关的项目 </div>-->
+            <!--<div class="menu_list">-->
+                <!--<ul class="list-unstyled">-->
+                    <!--<li id="listClick6" class="" onclick="listClick(6)"><img src="/Public/member_center/left_icon_6.png"> 项目管理</li>-->
+                    <!--<li id="listClick7" class="" onclick="listClick(7)"> <img src="/Public/member_center/left_icon_6.png"> 投后管理</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="menu">-->
+            <!--<div class="menu_title"> 我的资金管理 </div>-->
+            <!--<div class="menu_list">-->
+                <!--<ul class="list-unstyled">-->
+                    <!--<li id="listClick8" class="" onclick="listClick(8)"><img src="/Public/member_center/left_icon_8.png"> 我的账户</li>-->
+                    <!--<li id="listClick9" class="" onclick="listClick(9)"> <img src="/Public/member_center/left_icon_9.png"> 投资明细查询</li>-->
+                    <!--<li id="listClick10" class="" onclick="listClick(10)"> <img src="/Public/member_center/left_icon_10.png"> 申请退款</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="menu">
+            <div class="menu_title"> 我的星级和积分 </div>
+            <div class="menu_list">
+                <ul class="list-unstyled">
+                    <li id="listClick11" class="" onclick="listClick(11)"><img src="/Public/member_center/left_icon_9.png"> 星级和积分介绍</li>
+                    <li id="listClick12" class="" onclick="listClick(12)"> <img src="/Public/member_center/left_icon_12.png"> 积分纪录</li>
+                    <li id="listClick13" class="" onclick="listClick(13)"> <img src="/Public/member_center/left_icon_13.png"> 积分规则</li>
+                </ul>
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menu_title"> 我的消息 </div>
+            <div class="menu_list">
+                <ul class="list-unstyled">
+                    <li id="listClick14" class="" onclick="listClick(14)"><img src="/Public/member_center/left_icon_14.png"> 发送新消息</li>
+                    <li id="listClick15" class="" onclick="listClick(15)"> <img src="/Public/member_center/left_icon_15.png"> 收件箱</li>
+                    <li id="listClick16" class="" onclick="listClick(16)"> <img src="/Public/member_center/left_icon_16.png"> 发件箱</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <iframe name="left" id="crowdfunding_iframe" src="/index/user/my_info" frameborder="false" scrolling="no" style="border:none;" width="100%"  allowtransparency="true"></iframe>
+    </div>
+</div>
+<include file="../sz/view/foot.html"></include>
+
+</body>
+</html>
