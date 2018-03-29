@@ -73,7 +73,7 @@ class Login extends Base {
 
     public function logout(){
         $data['logout_time']=date('Y-m-d H:i:s',time());
-        Db('user')->where('del',0)->where('uniqid',session('uniqid'))->update($data);
+        Db('user')->where('del',0)->where('account',session('phone'))->update($data);
         session(null);
         getAlert(null,'/');
 

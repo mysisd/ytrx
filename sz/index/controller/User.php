@@ -63,7 +63,11 @@ class User extends Base{
                 $data['password']=sha1($new_pass);
                 $row=Db('user')->where('del',0)->where('account',session('phone'))->update($data);
                 if($row){
-                    $arr['status'] = 'success';
+                    $arr['res'] = 'success';
+                    $data['logout_time']=date('Y-m-d H:i:s',time());
+                    Db('user')->where('del',0)->where('account',session('phone'))->update($data);
+                    session(null);
+                    getAlert(null,'/');
                 }
                 return json($arr);
             }
