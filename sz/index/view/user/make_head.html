@@ -17,12 +17,22 @@
 <!-- 开始 -->
 <div class="make_head_title">修改头像</div>
 <div class="make_head_content">
-  <div class="make_head_content_pic"><input type="button"></div>
+  <div class="make_head_content_pic">
+    <input type="button">
+    <input type="file" style="display: none" accept="image/*;capture=camera">
+  </div>
   <div class="make_head_content_sm_pic">
     <img src="/Public/member_center/default.jpg"><br>头像100 x 100</div>
 </div>
 
 <!-- 结束 --> 
 <script src="/Public/js/user/jquery-2.1.1.min.js"></script>
+<script>
+  $(function () {
+      $('input[type=button]').on('click',function () {
+          $('input[type=file]').trigger('click');
+      })
+  })
+</script>
 </body>
 </html>
