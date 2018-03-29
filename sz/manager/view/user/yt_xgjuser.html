@@ -15,6 +15,9 @@
 						<option value="bank_card">银行卡</option>
 						<option value="QQ">QQ</option>
 						<option value="wechat">微信</option>
+						<option value="prov">省份</option>
+						<option value="city">市区</option>
+						<option value="dist">镇区</option>
 					</select>
 					<input class="select_date" name="value" type="text" placeholder="" value="{:input('param.value')}" style="background:#fff;">　
 					<button type="submit">查询</button>
@@ -32,6 +35,11 @@
 						<td>QQ</td>
 						<td>微信号</td>
 						<td>银行卡号</td>
+						<td>身份证</td>
+						<td>所在省份</td>
+						<td>所在市区</td>
+						<td>所在镇区</td>
+						<td>通讯地址</td>
 						<td>喜好品种</td>
 						<td>邀请码</td>
                         <td width="">注册时间</td>
@@ -47,6 +55,11 @@
 						   <td>{$v.QQ}</td>
 						   <td>{$v.wechat}</td>
 						   <td>{$v.bank_card}</td>
+						   <td>{$v.id_card}</td>
+						   <td>{$v.prov}</td>
+						   <td>{$v.city}</td>
+						   <td>{$v.dist}</td>
+						   <td>{$v.address}</td>
 						   <td>{$v.preference}</td>
 						   <td>{$v.invite_num}</td>
 	                        <td class="">{$v.reg_time}</td>
