@@ -8,7 +8,8 @@
 
 namespace app\index\Controller;
 use app\login\controller\Base;
-
+use think\Session;
+use think\Rsa;
 class User extends Base{
     public function index(){
         $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
@@ -43,7 +44,38 @@ class User extends Base{
         echo $this->fetch();
     }
     public function make_password(){
-        echo $this->fetch();
+        $old_pass=input('old_pass');
+        $new_pass=input('new_pass');
+        $con_pass=input('old_pass');
+        $yzm=input('yzm');
+        if(empty($old_pass)||empty($new_pass)||empty($con_pass)||empty($yzm)){
+            $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
+            $this->assign('user',$user);
+            echo $this->fetch();
+        }else{
+           $user= Db('user')->where('del',0)->where('account',session('phone'))->find();
+            $old_pass  = Rsa::privDecrypt($old_pass);
+            $old_pass1  = Rsa::privDecrypt($user['password']);
+            if($old_pass!=$old_pass1){
+                $arr['msg']='原密码输入错误';
+                $arr['res']='error';
+            }else if($yzm==session('code')){
+                $data['password']=sha1($new_pass);
+                $row=Db('user')->where('del',0)->where('account',session('phone'))->update($data);
+                if($row){
+                    $arr['status'] = 'success';
+                }
+                return json($arr);
+            }
+
+
+
+
+        }
+
+
+
+
     }
     public function messages(){
         echo $this->fetch();
