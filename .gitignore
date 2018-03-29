@@ -3,3 +3,6 @@ composer.lock
 *.log
 thinkphp
 /public/Public/other
+/public/file
+/public/Public/file
+/public/uploads
