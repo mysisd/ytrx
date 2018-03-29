@@ -31,18 +31,20 @@
   <div class="my_info_content_care">  </div>
   <table class="my_info_content_care_table">
     <tbody>
-      <tr>
-        <td width="90" align="right" class="color555">用户名：</td>
-        <td class="color555">{$user.username}<span class="colorCA1E37 margin_left10 font_size12"></span></td>
-      </tr>
+    <tr>
+      <td align="right" class="color555">用户名：</td>
+      <td class="color555">
+        <input class="my_info_content_care_table_text" name="username" type="text" value="{$user.username}">
+      </td>
+    </tr>
+
       <tr>
         <td align="right" class="color555">手机号码：</td>
         <td class="color555">{$user.account}<span class="color959595 margin_left10 font_size12"></span></td>
       </tr>
       <tr>
         <td align="right" class="color555">真实姓名：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text" value="{$user.name}">
-          <span class="color959595 margin_left10 font_size12"></span></td>
+        <td class="color555">{$user.name}<span class="color959595 margin_left10 font_size12"></span></td>
       </tr>
       <!--<tr>-->
         <!--<td align="right" class="color555">性别：</td>-->
@@ -56,15 +58,35 @@
             <!--<input type="radio" name="sex"  value="女士">-->
             <!--女士 </label></td>-->
       <!--</tr>-->
+      <!--<tr>-->
+        <!--<td align="right" class="color555">邮箱：</td>-->
+        <!--<td class="color555"><input class="my_info_content_care_table_text" name="" type="text">-->
+          <!--<span class="color959595 margin_left10 font_size12">友好提示：请填写常用邮箱，您忘记密码时可用邮箱找回</span></td>-->
+      <!--</tr>-->
       <tr>
-        <td align="right" class="color555">邮箱：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
-          <span class="color959595 margin_left10 font_size12">友好提示：请填写常用邮箱，您忘记密码时可用邮箱找回</span></td>
+        <td align="right" class="color555">QQ：</td>
+        <td class="color555">
+          <input class="my_info_content_care_table_text" name="QQ" type="text" value="{$user.QQ}">
+         </td>
       </tr>
       <tr>
-        <td align="right" class="color555">身份证号：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
-          <span class="colorCA1E37 margin_left10 font_size12">保存后不能修改，请确认无误后再保存</span></td>
+        <td align="right" class="color555">微信：</td>
+        <td class="color555"><input class="my_info_content_care_table_text" name="wechat" type="text" value="{$user.wechat}">
+          </td>
+      </tr>
+      <tr>
+       <if condition="$user.id_card eq ''">
+         <td align="right" class="color555">身份证号：</td>
+         <td class="color555"><input class="my_info_content_care_table_text" name="id_card" type="text">
+           <span class="colorCA1E37 margin_left10 font_size12" id="prompt"></span></td>
+         <else>
+           <td align="right" class="color555">身份证号：</td>
+           <td class="color555">{$user.id_card}<span class="color959595 margin_left10 font_size12"></span></td>
+         </else>
+       </if>
+
+
+
       </tr>
       <tr>
         <td align="right" class="color555">&nbsp;</td>
@@ -73,39 +95,28 @@
 
       <tr>
         <td align="right" class="color555">所在城市：</td>
+        <input type="hidden" name="prov" value="{$user.prov}">
+        <input type="hidden" name="city" value="{$user.city}">
+        <input type="hidden" name="dist" value="{$user.dist}">
         <td class="color555"><div id="my_city">
             <select class="prov">
             </select>
-            <select class="city" disabled="disabled">
+            <select class="city" >
             </select>
-            <select class="dist" disabled="disabled">
+            <select class="dist" >
             </select>
             <span class="color959595 margin_left10 font_size12"></span> </div></td>
       </tr>
       <tr>
         <td align="right" class="color555">通讯地址：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
+        <td class="color555"><input class="my_info_content_care_table_text" name="address" type="text">
             <span class="color959595 margin_left10 font_size12">请您如实填写</span></td>
       </tr>
       <tr>
         <td align="right" class="color555">&nbsp;</td>
         <td class="color555"><span class="color959595 margin_left10 font_size12">友好提示：网站前台页面不会显示您的地址，</span></td>
       </tr>
-      <tr>
-        <td align="right" class="color555">推荐人姓名：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
-            <span class="color959595 margin_left10 font_size12">请您如实填写</span></td>
-      </tr>
-      <tr>
-        <td align="right" class="color555">推荐人电话：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
-            <span class="color959595 margin_left10 font_size12">请您如实填写</span></td>
-      </tr>
-      <tr>
-        <td align="right" class="color555">验证码：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="" type="text">
-            <span class="color959595 margin_left10 font_size12">请输入验证码</span></td>
-      </tr>
+
       <tr>
         <td align="center" class="color555" colspan="2"><input class="my_info_content_care_table_submit" name="" type="submit" value="保    存"></td>
       </tr>
@@ -122,11 +133,50 @@
 // JavaScript Document
 $(document).ready(function(){
 	$("#my_city").citySelect({
-		prov:"北京",
-		nodata:"none"
+		prov:$('input[name=prov]').val(),
+        city:$('input[name=city]').val(),
+        dist:$('input[name=dist]').val(),
 	});
 });
 
+</script>
+<script>
+  $(function () {
+      $('input[type=submit]').on('click',function () {
+          var username=$('input[name=username]').val();
+          var QQ=$('input[name=QQ]').val();
+          var wechat=$('input[name=wechat]').val();
+          var id_card=$('input[name=id_card]').val();
+          var prov=$('.prov option:selected').text();
+          var city=$('.city option:selected').text();
+          var dist=$('.dist option:selected').text();
+          var address=$('input[name=address]').val();
+          var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+          if(!pattern.test(id_card)){
+            $('#prompt').text('身份证格式错误，请重新输入!');
+            return false;
+          }
+          $.ajax({
+              url:'/index/user/update_user',
+              type:'post',
+              dataType:'json',
+              data:{username:username,QQ:QQ,wechat:wechat,id_card:id_card,prov:prov,city:city,dist:dist,address:address},
+              success:function (data) {
+                    if(data.res==1){
+                        alert('保存成功');
+                        location.reload();
+                    }else{
+                        alert('保存失败');
+                    }
+              }
+
+          })
+
+
+
+
+      })
+  })
 </script>
 </body>
 </html>

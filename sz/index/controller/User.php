@@ -65,6 +65,13 @@ class User extends Base{
     public function touhou_manage(){
         echo $this->fetch();
     }
-
+    public function update_user(){
+        $data=input('post.');
+       $row=Db('user')->where('del',0)->where('account',session('phone'))->update($data);
+        if($row){
+            $arr['res']=1;
+        }
+        return json($arr);
+    }
 
 }
