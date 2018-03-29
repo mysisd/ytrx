@@ -33,9 +33,8 @@
     <tbody>
     <tr>
       <td align="right" class="color555">用户名：</td>
-      <td class="color555">
-        <input class="my_info_content_care_table_text" name="username" type="text" value="{$user.username}">
-      </td>
+      <td class="color555"><input class="my_info_content_care_table_text" name="username" value="{$user.username}" type="text">
+        <span class="colorCA1E37 margin_left10 font_size12" id="name"></span></td>
     </tr>
 
       <tr>
@@ -65,14 +64,15 @@
       <!--</tr>-->
       <tr>
         <td align="right" class="color555">QQ：</td>
-        <td class="color555">
-          <input class="my_info_content_care_table_text" name="QQ" type="text" value="{$user.QQ}">
-         </td>
+        <td class="color555"><input class="my_info_content_care_table_text" name="QQ" value="{$user.QQ}" type="text">
+          <span class="colorCA1E37 margin_left10 font_size12" id="QQ"></span></td>
       </tr>
       <tr>
         <td align="right" class="color555">微信：</td>
         <td class="color555"><input class="my_info_content_care_table_text" name="wechat" type="text" value="{$user.wechat}">
+          <span class="colorCA1E37 margin_left10 font_size12" id="wechat"></span>
           </td>
+
       </tr>
       <tr>
        <if condition="$user.id_card eq ''">
@@ -152,9 +152,30 @@ $(document).ready(function(){
           var dist=$('.dist option:selected').text();
           var address=$('input[name=address]').val();
           var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+          if(username==''){
+              $('#name').text('用户名不能为空');
+              return false;
+          }else{
+              $('#name').text('');
+          }
+          if(QQ==''){
+              $('#QQ').text('QQ不能为空');
+              return false;
+          }else{
+              $('#QQ').text('');
+          }
+          if(wechat==''){
+              $('#wechat').text('微信号不能为空');
+              return false;
+          }else{
+              $('#wechat').text('');
+          }
+
           if(!pattern.test(id_card)){
             $('#prompt').text('身份证格式错误，请重新输入!');
             return false;
+          }else{
+              $('#prompt').text('');
           }
           $.ajax({
               url:'/index/user/update_user',
