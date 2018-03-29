@@ -66,4 +66,5 @@ class User extends Base{
         echo $this->fetch();
     }
 
+
 }

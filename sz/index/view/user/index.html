@@ -19,8 +19,8 @@
 <body>
 <include file="../sz/view/header.html"></include>
 <div class="container border1 nopadding margin10">
-    <div id="vertical_navigation" class="col-lg-3 background831312 nopadding">
-        <div class="dead_pic"><img src="/Public/member_center/nopic.jpg.png"><br>
+    <div id="vertical_navigation" class="col-lg-3 background831312 nopadding" style="">
+        <div class="dead_pic"><img src="{$user.face}"><br>
             <span class="username">{$user.username}</span></div>
 
         <div class="menu">
@@ -76,7 +76,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
+    <div class="col-lg-9" >
         <iframe name="left" id="crowdfunding_iframe" src="/index/user/my_info" frameborder="false" scrolling="no" style="border:none;" width="100%"  allowtransparency="true"></iframe>
     </div>
 </div>

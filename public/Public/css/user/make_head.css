@@ -41,8 +41,14 @@ body{
 	text-align:center;
 	}
 .make_head_content_sm_pic img{
+		 border: 1px solid #ccc;
+		 border-radius: 5px;
+		 margin-bottom: 10px;
+		 padding: 1px;
+	 }
+.make_head_content_sm_pic button{
 	border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    padding: 1px;
-	}
+	border-radius: 5px;
+	margin-bottom: 10px;
+	padding: 1px;
+}

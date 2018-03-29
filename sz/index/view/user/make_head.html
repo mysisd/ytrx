@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="utf-8">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,26 +13,109 @@
       <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
+
 <body>
 <!-- 开始 -->
 <div class="make_head_title">修改头像</div>
 <div class="make_head_content">
   <div class="make_head_content_pic">
     <input type="button">
-    <input type="file" style="display: none" accept="image/*;capture=camera">
+    <input  type="file" name="btn_pic" id="btn_pic" onchange="onUploadImgChange(this,'btn_pic','preview2');" style="display: none" accept="image/gif,image/jpeg,image/jpg,image/png;capture=camera"   >
   </div>
   <div class="make_head_content_sm_pic">
-    <img src="/Public/member_center/default.jpg"><br>头像100 x 100</div>
+    <img src="/Public/member_center/default.jpg" id="preview2">
+    <br>头像100 x 100
+    <button id="btn">保存图片</button>
+  </div>
+
 </div>
 
 <!-- 结束 --> 
 <script src="/Public/js/user/jquery-2.1.1.min.js"></script>
+<script src="/Public/js/ajaxfileupload.js"></script>
+<script src="/Public/js/jquery.mobile-1.4.5.min.js"></script>
+
 <script>
-  $(function () {
-      $('input[type=button]').on('click',function () {
-          $('input[type=file]').trigger('click');
-      })
-  })
+
+    $('input[type=button]').on('click',function () {
+        $('input[type=file]').trigger('click');
+    })
+    function onUploadImgChange(sender,img,obj){
+        if( !sender.value.match( /.jpg|.gif|.png|.bmp|.jpeg/i ) ){
+            alert('图片格式无效！');
+            return false;
+        }
+        var objPreview = document.getElementById(obj);
+        var file=document.getElementById(img);
+        if( sender.files &&  sender.files[0] ){
+            objPreview.style.display = 'block';
+            objPreview.style.width = 'auto';
+            objPreview.style.height = 'auto';
+            objPreview.src = window.URL.createObjectURL(file.files[0]);
+        }
+        //上传到服务器图片方便预览 这一块是选中图片即上传
+
+    }
+
+    function onPreviewLoad(sender){
+        autoSizePreview( sender, sender.offsetWidth, sender.offsetHeight );
+    }
+
+    function autoSizePreview( objPre, originalWidth, originalHeight ){
+        var zoomParam = clacImgZoomParam( 300, 300, originalWidth, originalHeight );
+        objPre.style.width = zoomParam.width + 'px';
+        objPre.style.height = zoomParam.height + 'px';
+        objPre.style.marginTop = zoomParam.top + 'px';
+        objPre.style.marginLeft = zoomParam.left + 'px';
+    }
+
+    function clacImgZoomParam( maxWidth, maxHeight, width, height ){
+        var param = { width:width, height:height, top:0, left:0 };
+        if( width>maxWidth || height>maxHeight ){
+            rateWidth = width / maxWidth;
+            rateHeight = height / maxHeight;
+            if( rateWidth > rateHeight ){
+                param.width =  maxWidth;
+                param.height = height / rateWidth;
+            }else{
+                param.width = width / rateHeight;
+                param.height = maxHeight;
+            }
+        }
+        param.left = (maxWidth - param.width) / 2;
+        param.top = (maxHeight - param.height) / 2;
+        return param;
+    }
+
+    function del_img(obj,div){
+        if(confirm("确定要删除此图片？"))
+        {
+            $('#'+obj+'').val('');
+            objPreview = document.getElementById(div);
+            objPreview.style.display = 'none';
+        }else{
+            return false;
+        }
+    }
+$('#btn').on('click',function () {
+    $.ajaxFileUpload ({
+        url:'/index/img/page_preview', //你处理上传文件的服务端
+        secureuri:false, //与页面处理代码中file相对应的ID值
+        fileElementId:'btn_pic',
+        dataType: 'json', //返回数据类型:text，xml，json，html,scritp,jsonp五种
+        success: function (data) {
+
+            if(data.file_infor ==1 )
+            {
+                alert('上传成功');
+                window.location.replace(window.location.href);
+            }else if(data.file_infor ==0){
+                alert('上传失败');
+            }
+        }
+    })
+})
+
 </script>
 </body>
 </html>

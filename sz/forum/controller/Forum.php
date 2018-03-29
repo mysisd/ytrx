@@ -81,6 +81,7 @@ class Forum extends Base{
        $data['title']=input('title');
        $data['content']=input('content');
        $data['par_id']=input('pid');
+        $data['user_face']=$user['face'];
        $data['date']=date('Y-m-d H:i:s',time());
        $row=Db('forum_list')->strict(false)->insert($data);
        if(empty(input('title'))||empty(input('content'))){
@@ -131,7 +132,7 @@ class Forum extends Base{
         $data['reply']=input('content');
         $data['reply_to_posts']=input('post');
         $data['date']=date('Y-m-d H:i:s',time());
-
+        $data['user_face']=$user['face'];
         $row=Db('reply')->strict(false)->insert($data);
         if(empty(input('content'))){
             $this->error('发表失败！内容不能含有空值');
