@@ -19,13 +19,23 @@ function listClick(value){
 		$("#crowdfunding_iframe", window.parent.document).attr("src","/index/user/my_info");
 		$("#crowdfunding_iframe", window.parent.document).attr("height",1045);
 		$("#listClick1", window.parent.document).attr("class","menu_list_on");
+        $("#listClick2", window.parent.document).attr("class","");
 		$("#listClick3", window.parent.document).attr("class","");
 		$("#listClick4", window.parent.document).attr("class","");
 	}
+    if(value == 2){
+        $("#crowdfunding_iframe", window.parent.document).attr("src","/index/user/make_head");
+        $("#crowdfunding_iframe", window.parent.document).attr("height",1045);
+        $("#listClick1", window.parent.document).attr("class","");
+        $("#listClick2", window.parent.document).attr("class","menu_list_on");
+        $("#listClick3", window.parent.document).attr("class","");
+        $("#listClick4", window.parent.document).attr("class","");
+    }
 	if(value == 3){
 		$("#crowdfunding_iframe", window.parent.document).attr("src","/index/user/identity_prove");
 		$("#crowdfunding_iframe", window.parent.document).attr("height",1045);
 		$("#listClick1", window.parent.document).attr("class","");
+        $("#listClick2", window.parent.document).attr("class","");
 		$("#listClick3", window.parent.document).attr("class","menu_list_on");
 		$("#listClick4", window.parent.document).attr("class","");
 	}
@@ -33,6 +43,7 @@ function listClick(value){
 		$("#crowdfunding_iframe", window.parent.document).attr("src","/index/user/make_password");
 		$("#crowdfunding_iframe", window.parent.document).attr("height",1045);
 		$("#listClick1", window.parent.document).attr("class","");
+        $("#listClick2", window.parent.document).attr("class","");
 		$("#listClick3", window.parent.document).attr("class","");
 		$("#listClick4", window.parent.document).attr("class","menu_list_on");
 	}
