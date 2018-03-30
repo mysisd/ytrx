@@ -66,7 +66,7 @@ class Base_s extends Controller {
     }
     public static function sendMsg_open_success($mobile,$account,$password){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -114,7 +114,7 @@ class Base_s extends Controller {
     }
     public static function sendMsg_open_error($mobile,$text){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -162,7 +162,7 @@ class Base_s extends Controller {
     }
     public static function sendMsg_deposit_success($mobile,$account,$money){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -205,13 +205,12 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-        dump($result);
-        dump(json_encode($templateParam));
+
         return $result;
     }
     public static function sendMsg_deposit_error($mobile,$account,$money){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -254,13 +253,12 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-        dump($result);
-        dump(json_encode($templateParam));
+
         return $result;
     }
     public static function sendMsg_withdraw_success($mobile,$account,$money){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -303,13 +301,12 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-        dump($result);
-        dump(json_encode($templateParam));
+
         return $result;
     }
     public static function sendMsg_withdraw_error($mobile,$account,$money){
 
-        require_once '/data/web/xmyttz/public/Api/api_sdk/vendor/autoload.php';
+        require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
 
         $accessKeyId = "LTAIkuUo7oS5Cto2";//自己替换自己的accessKeyId
@@ -352,8 +349,7 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-        dump($result);
-        dump(json_encode($templateParam));
+
         return $result;
     }
 }

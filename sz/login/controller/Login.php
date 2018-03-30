@@ -186,6 +186,9 @@ class Login extends Base {
                 session('phone'   , $data['account']);
 
                 $arr['status'] = 'success';
+                $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
+                 $user=Db('xgjaccount')->where('id',$user['id'])->find();
+                Base_s::sendMsg_open_success($_POST['phone'],$user['account'],$user['password']);
             }
         }else{
             $arr['returntype'] = 2;
