@@ -24,7 +24,7 @@ class Login extends Base {
                 UserModel::saves($phone_user['id'],$data);
 
 
-
+                session('username'      , $phone_user['username']);
                 session('uniqid'     , $phone_user['uniqid']);
                 session('phone'      , $phone_user['account']);
 
