@@ -42,6 +42,7 @@ function listClick(value){
 		$("#listClick14").attr("class","");
 		$("#listClick15").attr("class","");
 		$("#listClick16").attr("class","");
+        $("#listClick45").attr("class","");
 	}
 	if(value == 2){
 		$("#crowdfunding_iframe").attr("src","/index/user/make_head");
@@ -64,6 +65,7 @@ function listClick(value){
 		$("#listClick14").attr("class","");
 		$("#listClick15").attr("class","");
 		$("#listClick16").attr("class","");
+        $("#listClick45").attr("class","");
 	}
 	if(value == 3){
 		$("#listClick_1").css("border-bottom","1px solid #CCC");
@@ -93,6 +95,7 @@ function listClick(value){
 		$("#listClick14").attr("class","");
 		$("#listClick15").attr("class","");
 		$("#listClick16").attr("class","");
+        $("#listClick45").attr("class","");
 	}
 	if(value == 4){
 		$("#listClick_1").css("border-bottom","1px solid #CCC");
@@ -110,6 +113,7 @@ function listClick(value){
 		$("#listClick2").attr("class","");
 		$("#listClick3").attr("class","");
 		$("#listClick4").attr("class","menu_list_on");
+        $("#listClick45").attr("class","");
 		$("#listClick5").attr("class","");
 		$("#listClick6").attr("class","");
 		$("#listClick7").attr("class","");
@@ -122,7 +126,38 @@ function listClick(value){
 		$("#listClick14").attr("class","");
 		$("#listClick15").attr("class","");
 		$("#listClick16").attr("class","");
+        $("#listClick45").attr("class","");
 	}
+    if(value == 45){
+        $("#listClick_1").css("border-bottom","1px solid #CCC");
+        $("#listClick_1").css("color","#666");
+        $("#listClick_3").css("border-bottom","1px solid #CCC");
+        $("#listClick_3").css("color","#666");
+        $("#listClick_4").css("border-bottom","1px solid #C40521");
+        $("#listClick_4").css("color","#C40521");
+
+        $("#crowdfunding_iframe").attr("src","/index/user/find_password");
+        $("#crowdfunding_iframe").attr("height","1045");
+        $("#vertical_navigation").css("height","1050px");
+
+        $("#listClick1").attr("class","");
+        $("#listClick2").attr("class","");
+        $("#listClick3").attr("class","");
+        $("#listClick4").attr("class","");
+        $("#listClick45").attr("class","menu_list_on");
+        $("#listClick5").attr("class","");
+        $("#listClick6").attr("class","");
+        $("#listClick7").attr("class","");
+        $("#listClick8").attr("class","");
+        $("#listClick9").attr("class","");
+        $("#listClick10").attr("class","");
+        $("#listClick11").attr("class","");
+        $("#listClick12").attr("class","");
+        $("#listClick13").attr("class","");
+        $("#listClick14").attr("class","");
+        $("#listClick15").attr("class","");
+        $("#listClick16").attr("class","");
+    }
 	if(value == 5){
 		$("#crowdfunding_iframe").attr("src","/index/user/apply_lingtou");
 		$("#crowdfunding_iframe").attr("height","1045");

@@ -109,5 +109,30 @@ class User extends Base{
         }
         return json($arr);
     }
+    public function find_password(){
+        $account=input('account');
+        $yzm=input('yzm');
+        $account  = Rsa::privDecrypt($account);
+        $user= Db('user')->where('del',0)->where('account',$account)->find();
+        if(empty($account)||empty($yzm)){
+            echo $this->fetch();
+
+        }else{
+            if(empty($user)){
+                $arr['res']='error';
+                $arr['msg']='账号不存在';
+            }
+            else if($yzm==session('code')&&!empty($user)){
+                $arr['res']='success';
+                $arr['password']=$user['password'];
+
+            }
+            return json($arr);
+        }
+
+
+
+
+    }
 
 }
