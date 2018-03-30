@@ -24,8 +24,13 @@ class Forum extends Base{
         $this->assign('top_data',$top_data);
         $forumdata=Db('forum')->where('del',0)->order('last_post_time','DESC')->select();
         $this->assign('forumdata',$forumdata);
-
+        $this->assign('data',$data);
+        $data=Db('reply')->where('del',0)->order('date','DESC')->paginate(10, false, [
+            'query' => request()->param(),
+        ]);
+        $this->assign('data',$data);
         echo $this->fetch();
+
     }
     public function add_forum(){
         parent::loginUser('/index/index/login');
