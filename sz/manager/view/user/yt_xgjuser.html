@@ -34,14 +34,15 @@
 
 						<td>QQ</td>
 						<td>微信号</td>
-						<td>银行卡号</td>
-						<td>身份证</td>
+						<!--<td>银行卡号</td>-->
+						<!--<td>身份证</td>-->
+						<td>模拟账号</td>
 						<td>所在省份</td>
 						<td>所在市区</td>
-						<td>所在镇区</td>
-						<td>通讯地址</td>
+						<!--<td>所在区</td>-->
+						<!--<td>通讯地址</td>-->
 						<td>喜好品种</td>
-						<td>邀请码</td>
+						<!--<td>邀请码</td>-->
                         <td width="">注册时间</td>
                     	<td style="min-width:75px;" colspan="2">操作</td>
 					</tr>
@@ -54,14 +55,15 @@
 
 						   <td>{$v.QQ}</td>
 						   <td>{$v.wechat}</td>
-						   <td>{$v.bank_card}</td>
-						   <td>{$v.id_card}</td>
+						   <td>{$v.xgjaccount}</td>
+						   <!--<td>{$v.bank_card}</td>-->
+						   <!--<td>{$v.id_card}</td>-->
 						   <td>{$v.prov}</td>
 						   <td>{$v.city}</td>
-						   <td>{$v.dist}</td>
-						   <td>{$v.address}</td>
+						   <!--<td>{$v.dist}</td>-->
+						   <!--<td>{$v.address}</td>-->
 						   <td>{$v.preference}</td>
-						   <td>{$v.invite_num}</td>
+						   <!--<td>{$v.invite_num}</td>-->
 	                        <td class="">{$v.reg_time}</td>
 							<td><a href="/{$Request.module}/{$Request.controller}/detail_xgjuser/id/{$v.id}" class="updel_a href_a">详情</a></td>
 							<td><a data="/{$Request.action}/delete/{$v.id}" value="{$v.reg_time}" class="updel_a delete_a to_delete">删除</a></td>
