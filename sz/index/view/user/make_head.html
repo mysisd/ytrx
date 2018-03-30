@@ -64,8 +64,8 @@
         var file=document.getElementById(img);
         if( sender.files &&  sender.files[0] ){
             objPreview.style.display = 'block';
-            objPreview.style.width = 'auto';
-            objPreview.style.height = 'auto';
+            objPreview.style.width = '100';
+            objPreview.style.height = '100';
             objPreview.src = window.URL.createObjectURL(file.files[0]);
         }
         //上传到服务器图片方便预览 这一块是选中图片即上传
