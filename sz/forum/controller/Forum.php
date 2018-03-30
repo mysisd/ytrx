@@ -88,6 +88,10 @@ class Forum extends Base{
            $this->error('发表失败！内容不能含有空值');
 
        }
+       if(empty($user['face'])){
+           getAlert('头像未设置','/index/user/index');
+
+       }
         if($row){
             $this->success('发表成功！');
         }else{

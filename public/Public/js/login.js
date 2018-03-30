@@ -5,7 +5,7 @@ $(function () {
     var encrypt = new JSEncrypt();
     var publickey = '-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBiYEk6LHMqqUm6WJCcSNfjlPZXPj/zHjmuVuU/QLE/yKqv2YEiPiGxaajZdBL4WUNRQxO4Dt4MDrjN43CsAzQj6OT/fDgroPERccBnwAZQr5FTR4GFfhxcoWxT/2nfmIVI7nHoJSeV7nHHwBBwagb4Z5EDrQDKr3vsumk9DY98wIDAQAB-----END PUBLIC KEY-----';
     encrypt.setPublicKey(publickey);
-    var jumpUrl="/index/index/index";
+    var jumpUrl="/forum/forum/forum";
     jumpUrl = jumpUrl.replace(/amp;/g,'');
     var loginUrl="/login/login/logins";
     var cansend=0;
