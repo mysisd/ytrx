@@ -9,14 +9,21 @@
 		<div class="right_content">
 		<form action="/{$Request.module}/{$Request.controller}/detail_xgjuser/update/{$userinfo.id}" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="last_url" value="" id="last_url"><script>$('#last_url').val(document.referrer);</script>
-			<p><span class="left_inp_name">客户姓名：</span><input type="text" name="name" value="{$userinfo.name}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户手机号：</span><input type="text" name="account" value="{$userinfo.account}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户昵称：</span><input type="text" name="username" value="{$userinfo.username}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户QQ号：</span><input type="text" name="QQ" value="{$userinfo.QQ}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户微信号：</span><input type="text" name="wechat" value="{$userinfo.wechat}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户微信号：</span><input type="text" name="bank_card" value="{$userinfo.bank_card}" autocomplete="off" class="text num"></p>
-			<p><span class="left_inp_name">客户邀请码：</span><input type="text" name="invite_num" value="{$userinfo.invite_num}" autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户姓名：</span><input type="text" name="name" value="{$userinfo.name}" readonly autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户手机号：</span><input type="text" name="account"  readonly value="{$userinfo.account}" autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户昵称：</span><input type="text" name="username"  readonly value="{$userinfo.username}" autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户QQ号：</span><input type="text" name="QQ" value="{$userinfo.QQ}" readonly autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户微信号：</span><input type="text" name="wechat" value="{$userinfo.wechat}" readonly autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户所在省：</span>
+				<input type="text" name="prov" value="{$userinfo.prov}" autocomplete="off" readonly class="text num" style="width: 5%">
+				<span>市：</span><input type="text" name="city" value="{$userinfo.city}" autocomplete="off" readonly class="text num" style="width: 5%">
+				<span >区：</span><input type="text" name="dist" value="{$userinfo.dist}" autocomplete="off" readonly class="text num" style="width: 5%">
+				</p>
+			<p><span class="left_inp_name">客户身份证号：</span><input type="text" name="id_card" value="{$userinfo.id_card}" readonly autocomplete="off" class="text num"></p>
 
+			<p><span class="left_inp_name">客户银行卡号：</span><input type="text" name="bank_card" value="{$userinfo.bank_card}" readonly autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户通讯地址：</span><input type="text" name="address" value="{$userinfo.address}" readonly autocomplete="off" class="text num"></p>
+			<p><span class="left_inp_name">客户邀请码：</span><input type="text" name="invite_num" value="{$userinfo.invite_num}" readonly autocomplete="off" class="text num"></p>
 			<p><span class="left_inp_name">注册时间：</span>{$userinfo.reg_time}</p>
 			<!--<button type="submit" class="admin_btn" style="margin: 20px 0 0 50px">修改</button><a href="javascript:history.back(-1);" class="back_a" >返回</a>-->
 		</form>
