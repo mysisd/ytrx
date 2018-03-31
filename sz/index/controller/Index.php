@@ -118,6 +118,11 @@ class Index extends Base{
 
         echo $this->fetch();
     }
+    public function agreement(){
+        $row=Db('agreement')->where('del',0)->find();
+        $this->assign('data',$row);
+        echo $this->fetch();
+    }
 
 
 }
