@@ -292,7 +292,7 @@ function listClick(value){
 	}
 	if(value == 11){
 		
-		$("#crowdfunding_iframe").attr("src","/index/user/grade_integration");
+		// $("#crowdfunding_iframe").attr("src","/index/user/grade_integration");
 		$("#crowdfunding_iframe").attr("height","2000");
 		$("#vertical_navigation").css("height","2005px");
 		
@@ -321,7 +321,7 @@ function listClick(value){
 		$("#listClick_13").css("border-bottom","1px solid #CCC");
 		$("#listClick_13").css("color","#666");
 		
-		$("#crowdfunding_iframe").attr("src","/index/user/integration_record");
+		// $("#crowdfunding_iframe").attr("src","/index/user/integration_record");
 		$("#crowdfunding_iframe").attr("height","1045");
 		$("#vertical_navigation").css("height","1050px");
 		
@@ -350,7 +350,7 @@ function listClick(value){
 		$("#listClick_13").css("border-bottom","1px solid #C40521");
 		$("#listClick_13").css("color","#C40521");
 		
-		$("#crowdfunding_iframe").attr("src","/index/user/integration_rule");
+		// $("#crowdfunding_iframe").attr("src","/index/user/integration_rule");
 		$("#crowdfunding_iframe").attr("height","1045");
 		$("#vertical_navigation").css("height","1050px");
 		

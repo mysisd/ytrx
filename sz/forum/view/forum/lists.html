@@ -390,7 +390,7 @@
 
 
             <div class="pgs mtm mbm cl">
-            <span class="pgb y" id="visitedforumstmp" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';"><a href="forum.php?mod=forumdisplay&amp;fid=2">返回列表</a></span>
+            <span class="pgb y" id="visitedforumstmp" onmouseover="$('visitedforums').id = 'visitedforumstmp';this.id = 'visitedforums';"><a href="/forum/forum/forum_list?pid={$pid}">返回列表</a></span>
             <a id="newspecialtmp" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';" onclick="showWindow('newthread', 'forum.php?mod=post&amp;action=newthread&amp;fid=2')" href="javascript:;" title="发新帖"><img src="/Public/img/pn_post.png" alt="发新帖"></a>
             <a id="post_replytmp" onclick="showWindow('reply', 'forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276')" href="javascript:;" title="回复"><img src="/Public/img/pn_reply.png" alt="回复"></a>
         </div>
@@ -441,7 +441,8 @@
                             <li><a href="forum.php?mod=forumdisplay&amp;fid=36">技术交流区</a></li></ul>
                     </td>
                 </tr>
-                </tbody></table>
+                </tbody>
+            </table>
         </div>
 
     </div>
@@ -457,10 +458,12 @@
 <script src="/Public/js/html5notification.js?MeK" type="text/javascript"></script>
 
 <div id="scrolltop" style="right: 71px; visibility: visible;">
-    <span><a href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)" class="replyfast" title="快速回复"><b>快速回复</b></a></span>
+    <span>
+        <!--<a href="" onclick="showWindow('reply', this.href)" class="replyfast" title="快速回复"><b>快速回复</b></a>-->
+    </span>
     <span hidefocus="true"><a title="返回顶部" onclick="window.scrollTo('0','0')" class="scrolltopa"><b>返回顶部</b></a></span>
     <span>
-<a href="forum.php?mod=forumdisplay&amp;fid=2" hidefocus="true" class="returnlist" title="返回列表"><b>返回列表</b></a>
+<a href="/forum/forum/forum_list?pid={$pid}" hidefocus="true" class="returnlist" title="返回列表"><b>返回列表</b></a>
 </span>
 </div>
 
@@ -476,10 +479,10 @@
 
 <div class="bdshare-slide-button-box bdshare-slide-style-r6" style="top: 250px; width: 0px; z-index: 99999; right: 0px;" data-bd-bind="1522128399014"><a href="#" onclick="return false;" class="bdshare-slide-button" style="left: -24px;"></a><div class="bdshare-slide-list-box" style="width: 0px; display: none;"><div class="bdshare-slide-top">分享到</div><div class="bdshare-slide-list"><ul class="bdshare-slide-list-ul" style="width: 226px;"></ul></div><div class="bdshare-slide-bottom" style="width: 226px;"><a href="#" onclick="return false;" class="slide-more" data-cmd="more">更多...</a></div></div></div><script></script>
 </div>
+
 <include file="../sz/view/foot.html"></include>
-
-
-
+<input type="hidden" value="{$pid}" id="pid">
+<input type="hidden" value="{$id}" id="id">
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
@@ -514,6 +517,21 @@
             ,height: 100
         })
     });
+</script>
+<script>
+
+    $(function () {
+
+        var pid =$('#pid').val();
+        var id =$('#id').val();
+        $.ajax({
+            url:'/forum/forum/lists?pid='+pid+'&id='+id,
+            type:'post',
+
+
+
+        })
+    })
 </script>
 </body>
 </html>

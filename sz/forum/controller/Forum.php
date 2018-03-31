@@ -59,6 +59,7 @@ class Forum extends Base{
 
         $id=input('pid');
           $value=input('value');
+
             if(!empty($value)){
                 $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(20, false, [
                     'query' => request()->param(),
@@ -73,7 +74,7 @@ class Forum extends Base{
                 $this->assign('data',$data);
                 $page= $data->render();
                 $this->assign('page',$page);
-                echo $this->fetch();
+
             }
 
 
@@ -128,6 +129,7 @@ class Forum extends Base{
 
     }
     public function lists(){
+
         $pid=input('pid');
         $this->assign('pid',$pid);
         $this->assign('id',input('id'));
@@ -137,8 +139,13 @@ class Forum extends Base{
             'query' => request()->param(),
         ]);
         $page=$list->render();
+
     $this->assign('page',$page);
        $this->assign('list',$list);
+       $a= Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',$pid)->find();
+        $count=1+$a['count'];
+        $data_a['count']=$count;
+        Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',$pid)->update($data_a);
         echo $this->fetch();
     }
     public function reply(){
@@ -164,6 +171,12 @@ class Forum extends Base{
         $data['date']=date('Y-m-d H:i:s',time());
         $data['user_face']=$user['face'];
         $row=Db('reply')->strict(false)->insert($data);
+        $num=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->count();
+        $data=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->order('date desc')->limit(1)->find();
+        $data_a['last_author']=$data['reply_author'];
+        $data_a['last_date']=$data['date'];
+        $data_a['num']=$num;
+        Db('forum_list')->where('del',0)->where('id',$data['t_id'])->where('par_id',$data['par_id'])->update($data_a);
         if(empty($user['face'])){
             getAlert('头像未设置','/index/user/index');
 

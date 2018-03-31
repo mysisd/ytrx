@@ -94,7 +94,7 @@ class Base_s extends Controller {
         $request->setSignName('梦想者天堂');
 
         // 必填，设置模板CODE
-        $request->setTemplateCode('SMS_102240045');
+        $request->setTemplateCode('SMS_129742443');
 
         // 可选，设置模板参数
         $templateParam=[
