@@ -40,7 +40,7 @@ class Base_s extends Controller {
         $request->setPhoneNumbers($mobile);
 
         // 必填，设置签名名�?
-        $request->setSignName('YT锐新');
+        $request->setSignName('梦想者天堂');
 
         // 必填，设置模板CODE
         $request->setTemplateCode('SMS_102265018');
@@ -64,7 +64,7 @@ class Base_s extends Controller {
 
         return $result;
     }
-    public static function sendMsg_open_success($mobile,$account,$password){
+    public static function sendMsg_open_success($mobile,$account,$password,$invite){
 
         require_once 'C:/AppServ/www/ytrx/public/Api/api_sdk/vendor/autoload.php';
         Config::load();             //加载区域结点配置
@@ -91,7 +91,7 @@ class Base_s extends Controller {
         $request->setPhoneNumbers($mobile);
 
         // 必填，设置签名名�?
-        $request->setSignName('YT锐新');
+        $request->setSignName('梦想者天堂');
 
         // 必填，设置模板CODE
         $request->setTemplateCode('SMS_102240045');
@@ -99,7 +99,8 @@ class Base_s extends Controller {
         // 可选，设置模板参数
         $templateParam=[
             'account'=>$account,
-            'password'=>$password
+            'password'=>$password,
+            'invite'=>$invite
         ];
         $request->setTemplateParam(json_encode($templateParam));
 
