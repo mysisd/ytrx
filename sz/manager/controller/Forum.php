@@ -51,6 +51,7 @@ class Forum extends Base{
         if(input('update')!=''){
 
             $data['top']=input('top');
+            $data['date']=date('Y-m-d H:i:s',time());
 
             $row= Db('forum_list')->where('id',input('update'))->update($data);
             if($row){
