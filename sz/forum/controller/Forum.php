@@ -64,7 +64,7 @@ class Forum extends Base{
           }else{
               $value='date';
           }
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(1, false, [
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(20, false, [
               'query' => request()->param(),
           ]);
         $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
