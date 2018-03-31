@@ -44,6 +44,23 @@
         <td align="right" class="color555">手机号码：</td>
         <td class="color555">{$user.account}<span class="color959595 margin_left10 font_size12"></span></td>
       </tr>
+    <if condition="$user.xgjaccount eq ''">
+      <else>
+        <tr>
+          <td align="right" class="color555">信管家模拟账号：</td>
+          <td class="color555">{$user.xgjaccount}<span class="color959595 margin_left10 font_size12"></span></td>
+        </tr>
+      </else>
+    </if>
+    <if condition="$user.xgjpass eq ''">
+      <else>
+        <tr>
+          <td align="right" class="color555">信管家模拟账号密码：</td>
+          <td class="color555">{$user.xgjpass}<span class="color959595 margin_left10 font_size12"></span></td>
+        </tr>
+      </else>
+    </if>
+ 
       <tr>
         <td align="right" class="color555">真实姓名：</td>
         <td class="color555">{$user.name}<span class="color959595 margin_left10 font_size12"></span></td>
