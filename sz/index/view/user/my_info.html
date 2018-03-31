@@ -71,12 +71,16 @@
           <span class="colorCA1E37 margin_left10 font_size12" id="QQ"></span></td>
       </tr>
       <tr>
-        <td align="right" class="color555">微信：</td>
-        <td class="color555"><input class="my_info_content_care_table_text" name="wechat" type="text" value="{$user.wechat}">
-          <span class="colorCA1E37 margin_left10 font_size12" id="wechat"></span>
-          </td>
+      <td align="right" class="color555">微信：</td>
+      <td class="color555"><input class="my_info_content_care_table_text" name="wechat" type="text" value="{$user.wechat}">
+        <span class="colorCA1E37 margin_left10 font_size12" id="wechat"></span>
+      </td>
 
-      </tr>
+    </tr>
+    <tr>
+      <td align="right" class="color555">个人邀请码：</td>
+      <td class="color555">{$user.invite_num}<span class="color959595 margin_left10 font_size12"></span></td>
+    </tr>
       <tr>
        <if condition="$user.id_card eq ''">
          <td align="right" class="color555">身份证号：</td>
