@@ -129,16 +129,32 @@ class Forum extends Base{
 
     }
     public function lists(){
-
+        $type=input('type');
+        $author=input('author');
         $pid=input('pid');
         $this->assign('pid',$pid);
         $this->assign('id',input('id'));
-        $data=Db('forum_list')->where('par_id',$pid)->where('id',input('id'))->find();
-        $this->assign('data',$data);
-        $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->order('date desc')->paginate(20, false, [
+        if(!empty($author)){
+            $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->where('reply_author',$author)->order('date', $type)->paginate(20, false, [
+                'query' => request()->param(),
+            ]);
+
+        }else{
+            $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->order('date', $type)->paginate(20, false, [
             'query' => request()->param(),
         ]);
+
+        }
         $page=$list->render();
+
+        $this->assign('page',$page);
+
+
+
+
+        $data=Db('forum_list')->where('par_id',$pid)->where('id',input('id'))->find();
+        $this->assign('data',$data);
+
 
     $this->assign('page',$page);
        $this->assign('list',$list);
