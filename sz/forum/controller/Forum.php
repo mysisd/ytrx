@@ -61,34 +61,34 @@ class Forum extends Base{
           $value=input('value');
 
             if(!empty($value)){
+                $data_a=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(20, false, [
+                    'query' => request()->param(),
+                ]);
+                $this->assign('data',$data_a);
                 $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(20, false, [
                     'query' => request()->param(),
                 ]);
-                $this->assign('data',$data);
-                $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order($value,'DESC')->paginate(20, false, [
-                    'query' => request()->param(),
-                ]);
-                $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
-                $this->assign('content',$content);
+//                $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
+//                $this->assign('content',$content);
                 $this->assign('id',$id);
-                $this->assign('data',$data);
-                $page= $data->render();
-                $this->assign('page',$page);
+//                $this->assign('data',$data);
+//                $page= $data->render();
+//                $this->assign('page',$page);
 
             }
 
 
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order('top','DESC')->paginate(20, false, [
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->where('top',1)->order('top','DESC')->paginate(20, false, [
               'query' => request()->param(),
           ]);
           $this->assign('data',$data);
-          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->order('date','DESC')->paginate(20, false, [
+          $data=Db('forum_list')->where('del',0)->where('par_id',input('pid'))->where('top',0)->order('date','DESC')->paginate(20, false, [
               'query' => request()->param(),
           ]);
         $content=Db('forum')->where('del',0)->where('id',input('pid'))->find();
         $this->assign('content',$content);
           $this->assign('id',$id);
-          $this->assign('data',$data);
+          $this->assign('data_null',$data);
           $page= $data->render();
           $this->assign('page',$page);
           echo $this->fetch();

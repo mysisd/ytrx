@@ -84,11 +84,11 @@
                             <div class="htmleaf-content">
                                 <section class="model-1">
                                     <div class="checkbox">
-                                        <if condition="$v.top eq ''">
-                                            <input type="checkbox" id="top"  name="top" />
+                                        <if condition="$v.top eq 0">
+                                            <input type="checkbox" id="top" value="1"  name="top" />
                                             <label  for="top" ></label>
                                             <else>
-                                                <input type="checkbox"  id="top" name="top" checked />
+                                                <input type="checkbox"  id="top" value="0" name="top" checked />
                                                 <label for="top"></label>
                                             </else>
                                         </if>
