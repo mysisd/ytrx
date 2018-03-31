@@ -198,13 +198,15 @@
                         </table>
 
                         <div class="modact">
-                            <a href="forum.php?mod=misc&amp;action=viewthreadmod&amp;tid=276" title="帖子模式" onclick="showWindow('viewthreadmod', this.href)">本主题由 运营部 于 <span title="2018-3-26 14:53">昨天&nbsp;14:53</span> 设置高亮</a></div><form method="post" autocomplete="off" id="vfastpostform" action="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;fromvf=1&amp;extra=&amp;replysubmit=yes&amp;infloat=yes&amp;handlekey=vfastpost" onsubmit="this.message.value = parseurl(this.message.value);ajaxpost('vfastpostform', 'return_reply', 'return_reply', 'onerror');return false;">
+                            <a href="" title="帖子模式" onclick="showWindow('viewthreadmod', this.href)">本主题由 运营部 于 <span title="2018-3-26 14:53">昨天&nbsp;14:53</span> 设置高亮</a></div>
+                        <form method="post" autocomplete="off" id="vfastpostform" action="/forum/forum/add_reply?pid={$pid}&id={$id}" >
                         <div id="vfastpost" class="fullvfastpost">
                             <input type="hidden" name="formhash" value="6685bcb7">
                             <table cellspacing="0" cellpadding="0" id="vfastposttb">
                                 <tbody><tr>
                                     <td id="vf_l"></td>
-                                    <td id="vf_m"><input type="text" name="message" id="vmessage" onkeydown="seditor_ctlent(event, '$(\'vfastpostform\').submit()');" style="color: rgb(205, 205, 205);"></td>
+                                    <td id="vf_m">
+                                        <input type="text" name="content" id="vmessage" onkeydown="seditor_ctlent(event, '$(\'vfastpostform\').submit()');" style="color: rgb(205, 205, 205);"></td>
                                     <td id="vf_r"></td>
                                     <td id="vf_b">
                                         <button type="submit" class="pn pnc" name="replysubmit" id="vreplysubmit" value="true" style="">post_newreply</button>
@@ -382,7 +384,9 @@
                     </table>
                 </div>
             </foreach>
-
+<div>
+    {$page}
+</div>
 
 
             <div class="pgs mtm mbm cl">

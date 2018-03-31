@@ -116,7 +116,11 @@ class Forum extends Base{
         $this->assign('id',input('id'));
         $data=Db('forum_list')->where('par_id',$pid)->where('id',input('id'))->find();
         $this->assign('data',$data);
-        $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->paginate(10);
+        $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->order('date desc')->paginate(20, false, [
+            'query' => request()->param(),
+        ]);
+        $page=$list->render();
+    $this->assign('page',$page);
        $this->assign('list',$list);
         echo $this->fetch();
     }
