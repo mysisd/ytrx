@@ -100,7 +100,7 @@
                             <span id="thread_subject">{$data.title}</span>
                         </h1>
                         <span class="xg1">
-                     <a id="copy" data-clipboard-text="" >[复制链接]</a>
+                     <a class="copy" data-clipboard-text="" >[复制链接]</a>
                    </span>
                     </td>
                 </tr>
@@ -177,8 +177,9 @@
                             <a  id="fj_btn" class="z" title="跳转到指定楼层"><img src="/Public/img/fj_btn.png" alt="跳转到指定楼层" class="vm"></a>
                         </div>
                         <strong>
-                            <a href="" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1034" onclick="setCopy(this.href, '回复地址复制成功');return false;">
-                                楼主</a>
+                            <a class="copy" data-clipboard-text="">楼主</a>
+                            <!--<a href="" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1034" onclick="setCopy(this.href, '回复地址复制成功');return false;">-->
+                                <!--楼主</a>-->
                         </strong>
                         <div class="pti">
                             <div class="pdbt">
@@ -348,8 +349,9 @@
                             <td class="plc">
                                 <div class="pi">
                                     <strong>
-                                        <a href="forum.php?mod=redirect&amp;goto=findpost&amp;ptid=276&amp;pid=1036&amp;fromuid=332" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1036" onclick="setCopy(this.href, '回复地址复制成功');return false;">
-                                            沙发</a>
+                                        <a class="copy" data-clipboard-text="">{$v.id}#</a>
+                                        <!--<a href="" title="您的朋友访问此链接后，您将获得相应的积分奖励"  onclick="setCopy(window.location.href, '回复地址复制成功');return false;">-->
+                                            <!--沙发</a>-->
                                     </strong>
                                     <div class="pti">
                                         <div class="pdbt">
@@ -552,8 +554,8 @@
 <script>
 
     $(document).ready(function(){
-        var clipboard1 = new Clipboard('#copy');
-        $('#copy').attr('data-clipboard-text',window.location.href)
+        var clipboard1 = new Clipboard('.copy');
+        $('.copy').attr('data-clipboard-text',window.location.href)
         clipboard1.on('success', function(e) {
             console.log(e);
             alert("链接复制成功！")
