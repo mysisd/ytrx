@@ -55,8 +55,10 @@
     <if condition="$user.xgjpass eq ''">
       <else>
         <tr>
-          <td align="right" class="color555">信管家模拟账号密码：</td>
-          <td class="color555">{$user.xgjpass}<span class="color959595 margin_left10 font_size12"></span></td>
+          <td align="right" class="color555">信管家模拟账号初始密码：</td>
+          <td class="color555">{$user.xgjpass}<span class="color959595 margin_left10 font_size12"></span>
+          <span style="color: red">（备注：忘记密码请联系客服）</span>
+          </td>
         </tr>
       </else>
     </if>
