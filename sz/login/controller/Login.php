@@ -175,6 +175,7 @@ class Login extends Base {
             $data['preference']   = input('preference');
             $data['name']   = input('name');
             $data['bank_card']   = input('bank_card');
+            $data['email']   = input('email');
             $data['password'] = sha1($_POST['password']);
             $data['reg_time'] = date('Y-m-d H:i:s',time());
 

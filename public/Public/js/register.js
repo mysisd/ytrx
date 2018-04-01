@@ -56,6 +56,7 @@ $(function(){
             var code=$("input[name=code]").val();
             var yzm=$("input[name=yzm]").val();
             var QQ=$("input[name=QQ]").val();
+            var email=$('input[nmae=email]').val();
            var wechat=$("input[name=wechat]").val();
            var invite=$("input[name=invite_num]").val();
            var preference=$("input[name=preference]").val();
@@ -65,6 +66,13 @@ $(function(){
            var re_name = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
            var re_QQ=/^[1-9]d{4,9}$/;
            var re_bank=  /^\d{19}$/g;
+           var regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+           if(!regex.test(email)){
+               parent.find('.list-tip').eq(6).show().find('.icon-error');
+               return false;
+           }else{
+               parent.find('.list-tip').eq(6).hide();
+           }
 
            if (!re.test(userphone)) {
                 parent.find('.list-tip').eq(0).show().find('.icon-error');
@@ -111,10 +119,10 @@ $(function(){
                parent.find('.list-tip').eq(5).hide().find('.icon-error');
            }
             if(!re_bank.test(bank_card)||bank_card=='') {
-                parent.find('.list-tip').eq(6).show().find('.icon-error');
+                parent.find('.list-tip').eq(7).show().find('.icon-error');
                return false;
            }else{
-                parent.find('.list-tip').eq(6).hide().find('.icon-error');
+                parent.find('.list-tip').eq(7).hide().find('.icon-error');
             }
            userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
@@ -128,7 +136,8 @@ $(function(){
                 wechat:wechat,
                 preference:preference,
                 name:name,
-                bank_card:bank_card
+                bank_card:bank_card,
+                email:email,
                 // geeTest_challenge: $("#challenge").val(),
                 // geeTest_validate: $("#validate").val(),
                 // geeTest_seccode: $("#seccode").val(),

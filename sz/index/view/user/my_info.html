@@ -60,7 +60,7 @@
         </tr>
       </else>
     </if>
- 
+
       <tr>
         <td align="right" class="color555">真实姓名：</td>
         <td class="color555">{$user.name}<span class="color959595 margin_left10 font_size12"></span></td>
@@ -92,7 +92,12 @@
       <td class="color555"><input class="my_info_content_care_table_text" name="wechat" type="text" value="{$user.wechat}">
         <span class="colorCA1E37 margin_left10 font_size12" id="wechat"></span>
       </td>
-
+      </tr>
+    <tr>
+      <td align="right" class="color555">邮箱：</td>
+      <td class="color555"><input class="my_info_content_care_table_text" name="email" type="text" value="{$user.email}">
+        <span class="colorCA1E37 margin_left10 font_size12" id="email"></span>
+      </td>
     </tr>
     <tr>
       <td align="right" class="color555">个人邀请码：</td>
@@ -177,6 +182,7 @@ $(document).ready(function(){
           var city=$('.city option:selected').text();
           var dist=$('.dist option:selected').text();
           var address=$('input[name=address]').val();
+          var email=$('input[name=email]').val();
           var pattern = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
           if(username==''){
               $('#name').text('用户名不能为空');
@@ -203,11 +209,19 @@ $(document).ready(function(){
           }else{
               $('#prompt').text('');
           }
+          var regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
+          if(!regex.test(email)){
+              $('#email').text('邮箱格式错误，请重新输入!');
+
+              return false;
+          }else{
+              $('#email').text('');
+          }
           $.ajax({
               url:'/index/user/update_user',
               type:'post',
               dataType:'json',
-              data:{username:username,QQ:QQ,wechat:wechat,id_card:id_card,prov:prov,city:city,dist:dist,address:address},
+              data:{email:email,username:username,QQ:QQ,wechat:wechat,id_card:id_card,prov:prov,city:city,dist:dist,address:address},
               success:function (data) {
                     if(data.res==1){
                         alert('保存成功');

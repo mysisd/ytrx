@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <include file="../sz/view/head.html"></include>
+    <link href="/Public/css/basic.css" rel="stylesheet" type="text/css">
+    <link href="/Public/css/admin.css" rel="stylesheet" type="text/css">
+    <script src="/Public/js/jquery.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="bm_c">
+    <form action="/index/user/update_forum/update/{$data.id}" method="post" id="sun">
+
+        <div class="pbt cl">
+          标题：  <input type="text" id="subject" name="title" class="px" value="{$data.title}"  tabindex="11" style="width: 25em">
+            <!--<span>还可输入 <strong id="checklen">80</strong> 个字符</span>-->
+        </div>
+        <textarea class="layui-textarea" id="LAY_demo1" name="content" style="display: none">{$data.content}</textarea>
+        <p class="ptm pnpost">
+
+            <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" data-type="content" tabindex="5">
+                <strong>发表帖子</strong>
+            </button>
+
+        </p>
+    </form>
+
+</div>
+<script>
+    layui.use('layedit', function(){
+        var layedit = layui.layedit
+            ,$ = layui.jquery;
+        layedit.set({
+            uploadImage: {
+                url: '/forum/forum/editUpload' //接口url
+                ,type: 'post', //默认post
+            }
+        });
+        //构建一个默认的编辑器
+        var index = layedit.build('LAY_demo1');
+
+        //编辑器外部操作
+        var active = {
+            content: function(){
+                alert(layedit.getContent(index)); //获取编辑器内容
+            }
+            ,text: function(){
+                alert(layedit.getText(index)); //获取编辑器纯文本内容
+            }
+            ,selection: function(){
+                alert(layedit.getSelection(index));
+            }
+        };
+
+        $('#fastpostsubmitt').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+
+        });
+
+        //自定义工具栏
+        layedit.build('LAY_demo2', {
+            tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+            ,height: 100
+        })
+
+    });
+</script>
+</body>
+</html>

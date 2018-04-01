@@ -130,9 +130,45 @@ class User extends Base{
             return json($arr);
         }
 
+    }
+    public function forum_list(){
+        if(input('delete')!=''){
+            $row =Db('forum_list')->where('id',input('delete'))->setField('del',1);;
+            if($row){
+                $this->success('删除成功！','forum_list');
+            }else{
+                $this->error('删除失败！请重新删除','forum_list');
+            }
+        }
+        $user=Db('user')->where('del',0)->where('account',session('phone'))->find();
+        $data=Db('forum_list')->where('del',0)->where('user_id',$user['id'])->paginate(20, false, [
+            'query' => request()->param(),
+        ]);
+        $this->assign('data',$data);
+        $page=$data->render();
+        $this->assign('page',$page);
+        echo $this->fetch();
+    }
+    public function update_forum(){
+        if(input('update')!=''){
+            $data['title']=input('title');
+            $data['content']=input('content');
+            $data['date']=date('Y-m-d H:i:s',time());
+            $row= Db('forum_list')->where('id',input('update'))->update($data);
+            if($row){
+                $this->success('修改成功！','forum_list');
+            }else{
+                $this->error('修改失败！','forum_list');
+            }
+        }
+        $id=input('id');
+        $data=Db('forum_list')->where('del',0)->where('id',$id)->find();
+        $this->assign('data',$data);
+        echo $this->fetch();
+    }
+    public function reply_list(){
 
-
-
+        echo $this->fetch();
     }
 
 }
