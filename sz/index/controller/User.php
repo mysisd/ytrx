@@ -167,7 +167,38 @@ class User extends Base{
         echo $this->fetch();
     }
     public function reply_list(){
+        if(input('delete')!=''){
+            $row =Db('reply')->where('id',input('delete'))->setField('del',1);;
+            if($row){
+                $this->success('删除成功！','reply_list');
+            }else{
+                $this->error('删除失败！请重新删除','reply_list');
+            }
+        }
+        $user=Db('user')->where('del',0)->where('account',session('phone'))->find();
+        $data=Db('reply')->where('del',0)->where('user_id',$user['id'])->paginate(20, false, [
+            'query' => request()->param(),
+        ]);
+        $this->assign('data',$data);
+        $page=$data->render();
+        $this->assign('page',$page);
+        echo $this->fetch();
+    }
+    public function update_reply(){
+        if(input('update')!=''){
 
+            $data['reply']=input('content');
+            $data['date']=date('Y-m-d H:i:s',time());
+            $row= Db('reply')->where('id',input('update'))->update($data);
+            if($row){
+                $this->success('修改成功！','reply_list');
+            }else{
+                $this->error('修改失败！','reply_list');
+            }
+        }
+        $id=input('id');
+        $data=Db('reply')->where('del',0)->where('id',$id)->find();
+        $this->assign('data',$data);
         echo $this->fetch();
     }
 
