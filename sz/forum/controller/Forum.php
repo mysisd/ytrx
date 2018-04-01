@@ -172,8 +172,14 @@ class Forum extends Base{
         echo $this->fetch();
     }
     public function add_reply(){
-        $pid=input('pid');
+        if(empty(input('content'))){
+            $this->error('发表失败！内容不能含有空值');
 
+
+        }else{
+
+
+        $pid=input('pid');
         $id=input('id');
         $this->assign('pid',$pid);
         $this->assign('id',$id);
@@ -197,14 +203,12 @@ class Forum extends Base{
             getAlert('头像未设置','/index/user/index');
 
         }
-        if(empty(input('content'))){
-            $this->error('发表失败！内容不能含有空值');
 
-        }
         if($row){
             $this->success('发表成功！');
         }else{
             $this->error('发表失败！');
+        }
         }
     }
     function is_exist($str,$key){

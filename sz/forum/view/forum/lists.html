@@ -5,7 +5,16 @@
     <include file="../sz/view/head.html"></include>
     <link rel="stylesheet" type="text/css" href="/Public/css/style_1_forum_viewthread.css?MeK">
     <script src="/Public/js/clipboard.min.js"></script>
+    <style>
+        .layui-layedit {
+            border-width: 1px;
+            border-style: solid;
+            border-radius: 2px;
+            width:100%;
+            height: 250px;
+        }
 
+    </style>
 </head>
 
 <body id="nv_forum" class="pg_viewthread" onkeydown="if(event.keyCode==27) return false;">
@@ -209,8 +218,7 @@
                             </tbody>
                         </table>
 
-                        <div class="modact">
-                            <a href="" title="回复模式" onclick="showWindow('viewthreadmod', this.href)">本帖子由 运营部 于 <span title="2018-3-26 14:53">{$data.date}</span> 设置高亮</a></div>
+
                         <form method="post" autocomplete="off" id="vfastpostform" action="/forum/forum/add_reply?pid={$pid}&id={$id}" >
                         <div id="vfastpost" class="fullvfastpost">
                             <input type="hidden" name="formhash" value="6685bcb7">
@@ -241,8 +249,7 @@
                 </td></tr>
             <tr><td class="plc plm">
                 <div id="p_btn" class="mtw mbm hm cl">
-
-                    <a href="" id="k_favorite" onclick="showWindow(this.id, this.href, 'get', 0);" onmouseover="this.title = $('favoritenumber').innerHTML + ' 人收藏'" title="收藏本帖"><i><img src="/Public/img/fav.gif" alt="收藏">收藏<span id="favoritenumber" style="display:none">0</span></i></a>
+                    <a href="" id="k_favorite"  title="收藏本帖"><i><img src="/Public/img/fav.gif" alt="收藏">收藏<span id="favoritenumber" style="display:none">0</span></i></a>
                 </div>
             </td>
             </tr>
@@ -253,7 +260,7 @@
                     <div class="po hin">
                         <div class="pob cl">
                             <em>
-                                <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;reppost=1034&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                                <a class="fastre" >回复</a>
                             </em>
 
                             <p>
@@ -390,7 +397,7 @@
                                 <div class="po hin">
                                     <div class="pob cl">
                                         <em>
-                                            <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=276&amp;repquote=1036&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                                            <a class="fastre" >回复</a>
                                         </em>
 
                                         <p>
@@ -450,7 +457,7 @@
                             </script>
                             <textarea class="layui-textarea" name="content"  id="LAY_demo1" style="display: none"></textarea>
                             <p class="ptm pnpost">
-                                <a href="" class="y" target="_blank">本版积分规则</a>
+
                                 <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
                                 <label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
                                 <script type="text/javascript">if(getcookie('fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
@@ -484,8 +491,21 @@
 
 
 </div>
+    <div style="opacity: 0.6;display:none;width: 66%;background-color: cornflowerblue;margin: 0 auto;position: fixed;left: 23%;top: 50%;z-index: 100;" id="alki">
+        <form method="post" autocomplete="off" id="fastpostform" action="/forum/forum/add_reply?pid={$pid}&id={$id}" >
 
+        <input type="hidden" id="posts" name="post" >
+                    <script>
+                        $('#posts').val($('#thread_subject').text());
+                    </script>
+                    <textarea class="layui-textarea" name="content"  id="LAY_demo2" style="display: none;color:white"></textarea>
+                    <p class="ptm pnpost">
+                        <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
+                        <a style="display: inline-block"    id="cancel" class="pn pnc vm"><strong>取消</strong></a>
+                    </p>
 
+    </form>
+</div>
 <script src="/Public/js/html5notification.js?MeK" type="text/javascript"></script>
 
 <div id="scrolltop" style="right: 71px; visibility: visible;">
@@ -520,13 +540,47 @@
 <script>
 
     layui.use('layedit', function(){
+var layedit = layui.layedit
+,$ = layui.jquery;
+
+//构建一个默认的编辑器
+var index = layedit.build('LAY_demo1');
+
+//编辑器外部操作
+var active = {
+content: function(){
+alert(layedit.getContent(index)); //获取编辑器内容
+}
+,text: function(){
+alert(layedit.getText(index)); //获取编辑器纯文本内容
+}
+,selection: function(){
+alert(layedit.getSelection(index));
+}
+};
+
+$('.site-demo-layedit').on('click', function(){
+var type = $(this).data('type');
+active[type] ? active[type].call(this) : '';
+});
+
+//自定义工具栏
+layedit.build('LAY_demo2', {
+tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+,height: 100
+})
+});
+</script>
+<script>
+
+    layui.use('layedit', function(){
         var layedit = layui.layedit
             ,$ = layui.jquery;
 
-        //构建一个默认的编辑器
-        var index = layedit.build('LAY_demo1');
+//构建一个默认的编辑器
+        var index = layedit.build('LAY_demo2');
 
-        //编辑器外部操作
+//编辑器外部操作
         var active = {
             content: function(){
                 alert(layedit.getContent(index)); //获取编辑器内容
@@ -544,7 +598,7 @@
             active[type] ? active[type].call(this) : '';
         });
 
-        //自定义工具栏
+//自定义工具栏
         layedit.build('LAY_demo2', {
             tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
             ,height: 100
@@ -579,7 +633,35 @@
 
 
         })
+        $("#k_favorite").click(function(){
+            var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
+            if(document.all){
+                window.external.addFavorite(window.location.href);
+            }
+            else if(window.sidebar){
+                window.sidebar.addPanel(' 网站名字 ',window.location.href, "");
+            }
+            else{
+                alert('您可以通过快捷键' + ctrl + ' + D 加入到收藏夹');
+            }
+        })
+       
+        $('#cancel').on('click',function () {
+            $('#alki').hide()
+        })
+        $('.fastre').on('click',function(e){
+            $('#alki').show();
+            e.stopPropagation();
+        })
+        $('body').on('click',function(){
+            $('#alki').hide();
+        })
+
+
+
+
     })
 </script>
+
 </body>
 </html>
