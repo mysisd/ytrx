@@ -175,12 +175,8 @@ class Forum extends Base{
     public function add_reply(){
         if(empty(input('content'))){
             $this->error('发表失败！内容不能含有空值');
-
-
         }else{
-
-
-        $pid=input('pid');
+            $pid=input('pid');
         $id=input('id');
         $this->assign('pid',$pid);
         $this->assign('id',$id);
@@ -193,7 +189,10 @@ class Forum extends Base{
         $data['reply_to_posts']=input('post');
         $data['date']=date('Y-m-d H:i:s',time());
         $data['user_face']=$user['face'];
-        $row=Db('reply')->strict(false)->insert($data);
+          $data['status']=input('status');
+          $data['post_author']=input('post_author');
+          $data['post_reply']=input('post_reply');
+            $row=Db('reply')->strict(false)->insert($data);
         $num=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->count();
         $data=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->order('date desc')->limit(1)->find();
         $data_a['last_author']=$data['reply_author'];

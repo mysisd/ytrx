@@ -39,7 +39,7 @@
 </span>
     </h3>
 
-        <form method="post" autocomplete="off" id="postform" action="forum.php?mod=post&amp;infloat=yes&amp;action=reply&amp;fid=2&amp;extra=&amp;tid=275&amp;replysubmit=yes" onsubmit="this.message.value = parseurl(this.message.value);ajaxpost('postform', 'return_reply', 'return_reply', 'onerror');return false;" fwin="reply">
+        <form action="/forum/forum/add_reply?pid={$pid}&id={$id}&status=0"  method="post" autocomplete="off" id="postform" >
             <div class="c" id="floatlayout_reply" fwin="reply">
                 <div class="p_c">
                     <input type="hidden" name="formhash" id="formhash" value="3b08b20f" fwin="reply">
@@ -55,7 +55,7 @@
                         <span id="subjectbox" style="display:none" fwin="reply"><input name="subject" id="subject" class="px" value="" tabindex="21" style="width: 25em" fwin="reply"></span>
                     </div>
                     <div class="pbt cl">
-                        <div class="quote">
+                        <div class="quote" >
                             <blockquote>
                                 <font size="2">
                                     <a  target="_blank">
@@ -70,8 +70,9 @@
                     </div>
 
                 </div>
-
-                    <textarea class="layui-textarea" name="content"  id="LAY_demo3" style="display: none"></textarea>
+                <input type="hidden"  name="post_reply">
+                <input type="hidden"  name="post_author">
+                    <textarea class="layui-textarea" name="content"  id="LAY_demo3" style="display: none;"></textarea>
 
                 <div id="_umfp" style="display:inline;width:1px;height:1px;overflow:hidden" fwin="reply"></div>
             </div>
@@ -389,102 +390,91 @@
 
 
             <foreach name="list" item="v">
-                <div id="post_{$v.id}">
-                    <table id="pid1036" class="plhin" summary="pid1036" cellspacing="0" cellpadding="0">
+                <if condition="$v.status eq '0' ">
+                    <div id="post_{$v.id}">
+                        <table id="pid1054" class="plhin" summary="pid1054" cellspacing="0" cellpadding="0">
                         <tbody><tr>
                             <td class="pls" rowspan="2">
-                                <div id="favatar1036" class="pls favatar">
-                                    <div class="pi">
-                                        <div class="authi"><a href="" target="_blank" class="xw1">{$v.reply_author}</a>
-                                        </div>
+                                <div id="favatar1054" class="pls favatar">
+                                    <a name="lastpost"></a><div class="pi">
+                                    <div class="authi">
+                                        <a href="" target="_blank" class="xw1">{$v.reply_author}</a>
                                     </div>
-                                    <div class="p_pop blk bui card_gender_0" id="userinfo1036" style="display: none; margin-top: -11px;">
+                                </div>
+                                    <div class="p_pop blk bui card_gender_0" id="userinfo1054" style="display: none; margin-top: -11px;">
                                         <div class="m z">
-                                            <div id="userinfo1036_ma"></div>
+                                            <div id="userinfo1054_ma"></div>
                                         </div>
                                         <div class="i y">
                                             <div>
-                                                <strong><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xi2">{$v.reply_author}</a></strong>
-                                                <em>当前离线</em>
-                                            </div><dl class="cl">
-                                            <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
-                                        </dl><div class="imicn">
-                                            <a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" title="查看详细资料">
-                                                <img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
+                                                <strong><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xi2">$v.reply_author}</a></strong>
+                                                <em>当前在线</em>
+                                            </div>
+                                            <dl class="cl">
+                                            <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1197</a></dd>
+                                        </dl>
+                                            <div class="imicn">
+                                            <a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" title="查看详细资料"><img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
                                         </div>
                                             <div id="avatarfeed"><span id="threadsortswait"></span></div>
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="avatar" ><a href="home.php?mod=space&amp;uid=21" class="avtm" target="_blank">
-                                            <img src="{$v.user_face}"></a></div>
+                                        <div class="avatar" onmouseover="showauthor(this, 'userinfo1054')"><a href="home.php?mod=space&amp;uid=21" class="avtm" target="_blank"><img src="{$v.user_face}"></a></div>
                                     </div>
-                                    <div class="tns xg2">
-                                        <table cellspacing="0" cellpadding="0">
-                                            <tbody>
-                                            <tr>
-                                                <th>
-                                                    <p>
-                                                        <a class="xi2">12</a>
-                                                    </p>帖子</th>
-                                                <th>
-                                                    <p>
-                                                        <a  class="xi2">430</a></p>回复</th>
-                                                <!--<td>-->
-                                                    <!--<p>-->
-                                                        <!--<a  class="xi2">1175</a></p>积分-->
-                                                <!--</td>-->
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                    <div class="tns xg2"><table cellspacing="0" cellpadding="0"><tbody><tr><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=thread&amp;view=me&amp;from=space" class="xi2">12</a></p>主题</th><th><p><a href="home.php?mod=space&amp;uid=21&amp;do=thread&amp;type=reply&amp;view=me&amp;from=space" class="xi2">435</a></p>帖子</th>
+                                        <!--<td><p><a href="home.php?mod=space&amp;uid=21&amp;do=profile" class="xi2">1197</a></p>积分</td>-->
+                                    </tr>
+                                    </tbody>
+                                    </table>
                                     </div>
 
                                     <!--<p><em><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;gid=3" target="_blank">版主</a></em></p>-->
 
 
-                                    <!--<p><span><img src="/Public/img/star_level3.gif" alt="Rank: 7"><img src="/Public/img/star_level2.gif" alt="Rank: 7"><img src="/Public/img/star_level1.gif" alt="Rank: 7"></span></p>-->
+                                    <!--<p><span><img src="static/image/common/star_level3.gif" alt="Rank: 7"><img src="static/image/common/star_level2.gif" alt="Rank: 7"><img src="static/image/common/star_level1.gif" alt="Rank: 7"></span></p>-->
 
 
 
                                     <!--<dl class="pil cl">-->
-                                        <!--<dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>-->
+                                        <!--<dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1197</a></dd>-->
                                     <!--</dl>-->
 
-                                    <!--<dl class="pil cl"></dl><ul class="xl xl2 o cl">-->
-                                    <!--<li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_21&amp;touid=21&amp;pmid=0&amp;daterange=2&amp;pid=1036&amp;tid=276" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>-->
-                                <!--</ul>-->
+                                    <dl class="pil cl"></dl><ul class="xl xl2 o cl">
+                                    <!--<li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_21&amp;touid=21&amp;pmid=0&amp;daterange=2&amp;pid=1054&amp;tid=275" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>-->
+                                </ul>
                                 </div>
                             </td>
                             <td class="plc">
                                 <div class="pi">
                                     <strong>
-                                        <a class="copy" data-clipboard-text="">{$v.id}#</a>
-                                        <!--<a href="" title="您的朋友访问此链接后，您将获得相应的积分奖励"  onclick="setCopy(window.location.href, '回复地址复制成功');return false;">-->
-                                            <!--沙发</a>-->
+                                        <a href="forum.php?mod=redirect&amp;goto=findpost&amp;ptid=275&amp;pid=1054&amp;fromuid=333" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1054" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
+                                            <em>14</em><sup>#</sup></a>
                                     </strong>
                                     <div class="pti">
                                         <div class="pdbt">
                                         </div>
                                         <div class="authi">
-                                            <img class="authicn vm" id="authicon1036" src="/Public/img/online_moderator.gif">
-                                            <em id="authorposton1036">发表于 <span title="2018-3-26 20:57:50">{$v.date}</span></em>
+                                            <img class="authicn vm" id="authicon1054" src="/Public/img/online_moderator.gif">
+
+                                            <em id="authorposton1054">发表于 <span title="{$v.date}">{$v.date}</span></em>
                                             <span class="pipe">|</span>
                                             <a href="/forum/forum/lists?pid={$pid}&id={$id}&author={$v.reply_author}" rel="nofollow">只看该作者</a>
                                         </div>
                                     </div>
                                 </div><div class="pct"><div class="pcb">
                                 <div class="t_fsz">
-                                    <table cellspacing="0" cellpadding="0">
-                                        <tbody>
-                                        <tr><td class="t_f" id="postmessage_1036">
-                                        {$v.reply}</td></tr></tbody></table>
+                                    <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1054">
+                                        <div class="quote"><blockquote><font size="2"><a href="http://www.hzssbbs.com/forum.php?mod=redirect&amp;goto=findpost&amp;pid=1039&amp;ptid=275" target="_blank"><font color="#999999">{$v.post_author}</font></a></font><br>
+                                           {$v.post_reply}</blockquote></div><br>
+                                        {$v.reply}<img src="/Public/img/lol.gif" smilieid="12" border="0" alt=""></td></tr></tbody></table>
 
 
                                 </div>
-                                <div id="comment_1036" class="cm">
+                                <div id="comment_1054" class="cm">
                                 </div>
 
-                                <div id="post_rate_div_1036"></div>
+                                <div id="post_rate_div_1054"></div>
                             </div>
                             </div>
 
@@ -492,24 +482,24 @@
                         <tr><td class="plc plm">
                         </td>
                         </tr>
-                        <tr id="_postposition1036"></tr>
+                        <tr id="_postposition1054"></tr>
                         <tr>
                             <td class="pls"></td>
                             <td class="plc" style="overflow:visible;">
                                 <div class="po hin">
                                     <div class="pob cl">
                                         <em>
-                                            <a class="fastre" >回复</a>
+                                            <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=275&amp;repquote=1054&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
                                         </em>
 
                                         <p>
-                                            <a href="javascript:;" id="mgc_post_1036"  class="showmenu" style="display: none;"></a>
-                                            <!--<a href="javascript:;" onclick="showWindow('miscreport1036', 'misc.php?mod=report&amp;rtype=post&amp;rid=1036&amp;tid=276&amp;fid=2', 'get', -1);return false;">举报</a>-->
+                                            <a href="javascript:;" id="mgc_post_1054" onmouseover="showMenu(this.id)" class="showmenu" style="display: none;"></a>
+                                            <a href="javascript:;" onclick="showWindow('miscreport1054', 'misc.php?mod=report&amp;rtype=post&amp;rid=1054&amp;tid=275&amp;fid=2', 'get', -1);return false;">举报</a>
                                         </p>
 
-                                        <ul id="mgc_post_1036_menu" class="p_pop mgcmn" style="display: none;">
+                                        <ul id="mgc_post_1054_menu" class="p_pop mgcmn" style="display: none;">
                                         </ul>
-
+           
                                     </div>
                                 </div>
                             </td>
@@ -520,9 +510,146 @@
                             <td class="plc">
                             </td>
                         </tr>
-                        </tbody>
-                    </table>
-                </div>
+                        </tbody></table>
+                    </div>
+                    <else>
+                        <div id="post_{$v.id}">
+                            <table id="pid1036" class="plhin" summary="pid1036" cellspacing="0" cellpadding="0">
+                                <tbody><tr>
+                                    <td class="pls" rowspan="2">
+                                        <div id="favatar1036" class="pls favatar">
+                                            <div class="pi">
+                                                <div class="authi"><a href="" target="_blank" class="xw1">{$v.reply_author}</a>
+                                                </div>
+                                            </div>
+                                            <div class="p_pop blk bui card_gender_0" id="userinfo1036" style="display: none; margin-top: -11px;">
+                                                <div class="m z">
+                                                    <div id="userinfo1036_ma"></div>
+                                                </div>
+                                                <div class="i y">
+                                                    <div>
+                                                        <strong><a href="home.php?mod=space&amp;uid=21" target="_blank" class="xi2">{$v.reply_author}</a></strong>
+                                                        <em>当前离线</em>
+                                                    </div><dl class="cl">
+                                                    <dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>
+                                                </dl><div class="imicn">
+                                                    <a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" title="查看详细资料">
+                                                        <img src="/Public/img/userinfo.gif" alt="查看详细资料"></a>
+                                                </div>
+                                                    <div id="avatarfeed"><span id="threadsortswait"></span></div>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <div class="avatar" ><a href="home.php?mod=space&amp;uid=21" class="avtm" target="_blank">
+                                                    <img src="{$v.user_face}"></a></div>
+                                            </div>
+                                            <div class="tns xg2">
+                                                <table cellspacing="0" cellpadding="0">
+                                                    <tbody>
+                                                    <tr>
+                                                        <th>
+                                                            <p>
+                                                                <a class="xi2">12</a>
+                                                            </p>帖子</th>
+                                                        <th>
+                                                            <p>
+                                                                <a  class="xi2">430</a></p>回复</th>
+                                                        <!--<td>-->
+                                                        <!--<p>-->
+                                                        <!--<a  class="xi2">1175</a></p>积分-->
+                                                        <!--</td>-->
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+
+                                            <!--<p><em><a href="home.php?mod=spacecp&amp;ac=usergroup&amp;gid=3" target="_blank">版主</a></em></p>-->
+
+
+                                            <!--<p><span><img src="/Public/img/star_level3.gif" alt="Rank: 7"><img src="/Public/img/star_level2.gif" alt="Rank: 7"><img src="/Public/img/star_level1.gif" alt="Rank: 7"></span></p>-->
+
+
+
+                                            <!--<dl class="pil cl">-->
+                                            <!--<dt>积分</dt><dd><a href="home.php?mod=space&amp;uid=21&amp;do=profile" target="_blank" class="xi2">1175</a></dd>-->
+                                            <!--</dl>-->
+
+                                            <!--<dl class="pil cl"></dl><ul class="xl xl2 o cl">-->
+                                            <!--<li class="pm2"><a href="home.php?mod=spacecp&amp;ac=pm&amp;op=showmsg&amp;handlekey=showmsg_21&amp;touid=21&amp;pmid=0&amp;daterange=2&amp;pid=1036&amp;tid=276" onclick="showWindow('sendpm', this.href);" title="发消息" class="xi2">发消息</a></li>-->
+                                            <!--</ul>-->
+                                        </div>
+                                    </td>
+                                    <td class="plc">
+                                        <div class="pi">
+                                            <strong>
+                                                <a class="copy" data-clipboard-text="">{$v.id}#</a>
+                                                <!--<a href="" title="您的朋友访问此链接后，您将获得相应的积分奖励"  onclick="setCopy(window.location.href, '回复地址复制成功');return false;">-->
+                                                <!--沙发</a>-->
+                                            </strong>
+                                            <div class="pti">
+                                                <div class="pdbt">
+                                                </div>
+                                                <div class="authi">
+                                                    <img class="authicn vm" id="authicon1036" src="/Public/img/online_moderator.gif">
+                                                    <em id="authorposton1036">发表于 <span title="2018-3-26 20:57:50">{$v.date}</span></em>
+                                                    <span class="pipe">|</span>
+                                                    <a href="/forum/forum/lists?pid={$pid}&id={$id}&author={$v.reply_author}" rel="nofollow">只看该作者</a>
+                                                </div>
+                                            </div>
+                                        </div><div class="pct"><div class="pcb">
+                                        <div class="t_fsz">
+                                            <table cellspacing="0" cellpadding="0">
+                                                <tbody>
+                                                <tr><td class="t_f" id="postmessage_1036">
+                                                    {$v.reply}</td></tr></tbody></table>
+
+
+                                        </div>
+                                        <div id="comment_1036" class="cm">
+                                        </div>
+
+                                        <div id="post_rate_div_1036"></div>
+                                    </div>
+                                    </div>
+
+                                    </td></tr>
+                                <tr><td class="plc plm">
+                                </td>
+                                </tr>
+                                <tr id="_postposition1036"></tr>
+                                <tr>
+                                    <td class="pls"></td>
+                                    <td class="plc" style="overflow:visible;">
+                                        <div class="po hin">
+                                            <div class="pob cl">
+                                                <em>
+                                                    <a class="fastre" >回复</a>
+                                                </em>
+
+                                                <p>
+                                                    <a href="javascript:;" id="mgc_post_1036"  class="showmenu" style="display: none;"></a>
+                                                    <!--<a href="javascript:;" onclick="showWindow('miscreport1036', 'misc.php?mod=report&amp;rtype=post&amp;rid=1036&amp;tid=276&amp;fid=2', 'get', -1);return false;">举报</a>-->
+                                                </p>
+
+                                                <ul id="mgc_post_1036_menu" class="p_pop mgcmn" style="display: none;">
+                                                </ul>
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="ad">
+                                    <td class="pls">
+                                    </td>
+                                    <td class="plc">
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </else>
+                </if>
+
             </foreach>
 <div>
     {$page}
@@ -731,7 +858,7 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
         });
 
 //自定义工具栏
-        layedit.build('LAY_demo2', {
+        layedit.build('LAY_demo3', {
             tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
             ,height: 100
         })
@@ -755,8 +882,6 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 <script>
 
     $(function () {
-
-
         $("#k_favorite").click(function(){
             var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
             if(document.all){
@@ -776,17 +901,28 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
             var a=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.pls').find('#favatar1036').find('.pi').find('.authi').find('a');
             var b=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pi').find('.pti').find('.authi').find('em').find('span');
             var c=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pct').find('.pcb').find('.t_fsz').find('table').find('tbody').find('tr').find('td');
-            console.log(c.html())
+
 
             $('font[data=author]').text(a.text()+'发表于'+b.text());
             $('p[name=title]').text(c.text());
             $('#fwin_reply').show();
-            e.stopPropagation();
-        })
-        $('body').on('click',function(){
-            $('#fwin_reply').hide();
+            $('input[name=post_author]').val($('font[data=author]').text())
+            $('input[name=post_reply]').val($('p[name=title]').text())
         })
 
+
+            $('#postsubmit').on('click',function () {
+
+                var contentw=$('.quote').html();
+                $.ajax({
+                    url:'/forum/forum/add_reply?pid='+$('#pid').val()+'&id='+$('#id').val(),
+                    type:'post',
+                    data:{post_author:contentw,content:$('textarea[name=content1]').val()},
+                    success:function () {
+
+                    }
+                })
+            })
 
 
 
@@ -795,6 +931,10 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 </script>
 <script type="text/javascript">
 $('.xi1').eq(0).text($('.xi1').eq(0).text())
+</script>
+<script>
+
+
 </script>
 </body>
 </html>
