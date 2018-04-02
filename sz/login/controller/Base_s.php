@@ -47,6 +47,7 @@ class Base_s extends Controller {
         session_start();
         $code=rand(100000,999999);
         session('code',$code);
+		dump($code);
         session('code_phone',$mobile);
         // 可选，设置模板参数
         $templateParam=[
