@@ -100,10 +100,10 @@ $(function(){
             }
             parent.find('.list-tip').eq(2).hide();
             if(yzm.length==0){
-                parent.find('.list-tip').eq(7).show().find('.error-tag').html('短信验证失败');
+                parent.find('.list-tip').eq(8).show().find('.error-tag').html('短信验证失败');
                 return false;
             }
-            parent.find('.list-tip').eq(4).hide();
+            parent.find('.list-tip').eq(8).hide();
            if (!re_name.test(name)||name=='') {
                parent.find('.list-tip').eq(3).show().find('.icon-error');
                return false;
