@@ -67,7 +67,14 @@ $(function(){
            var re_QQ=/^[1-9]d{4,9}$/;
            var re_bank=  /^\d{19}$/g;
            var regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
-           if(!regex.test(email)){
+          if(!re_bank.test(bank_card)||bank_card=='') {
+                parent.find('.list-tip').eq(7).show().find('.icon-error');
+               return false;
+           }else{
+                parent.find('.list-tip').eq(7).hide().find('.icon-error');
+            }
+
+		  if(!regex.test(email)){
                parent.find('.list-tip').eq(6).show().find('.icon-error');
                return false;
            }else{
