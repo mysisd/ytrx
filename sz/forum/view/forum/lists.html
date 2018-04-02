@@ -20,7 +20,107 @@
 <body id="nv_forum" class="pg_viewthread" onkeydown="if(event.keyCode==27) return false;">
 
 <include file="../sz/view/header.html"></include>
-<div id="append_parent"></div><div id="ajaxwaitid"></div>
+<div id="append_parent">
+    <div id="fwin_reply"   class="fwinmask" style="position: fixed; z-index: 201;display: none; left: 31%; top: 15%;" initialized="true"><style type="text/css">object{visibility:hidden;}</style>
+        <table cellpadding="0" cellspacing="0" class="fwin">
+            <tbody>
+            <tr>
+                <td class="t_l"></td>
+                <td class="t_c" style="cursor:move" onmousedown="dragMenu($('fwin_reply'), event, 1)" ></td>
+                <td class="t_r"></td>
+            </tr>
+            <tr>
+                <td class="m_l" style="cursor:move" onmousedown="dragMenu($('fwin_reply'), event, 1)" >&nbsp;&nbsp;</td>
+                <td class="m_c" id="fwin_content_reply" fwin="reply" style="">
+                    <h3 class="flb" id="fctrl_reply" style="cursor: move;">
+                        <em id="return_reply" fwin="reply">
+            参与/回复主题</em>
+
+</span>
+    </h3>
+
+        <form method="post" autocomplete="off" id="postform" action="forum.php?mod=post&amp;infloat=yes&amp;action=reply&amp;fid=2&amp;extra=&amp;tid=275&amp;replysubmit=yes" onsubmit="this.message.value = parseurl(this.message.value);ajaxpost('postform', 'return_reply', 'return_reply', 'onerror');return false;" fwin="reply">
+            <div class="c" id="floatlayout_reply" fwin="reply">
+                <div class="p_c">
+                    <input type="hidden" name="formhash" id="formhash" value="3b08b20f" fwin="reply">
+                    <input type="hidden" name="handlekey" value="reply">
+                    <input type="hidden" name="noticeauthor" value="59d9mivs3uYKwRPBOLPVLKT3+/zXckOq7KxPgwfjtLhLsQ">
+                    <input type="hidden" name="noticetrimstr" value="">
+                    <input type="hidden" name="noticeauthormsg" value="都不敢做，想想都害怕，一直收到电话做期货">
+                    <input type="hidden" name="usesig" value="1">
+                    <input type="hidden" name="reppid" value="1039">
+                    <input type="hidden" name="reppost" value="1039">
+                    <div class="pbt cl">
+                        <span id="subjecthide" class="z" fwin="reply">RE: {$data.title}</span>
+                        <span id="subjectbox" style="display:none" fwin="reply"><input name="subject" id="subject" class="px" value="" tabindex="21" style="width: 25em" fwin="reply"></span>
+                    </div>
+                    <div class="pbt cl">
+                        <div class="quote">
+                            <blockquote>
+                                <font size="2">
+                                    <a  target="_blank">
+                                        <font data="author" color="#999999"></font>
+                                    </a>
+                                </font>
+                                <br>
+                                <p name="title"></p>
+
+                            </blockquote>
+                        </div>
+                    </div>
+
+                </div>
+
+                    <textarea class="layui-textarea" name="content"  id="LAY_demo3" style="display: none"></textarea>
+
+                <div id="_umfp" style="display:inline;width:1px;height:1px;overflow:hidden" fwin="reply"></div>
+            </div>
+
+
+
+
+            <div class="o pns" id="moreconf" fwin="reply">
+
+            <button type="submit" id="postsubmit" class="pn pnc z"  name="replysubmit" tabindex="23" fwin="reply"><span>参与/回复主题</span></button>
+        </div>
+        </form>
+
+        <script type="text/javascript" reload="1">
+            function succeedhandle_reply(locationhref, message) {
+                try {
+                    var pid = locationhref.lastIndexOf('#pid');
+                    if(pid != -1) {
+                        pid = locationhref.substr(pid + 4);
+                        ajaxget('forum.php?mod=viewthread&tid=275&viewpid=' + pid, 'post_new', 'ajaxwaitid', '', null, 'appendreply()');
+                        if(replyreload) {
+                            var reloadpids = replyreload.split(',');
+                            for(var i = 1;i < reloadpids.length;i++) {
+                                ajaxget('forum.php?mod=viewthread&tid=275&viewpid=' + reloadpids[i], 'post_' + reloadpids[i]);
+                            }
+                        }
+                    } else {
+                        showDialog(message, 'notice', '', 'location.href="' + locationhref + '"');
+                    }
+                } catch(e) {
+                    location.href = locationhref;
+                }
+                hideWindow('reply');
+            }
+
+            if($('subjectbox')) {
+                $('postmessage').focus();
+            } else if($('subject')) {
+                $('subject').select();
+                $('subject').focus();
+            }
+        </script>
+    </td>
+        <td class="m_r" style="cursor:move" onmousedown="dragMenu($('fwin_reply'), event, 1)" ondblclick="hideWindow('reply')" "=""></td></tr><tr><td class="b_l"></td><td class="b_c" style="cursor:move" onmousedown="dragMenu($('fwin_reply'), event, 1)" ondblclick="hideWindow('reply')"></td><td class="b_r"></td></tr>
+        </tbody>
+        </table>
+    </div>
+</div>
+<div id="ajaxwaitid"></div>
 
 
 <ul id="myprompt_menu" class="p_pop" style="position: absolute; z-index: 301; left: 1087.61px; top: 73px; display: none;" initialized="true">
@@ -462,7 +562,7 @@
 
                                 <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
                                 <label for="fastpostrefresh"><input id="fastpostrefresh" type="checkbox" class="pc">回帖后跳转到最后一页</label>
-                                <script type="text/javascript">if(getcookie('fastpostrefresh') == 1) {$('fastpostrefresh').checked=true;}</script>
+
                             </p>
                         </td>
 
@@ -493,21 +593,7 @@
 
 
 </div>
-    <div style="opacity: 0.6;display:none;width: 66%;background-color: cornflowerblue;margin: 0 auto;position: fixed;left: 23%;top: 50%;z-index: 100;" id="alki">
-        <form method="post" autocomplete="off" id="fastpostform" action="/forum/forum/add_reply?pid={$pid}&id={$id}" >
 
-        <input type="hidden" id="posts" name="post" >
-                    <script>
-                        $('#posts').val($('#thread_subject').text());
-                    </script>
-                    <textarea class="layui-textarea" name="content"  id="LAY_demo2" style="display: none;color:white"></textarea>
-                    <p class="ptm pnpost">
-                        <button type="submit"  name="replysubmit" id="fastpostsubmit" class="pn pnc vm" value="replysubmit" tabindex="5"><strong>发表回复</strong></button>
-                        <a style="display: inline-block"    id="cancel" class="pn pnc vm"><strong>取消</strong></a>
-                    </p>
-
-    </form>
-</div>
 <script src="/Public/js/html5notification.js?MeK" type="text/javascript"></script>
 
 <div id="scrolltop" style="right: 71px; visibility: visible;">
@@ -619,6 +705,40 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 </script>
 <script>
 
+    layui.use('layedit', function(){
+        var layedit = layui.layedit
+            ,$ = layui.jquery;
+
+//构建一个默认的编辑器
+        var index = layedit.build('LAY_demo3');
+
+//编辑器外部操作
+        var active = {
+            content: function(){
+                alert(layedit.getContent(index)); //获取编辑器内容
+            }
+            ,text: function(){
+                alert(layedit.getText(index)); //获取编辑器纯文本内容
+            }
+            ,selection: function(){
+                alert(layedit.getSelection(index));
+            }
+        };
+
+        $('.site-demo-layedit').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
+
+//自定义工具栏
+        layedit.build('LAY_demo2', {
+            tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
+            ,height: 100
+        })
+    });
+</script>
+<script>
+
     $(document).ready(function(){
         var clipboard1 = new Clipboard('.copy');
         $('.copy').attr('data-clipboard-text',window.location.href)
@@ -650,16 +770,23 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
             }
         })
 
-        $('#cancel').on('click',function () {
-            $('#alki').hide()
-        })
+
+
         $('.fastre').on('click',function(e){
-            $('#alki').show();
+            var a=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.pls').find('#favatar1036').find('.pi').find('.authi').find('a');
+            var b=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pi').find('.pti').find('.authi').find('em').find('span');
+            var c=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pct').find('.pcb').find('.t_fsz').find('table').find('tbody').find('tr').find('td');
+            console.log(c.html())
+
+            $('font[data=author]').text(a.text()+'发表于'+b.text());
+            $('p[name=title]').text(c.text());
+            $('#fwin_reply').show();
             e.stopPropagation();
         })
         $('body').on('click',function(){
-            $('#alki').hide();
+            $('#fwin_reply').hide();
         })
+
 
 
 
