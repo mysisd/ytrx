@@ -61,7 +61,7 @@ $(function(){
            var invite=$("input[name=invite_num]").val();
            var preference=$("input[name=preference]").val();
            var name=$("input[name=name]").val();
-           var bank_card=$("input[name=bank_card]").val();
+           var bank_card=$.trim($("input[name=bank_card]").val());
             var re = /^1\d{10}$/;
            var re_name = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
            var re_QQ=/^[1-9]d{4,9}$/;
