@@ -102,9 +102,13 @@ $(function(){
             if(yzm.length==0){
                 parent.find('.list-tip').eq(8).show().find('.error-tag').html('短信验证失败');
                 return false;
-            }
-            parent.find('.list-tip').eq(8).hide();
-           if (!re_name.test(name)||name=='') {
+            }else{
+				
+			  parent.find('.list-tip').eq(8).hide();
+			}
+			
+          
+          if (!re_name.test(name)||name=='') {
                parent.find('.list-tip').eq(3).show().find('.icon-error');
                return false;
 
@@ -125,12 +129,7 @@ $(function(){
            }else{
                parent.find('.list-tip').eq(5).hide().find('.icon-error');
            }
-            if(!re_bank.test(bank_card)||bank_card=='') {
-                parent.find('.list-tip').eq(7).show().find('.icon-error');
-               return false;
-           }else{
-                parent.find('.list-tip').eq(7).hide().find('.icon-error');
-            }
+            
            userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
             var postData={
