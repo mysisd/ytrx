@@ -185,7 +185,7 @@ class Login extends Base {
                 session('face'    , null);
                 session('uniqid'  , $data['uniqid']);
                 session('phone'   , $data['account']);
-
+				session('username'   , $data['username']);
                 $arr['status'] = 'success';
                 $user=Db('user')->where('account',session('phone'))->where('del',0)->find();
                  $user=Db('xgjaccount')->where('id',$user['id'])->find();
