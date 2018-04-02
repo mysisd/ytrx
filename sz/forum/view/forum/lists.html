@@ -70,6 +70,11 @@
                     </div>
 
                 </div>
+
+                    <script>
+
+                </script>
+                <input type="hidden" id="posts_s" name="post" >
                 <input type="hidden"  name="post_reply">
                 <input type="hidden"  name="post_author">
                     <textarea class="layui-textarea" name="content"  id="LAY_demo3" style="display: none;"></textarea>
@@ -448,8 +453,8 @@
                             <td class="plc">
                                 <div class="pi">
                                     <strong>
-                                        <a href="forum.php?mod=redirect&amp;goto=findpost&amp;ptid=275&amp;pid=1054&amp;fromuid=333" title="您的朋友访问此链接后，您将获得相应的积分奖励" id="postnum1054" onclick="setCopy(this.href, '帖子地址复制成功');return false;">
-                                            <em>14</em><sup>#</sup></a>
+                                        <a class="copy" data-clipboard-text="" title="您的朋友访问此链接后，您将获得相应的积分奖励" >
+                                            <em>{$v.id}</em><sup>#</sup></a>
                                     </strong>
                                     <div class="pti">
                                         <div class="pdbt">
@@ -467,7 +472,10 @@
                                     <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1054">
                                         <div class="quote"><blockquote><font size="2"><a href="http://www.hzssbbs.com/forum.php?mod=redirect&amp;goto=findpost&amp;pid=1039&amp;ptid=275" target="_blank"><font color="#999999">{$v.post_author}</font></a></font><br>
                                            {$v.post_reply}</blockquote></div><br>
-                                        {$v.reply}<img src="/Public/img/lol.gif" smilieid="12" border="0" alt=""></td></tr></tbody></table>
+                                        {$v.reply}
+
+
+                                    </td></tr></tbody></table>
 
 
                                 </div>
@@ -489,17 +497,17 @@
                                 <div class="po hin">
                                     <div class="pob cl">
                                         <em>
-                                            <a class="fastre" href="forum.php?mod=post&amp;action=reply&amp;fid=2&amp;tid=275&amp;repquote=1054&amp;extra=&amp;page=1" onclick="showWindow('reply', this.href)">回复</a>
+                                            <a class="fastre">回复</a>
                                         </em>
 
                                         <p>
                                             <a href="javascript:;" id="mgc_post_1054" onmouseover="showMenu(this.id)" class="showmenu" style="display: none;"></a>
-                                            <a href="javascript:;" onclick="showWindow('miscreport1054', 'misc.php?mod=report&amp;rtype=post&amp;rid=1054&amp;tid=275&amp;fid=2', 'get', -1);return false;">举报</a>
+                                            <!--<a href="javascript:;" onclick="showWindow('miscreport1054', 'misc.php?mod=report&amp;rtype=post&amp;rid=1054&amp;tid=275&amp;fid=2', 'get', -1);return false;">举报</a>-->
                                         </p>
 
                                         <ul id="mgc_post_1054_menu" class="p_pop mgcmn" style="display: none;">
                                         </ul>
-           
+
                                     </div>
                                 </div>
                             </td>
@@ -882,6 +890,8 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 <script>
 
     $(function () {
+        $('#posts_s').val($('#thread_subject').text());;
+
         $("#k_favorite").click(function(){
             var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
             if(document.all){

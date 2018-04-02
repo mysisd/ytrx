@@ -193,6 +193,7 @@ class Forum extends Base{
           $data['post_author']=input('post_author');
           $data['post_reply']=input('post_reply');
             $row=Db('reply')->strict(false)->insert($data);
+           
         $num=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->count();
         $data=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->order('date desc')->limit(1)->find();
         $data_a['last_author']=$data['reply_author'];

@@ -201,5 +201,12 @@ class User extends Base{
         $this->assign('data',$data);
         echo $this->fetch();
     }
+    public function forum_remind(){
+        $user=Db('user')->where('del',0)->where('account',session('phone'))->find();
+        $data=Db('reply')->where('del',0)->where('status',0)->where('user_id',$user['id'])->select();
+
+        $this->assign('data',$data);
+        echo $this->fetch();
+    }
 
 }
