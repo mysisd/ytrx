@@ -56,7 +56,7 @@ $(function(){
             var code=$("input[name=code]").val();
             var yzm=$("input[name=yzm]").val();
             var QQ=$("input[name=QQ]").val();
-            var email=$('input[nmae=email]').val();
+            var email=$('input[name=email]').val();
            var wechat=$("input[name=wechat]").val();
            var invite=$("input[name=invite_num]").val();
            var preference=$("input[name=preference]").val();
