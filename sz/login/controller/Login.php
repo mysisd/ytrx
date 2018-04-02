@@ -192,7 +192,7 @@ class Login extends Base {
                 $data_xgj['xgjaccount']=$user['account'];
                 $data_xgj['xgjpass']=$user['password'];
                 Db('user')->where('account',session('phone'))->where('del',0)->update($data_xgj);
-                Base_s::sendMsg_open_success($_POST['phone'],$user['account'],$user['password'],$user['invite_num']);
+                Base_s::sendMsg_open_success($_POST['phone'],$user['account'],$user['password'], $data['invite_num']);
             }
         }else{
             $arr['returntype'] = 2;
