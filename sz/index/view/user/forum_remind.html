@@ -9,7 +9,8 @@
 
         <ul class="tb cl">
             <!--<li class="y"><a href="home.php?mod=spacecp&amp;ac=privacy&amp;op=filter" target="_blank" class="xi2">筛选设置</a></li>-->
-            <li class="a"><a href="home.php?mod=space&amp;do=notice&amp;view=mypost&amp;type=post">帖子</a></li>
+            <li class="a"><a href="">帖子</a></li>
+
             <!--<li><a href="home.php?mod=space&amp;do=notice&amp;view=mypost&amp;type=pcomment">点评</a></li>-->
             <!--<li><a href="home.php?mod=space&amp;do=notice&amp;view=mypost&amp;type=activity">活动</a></li>-->
             <!--<li><a href="home.php?mod=space&amp;do=notice&amp;view=mypost&amp;type=reward">悬赏</a></li>-->
@@ -51,7 +52,7 @@
                     </span>
                         </dt>
                         <dd class="ntc_body" style="">
-                            <a href="">{$v.reply_author}</a> 回复了您的帖子 <a href="" target="_blank">{$v.reply_to_posts}</a> &nbsp; <a href="" target="_blank" class="lit">查看</a></dd>
+                            <a>{$v.reply_author}</a> 回复了您的帖子 <a href="/forum/forum/lists?pid={$v.par_id}&id={$v.t_id}&status=1&self_id={$v.id}" target="_blank">{$v.reply_to_posts}</a> &nbsp; <a href="/forum/forum/lists?pid={$v.par_id}&id={$v.t_id}&status=1&self_id={$v.id}" target="_blank" class="lit">查看</a></dd>
 
 
                     </dl>

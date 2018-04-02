@@ -133,11 +133,15 @@ class Forum extends Base{
 
     }
     public function lists(){
+        $data['status']=1;
+      
+        Db('reply')->where('del',0)->where('id',input('self_id'))->update($data);
         $type=input('type');
         $author=input('author');
         $pid=input('pid');
         $this->assign('pid',$pid);
         $this->assign('id',input('id'));
+
         if(!empty($author)){
             $list=Db('reply')->where('del',0)->where('par_id',$pid)->where('t_id',input('id'))->where('reply_author',$author)->order('date', $type)->paginate(20, false, [
                 'query' => request()->param(),
@@ -149,6 +153,7 @@ class Forum extends Base{
         ]);
 
         }
+
         $page=$list->render();
 
         $this->assign('page',$page);
@@ -193,7 +198,7 @@ class Forum extends Base{
           $data['post_author']=input('post_author');
           $data['post_reply']=input('post_reply');
             $row=Db('reply')->strict(false)->insert($data);
-           
+
         $num=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->count();
         $data=Db('reply')->where('del',0)->where('t_id',$id)->where('par_id',$pid)->order('date desc')->limit(1)->find();
         $data_a['last_author']=$data['reply_author'];

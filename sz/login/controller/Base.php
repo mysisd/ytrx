@@ -21,6 +21,8 @@ class Base extends controller {
 			if(!empty($url)) getAlert(null,$url);
 			return false;
 		}
+        $data=Db('reply')->where('del',0)->where('status',0)->where('user_id',$user['id'])->count();
+        session('reply_num',$data);
 		
 		return $user;
 	}
