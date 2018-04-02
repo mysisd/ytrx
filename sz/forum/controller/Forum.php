@@ -91,6 +91,10 @@ class Forum extends Base{
           $this->assign('data_null',$data);
           $page= $data->render();
           $this->assign('page',$page);
+          $a= Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',input('pid'))->find();
+          $count=1+$a['count'];
+          $data_a['count']=$count;
+          Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',input('pid'))->update($data_a);
           echo $this->fetch();
       }
       public function add_list(){
@@ -158,10 +162,7 @@ class Forum extends Base{
 
     $this->assign('page',$page);
        $this->assign('list',$list);
-       $a= Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',$pid)->find();
-        $count=1+$a['count'];
-        $data_a['count']=$count;
-        Db('forum_list')->where('del',0)->where('id',input('id'))->where('par_id',$pid)->update($data_a);
+
         echo $this->fetch();
     }
     public function reply(){

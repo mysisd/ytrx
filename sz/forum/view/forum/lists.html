@@ -96,7 +96,9 @@
                 <tbody><tr>
                     <td class="pls ptn pbn">
                         <div class="hm ptn">
-                            <span class="xg1">查看:</span> <span class="xi1">14</span><span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">{$data.num}</span>
+                            <span class="xg1">查看:</span>
+                            <span class="xi1">{$data.count}</span>
+                            <span class="pipe">|</span><span class="xg1">回复:</span> <span class="xi1">{$data.num}</span>
                         </div>
                     </td>
                     <td class="plc ptm pbn vwthd">
@@ -535,7 +537,17 @@
 <input type="hidden" value="{$pid}" id="pid">
 <input type="hidden" value="{$id}" id="id">
 <input type="hidden" id="link">
+<script>
+window.onload(function () {
+    var pid =$('#pid').val();
+    var id =$('#id').val();
+    $.ajax({
+        url:'/forum/forum/forum_list?pid='+pid+'&id='+id,
+        type:'post',
 
+    })
+})
+</script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
@@ -624,15 +636,7 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 
     $(function () {
 
-        var pid =$('#pid').val();
-        var id =$('#id').val();
-        $.ajax({
-            url:'/forum/forum/lists?pid='+pid+'&id='+id,
-            type:'post',
 
-
-
-        })
         $("#k_favorite").click(function(){
             var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd': 'CTRL';
             if(document.all){
@@ -662,6 +666,8 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
 
     })
 </script>
-
+<script type="text/javascript">
+$('.xi1').eq(0).text($('.xi1').eq(0).text())
+</script>
 </body>
 </html>
