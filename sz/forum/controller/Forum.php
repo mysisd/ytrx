@@ -134,7 +134,7 @@ class Forum extends Base{
     }
     public function lists(){
         $data['status']=1;
-      
+
         Db('reply')->where('del',0)->where('id',input('self_id'))->update($data);
         $type=input('type');
         $author=input('author');
