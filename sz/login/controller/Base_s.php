@@ -47,7 +47,7 @@ class Base_s extends Controller {
         session_start();
         $code=rand(100000,999999);
         session('code',$code);
-		dump($code);
+
         session('code_phone',$mobile);
         // 可选，设置模板参数
         $templateParam=[
@@ -62,7 +62,7 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-
+       
         return $result;
     }
     public static function sendMsg_open_success($mobile,$account,$password,$invite){
