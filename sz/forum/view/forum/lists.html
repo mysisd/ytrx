@@ -86,8 +86,8 @@
 
 
             <div class="o pns" id="moreconf" fwin="reply">
-
-            <button type="submit" id="postsubmit" class="pn pnc z"  name="replysubmit" tabindex="23" fwin="reply"><span>参与/回复主题</span></button>
+                <button type="submit" id="postsubmit" class="pn pnc z"  name="replysubmit" tabindex="23" fwin="reply"><span>参与/回复主题</span></button>
+            <a id="cancel" class="pn pnc z"  name="" tabindex="23" fwin="reply"><span>取消</span></a>
         </div>
         </form>
 
@@ -471,8 +471,12 @@
                                 <div class="t_fsz">
                                     <table cellspacing="0" cellpadding="0"><tbody><tr><td class="t_f" id="postmessage_1054">
                                         <div class="quote"><blockquote><font size="2"><a href="http://www.hzssbbs.com/forum.php?mod=redirect&amp;goto=findpost&amp;pid=1039&amp;ptid=275" target="_blank"><font color="#999999">{$v.post_author}</font></a></font><br>
-                                           {$v.post_reply}</blockquote></div><br>
-                                        {$v.reply}
+                                           {$v.post_reply}</blockquote></div>
+                                        <br>
+                                        <div id="v_reply">
+                                            {$v.reply}
+                                        </div>
+
 
 
                                     </td></tr></tbody></table>
@@ -910,17 +914,27 @@ tool: ['face', 'link', 'unlink', '|', 'left', 'center', 'right']
         $('.fastre').on('click',function(e){
             var a=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.pls').find('#favatar1036').find('.pi').find('.authi').find('a');
             var b=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pi').find('.pti').find('.authi').find('em').find('span');
-            var c=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pct').find('.pcb').find('.t_fsz').find('table').find('tbody').find('tr').find('#postmessage_1036');
+            var c=$(this).parent().parent().parent().parent().parent().parent().find('tr').eq(0).find('.plc').find('.pct').find('.pcb').find('.t_fsz').find('table').find('tbody').find('tr').find('td').find('#v_reply');
 
 
             $('font[data=author]').text(a.text()+'发表于'+b.text());
             $('p[name=title]').text(c.text());
             $('#fwin_reply').show();
-            $('input[name=post_author]').val($('font[data=author]').text())
-            $('input[name=post_reply]').val($('p[name=title]').text())
-            console.log($('p[name=title]').text())
-        })
 
+            $('input[name=post_author]').val($('font[data=author]').text())
+            $('input[name=post_reply]').val($('p[name=title]').text());
+            $(document).one("click", function(){
+                $("#fwin_reply").hide();
+            });
+
+            e.stopPropagation();
+        })
+        $("#fwin_reply").on("click", function(e){
+            e.stopPropagation();
+        });
+$('#cancel').on('click',function () {
+    $('#fwin_reply').hide();
+})
 
             $('#postsubmit').on('click',function () {
 

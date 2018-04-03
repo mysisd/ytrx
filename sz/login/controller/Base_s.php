@@ -62,7 +62,7 @@ class Base_s extends Controller {
 
         //返回请求结果
         $result = json_decode(json_encode($acsResponse),true);
-       
+
         return $result;
     }
     public static function sendMsg_open_success($mobile,$account,$password,$invite){
