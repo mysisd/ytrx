@@ -56,18 +56,25 @@ $(function(){
             var code=$("input[name=code]").val();
             var yzm=$("input[name=yzm]").val();
             var QQ=$("input[name=QQ]").val();
-            var email=$('input[nmae=email]').val();
+            var email=$('input[name=email]').val();
            var wechat=$("input[name=wechat]").val();
            var invite=$("input[name=invite_num]").val();
            var preference=$("input[name=preference]").val();
            var name=$("input[name=name]").val();
-           var bank_card=$("input[name=bank_card]").val();
+           var bank_card=$.trim($("input[name=bank_card]").val());
             var re = /^1\d{10}$/;
            var re_name = /^[\u4e00-\u9fa5]+(·[\u4e00-\u9fa5]+)*$/;
            var re_QQ=/^[1-9]d{4,9}$/;
            var re_bank=  /^\d{19}$/g;
            var regex = /^([0-9A-Za-z\-_\.]+)@([0-9a-z]+\.[a-z]{2,3}(\.[a-z]{2})?)$/g;
-           if(!regex.test(email)){
+          if(!re_bank.test(bank_card)||bank_card=='') {
+                parent.find('.list-tip').eq(7).show().find('.icon-error');
+               return false;
+           }else{
+                parent.find('.list-tip').eq(7).hide().find('.icon-error');
+            }
+
+		  if(!regex.test(email)){
                parent.find('.list-tip').eq(6).show().find('.icon-error');
                return false;
            }else{
@@ -93,11 +100,15 @@ $(function(){
             }
             parent.find('.list-tip').eq(2).hide();
             if(yzm.length==0){
-                parent.find('.list-tip').eq(7).show().find('.error-tag').html('短信验证失败');
+                parent.find('.list-tip').eq(8).show().find('.error-tag').html('短信验证失败');
                 return false;
-            }
-            parent.find('.list-tip').eq(4).hide();
-           if (!re_name.test(name)||name=='') {
+            }else{
+				
+			  parent.find('.list-tip').eq(8).hide();
+			}
+			
+          
+          if (!re_name.test(name)||name=='') {
                parent.find('.list-tip').eq(3).show().find('.icon-error');
                return false;
 
@@ -118,12 +129,7 @@ $(function(){
            }else{
                parent.find('.list-tip').eq(5).hide().find('.icon-error');
            }
-            if(!re_bank.test(bank_card)||bank_card=='') {
-                parent.find('.list-tip').eq(7).show().find('.icon-error');
-               return false;
-           }else{
-                parent.find('.list-tip').eq(7).hide().find('.icon-error');
-            }
+            
            userphone    = encrypt.encrypt(userphone);
            userpwd = encrypt.encrypt(userpwd);
             var postData={
